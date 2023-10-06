@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotação de Frete</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-column {
+            width: 48%;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .resultado {
+            margin-top: 40px;
+            font-size: small;
+        }
+
+        #quantidade_volumes {
+            width: 75px;
+        }
+
+        #valor_nf {
+            width: 75px;
+        }
+
+        #peso_nf {
+            width: 75px;
+        }
+
+        #comprimento_nf {
+            width: 75px;
+        }
+
+        #largura_nf {
+            width: 75px;
+        }
+
+        #altura_nf {
+            width: 75px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+        #update{
+
+margin-left: 40px;
+}
+    
+
+        /* Estilo para dispositivos móveis */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+
+/* Estilo para dispositivos com tela grande (computadores) */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .custom-icon {
+        margin-right: 20px; /* Espaçamento entre os ícones */
+    }
+
+  
+}
+
+   
+    </style>
+</head>
+
+<body>
+    <h1>Distribuidora Route 66</h1>
+
+    <div id="container">
+
+        <div class="info-column">
+            <label for="cpf_cnpj_remetente">CNPJ Remetente:</label>
+            <input type="text" id="cpf_cnpj_remetente" placeholder="Digite o CNPJ do Remetente" value="01.455.957/0001-95" readonly>
+            <div class="resultado">
+                <h2>Remetente</h2>
+                <p>Razão Social: <span id="empresa_remetente">DISTRIBUIDORA DE ELETRONICOS ROUTE 66 LTDA</span></p>
+                <p>Endereço: <span id="logradouro_remetente">AV ANTONIO ABID CHAMMAS</span> nº <span id="numero_remetente">86</span></p>
+                <p>Bairro: <span id="bairro_remetente">JARDIM CONTINENTAL</span></p>
+                <p>Cidade: <span id="cidade_remetente">JAU</span></p>
+            </div>
+        </div>
+        <div class="info-column">
+            <label for="cpf_cnpj_destino">CNPJ Destinatário:</label>
+            <input type="text" id="cpf_cnpj_destino" placeholder="Digite o CNPJ do Destino"
+                onkeyup="autoBuscarCNPJ(this)">
+            <div class="resultado">
+                <h2>Destinatário</h2>
+                <p>Razão Social: <span id="empresa_destino"></span></p>
+                <p>Endereço: <span id="logradouro_destino"></span> nº <span id="numero_destino"></span></p>
+                <p>Bairro: <span id="bairro_destino"></span></p>
+                <p>Cidade: <span id="cidade_destino"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="info-row">
+        <div class="info-column">
+            <label for="quantidade_volumes"></label>
+            <input type="number" id="quantidade_volumes" placeholder="Volumes">
+        </div>
+        <div class="info-column">
+            <label for="valor_nf"></label>
+            <input type="number" id="valor_nf" placeholder="Valor NF">
+        </div>
+        <div class="info-column">
+            <label for="peso_nf"></label>
+            <input type="number" id="peso_nf" placeholder="Peso KG" id="peso_cubico">
+        </div>
+    </div>
+
+    <div class="info-row">
+        <div class="info-column">
+            <label for="comprimento_nf"></label>
+            <input type="number" id="comprimento_nf" placeholder="C (cm)">
+        </div>
+        <div class="info-column">
+            <label for="largura_nf"></label>
+            <input type="number" id="largura_nf" placeholder="L (cm)">
+        </div>
+        <div class="info-column">
+            <label for="altura_nf"></label>
+            <input type="number" id="altura_nf" placeholder="A (cm)">
+        </div>
+    </div>
+
+    
+
+    <div class="resultado">
+        <a href="#" id="calc" onclick="calcularFrete()">
+            <img src="./calc.png" alt="Ícone calc" class="custom-icon" width="150">
+
+            <a href="#" id="update"  onclick="atualizarSistema()">
+                <img src="./update.png" alt="Ícone de Atualização" class="custom-icon" width="70" >
+              </a> 
+          </a>
+          
+       
+            <p>Frete: R$ <span id="frete"></span></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function autoBuscarCNPJ(input) {
+            var cnpj = input.value.replace(/[^\d]+/g, '');
+            if (cnpj.length === 14) {
+                buscarCNPJ();
+            }
+        }
+
+        function buscarCNPJ() {
+            var cnpjRemetente = $('#cpf_cnpj_remetente').val().replace(/[^\d]+/g, '');
+            var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+
+            $.ajax({
+                url: 'https://www.receitaws.com.br/v1/cnpj/' + cnpjRemetente,
+                method: 'GET',
+                dataType: 'jsonp',
+                success: function (data) {
+                    if (data.status === 'OK') {
+                        $('#empresa_remetente').text(data.nome);
+                        $('#logradouro_remetente').text(data.logradouro);
+                        $('#numero_remetente').text(data.numero);
+                        $('#bairro_remetente').text(data.bairro);
+                        $('#cidade_remetente').text(data.municipio);
+                    } else {
+
+                    }
+                },
+
+            });
+
+            $.ajax({
+                url: 'https://www.receitaws.com.br/v1/cnpj/' + cnpjDestino,
+                method: 'GET',
+                dataType: 'jsonp',
+                success: function (data) {
+                    if (data.status === 'OK') {
+                        $('#empresa_destino').text(data.nome);
+                        $('#logradouro_destino').text(data.logradouro);
+                        $('#numero_destino').text(data.numero);
+                        $('#bairro_destino').text(data.bairro);
+                        $('#cidade_destino').text(data.municipio);
+                    } else {
+                        alert('Não foi possível buscar os dados do destino');
+                    }
+                },
+
+            });
+        }
+        function calcularPesoCubico() {
+    var quantidadeVolumes = parseInt($('#quantidade_volumes').val());
+    var comprimentoInput = $('#comprimento_nf').val().replace(',', '.');
+    var larguraInput = $('#largura_nf').val().replace(',', '.');
+    var alturaInput = $('#altura_nf').val().replace(',', '.');
+
+    // Converte as medidas para o formato com ponto
+    var comprimento = parseFloat(comprimentoInput);
+    var largura = parseFloat(larguraInput);
+    var altura = parseFloat(alturaInput);
+
+    // Calcula o volume em metros cúbicos
+    var volumeMetrosCubicos = (comprimento / 100) * (largura / 100) * (altura / 100);
+
+    // Calcula o peso cúbico multiplicado pelo número de volumes
+    var pesoCubico = quantidadeVolumes * volumeMetrosCubicos * 180;
+
+    // Atualiza o elemento HTML com o valor do peso cúbico
+    $('#peso_cubico').text(pesoCubico.toFixed(2));
+
+    return pesoCubico;
+}
+
+
+
+
+
+var taxasDeFrete = {
+    "01455957000195": 125,  
+    "OutroCNPJ1": 50,       
+    "OutroCNPJ2": 75        
+};
+
+function calcularFrete() {
+    var pesoInicial = parseFloat($('#peso_nf').val());
+    var pesoCubico = calcularPesoCubico(); // Calcula o peso cúbico
+
+    var cidadeDestino = $('#cidade_destino').text().toLowerCase();
+    var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+
+    var frete;
+
+    if (cidadeDestino === "adamantina" || cidadeDestino === 'jau') {
+        var pesoUsadoParaCalculo = Math.max(pesoInicial, pesoCubico);
+
+        if (pesoUsadoParaCalculo <= 5) {
+            frete = 41.69;
+        } else if (pesoUsadoParaCalculo <= 15) {
+            frete = 44.27;
+        } else if (pesoUsadoParaCalculo <= 25) {
+            frete = 47.27;
+        } else {
+            // Lidar com outros casos ou exibir mensagem de erro
+            alert('Preencha as informações');
+            return;
+        }
+    } else {
+        // Lidar com outras cidades ou exibir mensagem de erro
+        alert('Cidade de destino não suportada');
+        return;
+    }
+
+    // Verifica se o CNPJ de destino está no objeto de taxas de frete
+    if (taxasDeFrete[cnpjDestino]) {
+        // Adiciona a taxa de frete específica para o CNPJ de destino
+        frete += taxasDeFrete[cnpjDestino];
+    }
+
+    $('#frete').text(frete.toFixed(2));
+}
+
+
+
+
+        function limparDados() {
+            // Limpar os campos de entrada
+            $('#cpf_cnpj_remetente').val('');
+            $('#cpf_cnpj_destino').val('');
+            $('#quantidade_volumes').val('');
+            $('#valor_nf').val('');
+            $('#peso_nf').val('');
+            $('#comprimento_nf').val('');
+            $('#largura_nf').val('');
+            $('#altura_nf').val('');
+
+            // Limpar os campos de resultado
+            $('.resultado span').text('');
+        }
+
+
+
+        function atualizarSistema() {
+    location.reload(); // Recarrega a página
+}
+
+
+
+    </script>
+
+</body>
+
+</html>
