@@ -28,7 +28,7 @@
         input[type="text"],
         input[type="number"] {
             width: 90%;
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -61,7 +61,7 @@
             width: 75px;
         }
 
-        #peso_nf {
+        #peso_cubico {
             width: 75px;
         }
 
@@ -85,6 +85,7 @@
 
             margin-left: 40px;
         }
+
 
 
         /* Estilo para dispositivos móveis */
@@ -117,12 +118,11 @@
 </head>
 
 <body>
-    <h1>Distribuidora Route 66</h1>
 
     <div id="container">
 
         <div class="info-column">
-            <label for="cpf_cnpj_remetente">CNPJ Remetente:</label>
+            <label for="cpf_cnpj_remetente">CNPJ Remetente</label>
             <input type="text" id="cpf_cnpj_remetente" placeholder="Digite o CNPJ do Remetente"
                 value="01.455.957/0001-95" readonly>
             <div class="resultado">
@@ -135,7 +135,7 @@
             </div>
         </div>
         <div class="info-column">
-            <label for="cpf_cnpj_destino">CNPJ Destinatário:</label>
+            <label for="cpf_cnpj_destino">CNPJ Destinatário</label>
             <input type="number" id="cpf_cnpj_destino" placeholder="Digite o CNPJ do Destino"
                 onkeyup="autoBuscarCNPJ(this)">
             <div class="resultado">
@@ -145,58 +145,62 @@
                 <p>Bairro: <span id="bairro_destino"></span></p>
                 <p>Cidade: <span id="cidade_destino"></span></p>
             </div>
-        </div>
-    </div>
+            <br>
 
+            <div class="info-columnlocal">
+                <label for="cep_entrega">Local de Entrega</label>
+                <input type="text" id="cep_entrega" placeholder="Digite o CEP de Entrega" onblur="buscarCepEntrega()">
+                <div class="resultado">
+                    <h2>Endereço de Entrega</h2>
+                    <p>Endereço: <span id="logradouro_entrega"></span><span id="numero_entrega"></span></p>
+                    <p>Bairro: <span id="bairro_entrega"></span></p>
+                    <p>Cidade: <span id="cidade_entrega"></span></p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
     <br>
-    <br>
-    <br>
+
+
 
     <div class="info-row">
         <div class="info-column">
             <label for="quantidade_volumes"></label>
-            <input type="number" id="quantidade_volumes" placeholder="Volumes" oninput="mostrarCamposDeMedidas()">
-            <script>
-                function mostrarCamposDeMedidas() {
-                    var quantidadeVolumes = parseInt($('#quantidade_volumes').val());
-                    var camposMedidas = $('#campos_medidas');
-
-                    // Se a quantidade de volumes for maior que zero, mostra os campos
-                    if (quantidadeVolumes > 0) {
-                        camposMedidas.show();
-                    } else {
-                        camposMedidas.hide();
-                    }
-                }
-
-            </script>
-
+            <input type="number" id="quantidade_volumes" placeholder="Volumes">
         </div>
+
         <div class="info-column">
             <label for="valor_nf"></label>
             <input type="number" id="valor_nf" placeholder="Valor NF">
         </div>
         <div class="info-column">
             <label for="peso_nf"></label>
-            <input type="number" id="peso_nf" placeholder="Peso KG" id="peso_cubico">
+            <input type="text" id="peso_cubico" placeholder="Peso KG">
         </div>
     </div>
+    <span id="adicionar_medidas" style="cursor: pointer;">
+        <img src="./cubagem.png" width="80" alt="Ícone calc">
+    </span>
 
-
+    <div id="campos_medidas"></div>
 
     <div class="info-row" id="campos_medidas" style="display: none;">
         <div class="info-column">
-            <label for="comprimento_nf"></label>
+            <label for="comprimento_nf">C (cm):</label>
             <input type="number" id="comprimento_nf" placeholder="C (cm)">
         </div>
         <div class="info-column">
-            <label for="largura_nf"></label>
+            <label for="largura_nf">L (cm):</label>
             <input type="number" id="largura_nf" placeholder="L (cm)">
         </div>
         <div class="info-column">
-            <label for="altura_nf"></label>
+            <label for="altura_nf">A (cm):</label>
             <input type="number" id="altura_nf" placeholder="A (cm)">
         </div>
+
 
     </div>
 
@@ -209,8 +213,8 @@
             </a>
         </a>
 
-
         <p>Frete: R$ <span id="frete"></span></p>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -224,7 +228,7 @@
         function buscarCNPJ() {
             var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
 
-           
+
 
             $.ajax({
                 url: 'https://www.receitaws.com.br/v1/cnpj/' + cnpjDestino,
@@ -244,30 +248,70 @@
 
             });
         }
+        var numCamposMedidas = 1; // Começar com um campo de medidas
+        var maxCamposMedidas = 5; // Defina o número máximo de campos de medidas permitidos
+
+        // Adicione um ouvinte de evento ao botão "Adicionar Medidas"
+        $('#adicionar_medidas').click(function () {
+            if (numCamposMedidas < maxCamposMedidas) {
+                numCamposMedidas++;
+
+                // Crie campos de medidas dinamicamente
+                var novoCampo = '<div class="info-row">';
+                novoCampo += '<div class="info-column">';
+                novoCampo += '<label for="comprimento_nf">C (cm):</label>';
+                novoCampo += '<input type="number" id="comprimento_nf_' + numCamposMedidas + '" placeholder="C (cm)">';
+                novoCampo += '</div>';
+
+                novoCampo += '<div class="info-column">';
+                novoCampo += '<label for="largura_nf">L (cm):</label>';
+                novoCampo += '<input type="number" id="largura_nf_' + numCamposMedidas + '" placeholder="L (cm)">';
+                novoCampo += '</div>';
+
+                novoCampo += '<div class="info-column">';
+                novoCampo += '<label for="altura_nf">A (cm):</label>';
+                novoCampo += '<input type="number" id="altura_nf_' + numCamposMedidas + '" placeholder="A (cm)">';
+                novoCampo += '</div>';
+                novoCampo += '</div>';
+
+                $('#campos_medidas').append(novoCampo);
+            } else {
+                alert('Limite máximo de campos de medidas atingido.');
+            }
+        });
+
+        // Atualize a função calcularPesoCubico() para calcular com base nos campos de medidas dinâmicos
         function calcularPesoCubico() {
             var quantidadeVolumes = parseInt($('#quantidade_volumes').val());
-            var comprimentoInput = $('#comprimento_nf').val().replace(',', '.');
-            var larguraInput = $('#largura_nf').val().replace(',', '.');
-            var alturaInput = $('#altura_nf').val().replace(',', '.');
+            var pesoInicial = parseFloat($('#peso_nf').val());
 
-            // Converte as medidas para o formato com ponto
-            var comprimento = parseFloat(comprimentoInput);
-            var largura = parseFloat(larguraInput);
-            var altura = parseFloat(alturaInput);
+            var pesoCubicoTotal = 0;
 
-            // Calcula o volume em metros cúbicos
-            var volumeMetrosCubicos = (comprimento / 100) * (largura / 100) * (altura / 100);
+            for (var i = 1; i <= numCamposMedidas; i++) {
+                var comprimentoInput = $('#comprimento_nf_' + i).val();
+                var larguraInput = $('#largura_nf_' + i).val();
+                var alturaInput = $('#altura_nf_' + i).val();
 
-            // Calcula o peso cúbico multiplicado pelo número de volumes
-            var pesoCubico = quantidadeVolumes * volumeMetrosCubicos * 180;
+                var comprimento = parseFloat(comprimentoInput);
+                var largura = parseFloat(larguraInput);
+                var altura = parseFloat(alturaInput);
 
-            // Atualiza o elemento HTML com o valor do peso cúbico
-            $('#peso_cubico').text(pesoCubico.toFixed(2));
+                if (!isNaN(comprimento) && !isNaN(largura) && !isNaN(altura)) {
+                    var volumeMetrosCubicos = (comprimento / 100) * (largura / 100) * (altura / 100);
+                    pesoCubicoTotal += volumeMetrosCubicos * 180;
+                }
+            }
 
-            return pesoCubico;
+            // Multiplique o peso cúbico total pelo número de volumes
+            var pesoCubicoFinal = pesoCubicoTotal * quantidadeVolumes;
+
+            $('#peso_cubico').val(pesoCubicoFinal.toFixed(2));
+
+            // Atualize o campo de exibição do peso cúbico total
+            $('#peso_cubico_total').text(pesoCubicoFinal.toFixed(2));
+
+            return pesoCubicoFinal;
         }
-
-
 
 
 
@@ -281,13 +325,17 @@
             var pesoInicial = parseFloat($('#peso_nf').val());
             var pesoCubico = calcularPesoCubico(); // Calcula o peso cúbico
 
-            var cidadeDestino = $('#cidade_destino').text().toLowerCase();
+            var cidadeDestino;
             var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
 
-            var frete;
-            
+            cidadeDestino = $('#cidade_entrega').text().toLowerCase();
 
-            if (cidadeDestino === "adamantina" || cidadeDestino === 'jau') {
+            var frete;
+            if (!validarCampos()) {
+            return false; // Não execute o cálculo se os campos não estiverem preenchidos
+        }
+
+            if (cidadeDestino === "adamantina" || cidadeDestino === 'jaú', "JAU") {
                 var pesoUsadoParaCalculo = Math.max(pesoInicial, pesoCubico);
 
                 if (pesoUsadoParaCalculo <= 5) {
@@ -298,7 +346,6 @@
                     frete = 47.27;
                 } else {
                     // Lidar com outros casos ou exibir mensagem de erro
-                    alert('Preencha as informações');
                     return;
                 }
             } else {
@@ -312,10 +359,10 @@
                 // Adiciona a taxa de frete específica para o CNPJ de destino
                 frete += taxasDeFrete[cnpjDestino];
             }
+            
 
             $('#frete').text(frete.toFixed(2));
         }
-
 
 
 
@@ -341,8 +388,55 @@
         }
 
 
+        function removerAcentos(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function buscarCepEntrega() {
+            var cep = removerAcentos($('#cep_entrega').val()).replace(/[^\d]+/g, '');
+
+            if (cep.length > 0) {
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (!data.erro) {
+                            $('#logradouro_entrega').text(data.logradouro);
+                            $('#numero_entrega').text(data.numero);
+                            $('#bairro_entrega').text(data.bairro);
+                            $('#cidade_entrega').text(data.localidade);
+
+                            // Recalcula o frete com base no novo CEP de entrega
+                            calcularFrete();
+                        }
+                    },
+                });
+            } else {
+                // Se o campo de CEP de entrega estiver vazio, use a cidade do CNPJ do destino
+                $('#cidade_entrega').text($('#cidade_destino').text());
+                // Recalcula o frete com base na cidade do CNPJ do destino
+                calcularFrete();
+            }
+        }
+
+        function validarCampos() {
+        var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+        var cepEntrega = removerAcentos($('#cep_entrega').val()).replace(/[^\d]+/g, '');
+
+        if (cnpjDestino.length === 0 && cepEntrega.length === 0) {
+            alert('Digite o CNPJ do Destino');
+            return false; 
+        }
+
+        return true; 
+    }
 
     </script>
+
+    
+
+
 
 </body>
 
