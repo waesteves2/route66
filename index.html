@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
         }
 
         .info-column {
-            width: 48%;
+            width: 100%;
         }
 
         input[type="text"],
@@ -82,31 +83,35 @@
         #update {
             margin-left: 40px;
         }
-	
     </style>
 </head>
+
 <body>
     <div id="container">
         <div class="info-column">
             <label for="cpf_cnpj_remetente">CNPJ Remetente</label>
-            <input type="text" id="cpf_cnpj_remetente" placeholder="Digite o CNPJ do Remetente" value="01.455.957/0001-95" readonly>
+            <input type="text" id="cpf_cnpj_remetente" placeholder="Digite o CNPJ do Remetente"
+                value="01.455.957/0001-95" readonly>
             <div class="resultado">
                 <h2>Remetente</h2>
                 <p>Razão Social: <span id="empresa_remetente">DISTRIBUIDORA DE ELETRONICOS ROUTE 66 LTDA</span></p>
-                <p>Endereço: <span id="logradouro_remetente">AV ANTONIO ABID CHAMMAS</span> nº <span id="numero_remetente">86</span></p>
+                <p>Endereço: <span id="logradouro_remetente">AV ANTONIO ABID CHAMMAS</span> nº <span
+                        id="numero_remetente">86</span></p>
                 <p>Bairro: <span id="bairro_remetente">JARDIM CONTINENTAL</span></p>
                 <p>Cidade: <span id="cidade_remetente">JAU</span></p>
             </div>
         </div>
         <div class="info-column">
             <label for="cpf_cnpj_destino">CNPJ Destinatário</label>
-            <input type="number" id="cpf_cnpj_destino" placeholder="Digite o CNPJ do Destino" onkeyup="autoBuscarCNPJ(this)">
+            <input type="number" id="cpf_cnpj_destino" placeholder="Digite o CNPJ do Destino"
+                onkeyup="autoBuscarCNPJ(this)">
             <div class="resultado">
                 <h2>Destinatário</h2>
                 <p>Razão Social: <span id="empresa_destino"></span></p>
                 <p>Endereço: <span id="logradouro_destino"></span> nº <span id="numero_destino"></span></p>
                 <p>Bairro: <span id="bairro_destino"></span></p>
                 <p>Cidade: <span id="cidade_destino"></span></p>
+                <p>UF: <span id="sigladestino"></span></p>
             </div>
             <br>
             <div class="info-column">
@@ -116,7 +121,10 @@
                     <h2>Endereço de Entrega</h2>
                     <p>Endereço: <span id="logradouro_entrega"></span><span id="numero_entrega"></span></p>
                     <p>Bairro: <span id="bairro_entrega"></span></p>
-                    <p>Cidade: <span id="cidade_entrega"></span></p>
+                    <p>Cidade: <span id="cidade_entrega">
+                            <p>UF: <span id="estado-sigla"></span></p>
+                        </span></p>
+
                 </div>
             </div>
         </div>
@@ -155,7 +163,7 @@
         </div>
     </div>
 
-   
+
 
     <div class="resultado">
         <a href="#" id="calc" onclick="calcularFrete()">
@@ -170,7 +178,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Funções JavaScript aqui
 
         function autoBuscarCNPJ(input) {
             var cnpj = input.value.replace(/[^\d]+/g, '');
@@ -192,6 +199,9 @@
                         $('#numero_destino').text(data.numero);
                         $('#bairro_destino').text(data.bairro);
                         $('#cidade_destino').text(data.municipio);
+                        $('#sigladestino').text(data.uf);
+
+
                     } else {
                         alert('Não foi possível buscar os dados do destino');
                     }
@@ -200,7 +210,7 @@
         }
 
         var numCamposMedidas = 1;
-        var maxCamposMedidas = 5;
+        var maxCamposMedidas = 50;
 
         $('#adicionar_medidas').click(function () {
             if (numCamposMedidas < maxCamposMedidas) {
@@ -247,7 +257,6 @@
             var pesoCubicoFinal = pesoCubicoTotal * quantidadeVolumes;
             $('#peso_cubico_calculado').text(pesoCubicoFinal.toFixed(2));
 
-            // Comparar peso cúbico calculado com peso real e usar o maior valor
             var pesoReal = parseFloat($('#peso_nf').val());
             var pesoFrete = Math.max(pesoReal, pesoCubicoFinal);
             $('#peso_real').text(pesoReal.toFixed(2));
@@ -264,29 +273,86 @@
 
         function calcularFrete() {
             var pesoFrete = calcularPesoCubico();
-            var cidadeDestino = $('#cidade_entrega').text().toLowerCase();
-            var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var cidadeDestino = '';
 
-            if (!validarCampos()) {
-                return false;
+            if ($('#cidade_entrega').text() && $('#cep_entrega').val()) {
+                cidadeDestino = $('#cidade_entrega').text().toLowerCase();
+            } else if ($('#cidade_destino').text()) {
+                cidadeDestino = $('#cidade_destino').text().toLowerCase();
             }
+
+            cidadeDestino = cidadeDestino.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
             var frete = 0;
 
-            if (pesoFrete <= 5) {
-                frete = 41.69;
-            } else if (pesoFrete <= 15) {
-                frete = 44.27;
-            } else if (pesoFrete <= 25) {
-                frete = 47.27;
+            switch (cidadeDestino) {
+                case "jau":
+                case "ribeirao preto":
+                case "campinas":
+                case "botucatu":
+                case "americana":
+                case "jundiai":
+                    if (pesoFrete <= 5) {
+                        frete = 41.69;
+                    } else if (pesoFrete <= 15) {
+                        frete = 44.27;
+                    } else if (pesoFrete <= 30) {
+                        frete = 47.95;
+                    } else if (pesoFrete <= 40) {
+                        frete = 51.53;
+                    } else if (pesoFrete <= 60) {
+                        frete = 74.94;
+                    } else if (pesoFrete <= 100) {
+                        frete = 94.40;
+                    } else {
+                        var taxa100Kg = Math.floor(pesoFrete / 100) * 8.34;
+                        var taxaExcedente = (pesoFrete > 100) ? (pesoFrete - 100) * 1.52 : 0;
+                        frete = 94.40 + taxa100Kg + taxaExcedente;
+                    }
+                    break;
+
+                case "sao paulo":
+                case "guarulhos":
+                case "santo andre":
+                    if (pesoFrete <= 10) {
+                        frete = 120.88;
+                    } else if (pesoFrete <= 20) {
+                        frete = 139.73;
+                    } else if (pesoFrete <= 40) {
+                        frete = 156.97;
+                    } else if (pesoFrete <= 60) {
+                        frete = 178.88;
+                    } else if (pesoFrete <= 100) {
+                        frete = 203.25;
+                    } else {
+                        var taxa100Kg = Math.floor(pesoFrete / 100) * 8.34;
+                        var taxaExcedente = (pesoFrete > 100) ? (pesoFrete - 100) * 1.52 : 0;
+                        frete = 203.25 + taxa100Kg + taxaExcedente;
+                    }
+                    break;
+
+                default:
+                    // Lida com o caso em que a cidade de destino não é reconhecida.
+                    break;
             }
 
-            if (taxasDeFrete[cnpjDestino]) {
-                frete += taxasDeFrete[cnpjDestino];
-            }
+
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+
+            var taxa = taxasDeFrete[cnpjDestinatario] || 0;
+
+            frete = frete + taxa;
+
+            $('#cnpj_destinatario').text($('#cpf_cnpj_destino').val());
+            $('#cep_entrega_destino').text($('#cep_entrega').val());
 
             $('#frete').text(frete.toFixed(2));
         }
+
+
+
+
 
         function limparDados() {
             $('#cpf_cnpj_remetente').val('');
@@ -303,7 +369,6 @@
         function atualizarSistema() {
             location.reload();
         }
-
         function removerAcentos(str) {
             return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
@@ -322,15 +387,22 @@
                             $('#numero_entrega').text(data.numero);
                             $('#bairro_entrega').text(data.bairro);
                             $('#cidade_entrega').text(data.localidade);
+                            $('#estado-sigla').text(data.uf);
+
+                            $('#logradouro_entrega, #numero_entrega, #bairro_entrega, #cidade_entrega, #estado-sigla').each(function () {
+                                $(this).text($(this).text().toUpperCase());
+                            });
+
                             calcularFrete();
                         }
                     },
                 });
             } else {
-                $('#cidade_entrega').text($('#cidade_destino').text());
+                $('#cidade_entrega').text($('#cidade_destino').text().toUpperCase());
                 calcularFrete();
             }
         }
+
 
         function validarCampos() {
             var cnpjDestino = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
@@ -345,4 +417,5 @@
         }
     </script>
 </body>
+
 </html>
