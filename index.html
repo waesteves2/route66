@@ -99,6 +99,8 @@
                         id="numero_remetente">86</span></p>
                 <p>Bairro: <span id="bairro_remetente">JARDIM CONTINENTAL</span></p>
                 <p>Cidade: <span id="cidade_remetente">JAU</span></p>
+                <p>UF: SP</p>
+
             </div>
         </div>
         <div class="info-column">
@@ -116,14 +118,14 @@
             <br>
             <div class="info-column">
                 <label for="cep_entrega">Local de Entrega</label>
-                <input type="text" id="cep_entrega" placeholder="Digite o CEP de Entrega" onblur="buscarCepEntrega()">
+                <input type="number" id="cep_entrega" placeholder="Digite o CEP de Entrega" onblur="buscarCepEntrega()">
                 <div class="resultado">
                     <h2>Endereço de Entrega</h2>
                     <p>Endereço: <span id="logradouro_entrega"></span><span id="numero_entrega"></span></p>
                     <p>Bairro: <span id="bairro_entrega"></span></p>
                     <p>Cidade: <span id="cidade_entrega">
-                            <p>UF: <span id="estado-sigla"></span></p>
-                        </span></p>
+                    <p>UF: <span id="estado-sigla"></span></p>
+                    </span></p>
 
                 </div>
             </div>
@@ -141,7 +143,7 @@
         </div>
         <div class="info-column">
             <label for="peso_nf"></label>
-            <input type="text" id="peso_nf" placeholder="Peso KG">
+            <input type="number" id="peso_nf" placeholder="Peso KG">
         </div>
     </div>
     <span id="adicionar_medidas" style="cursor: pointer;">
