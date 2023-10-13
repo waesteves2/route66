@@ -83,6 +83,55 @@
         #update {
             margin-left: 40px;
         }
+
+
+        /* Estilos do modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #222;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -124,13 +173,26 @@
                     <p>Endereço: <span id="logradouro_entrega"></span><span id="numero_entrega"></span></p>
                     <p>Bairro: <span id="bairro_entrega"></span></p>
                     <p>Cidade: <span id="cidade_entrega">
-                    <p>UF: <span id="estado-sigla"></span></p>
-                    </span></p>
+                            <p>UF: <span id="estado-sigla"></span></p>
+                        </span></p>
 
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Simulação de Frete</h2>
+            <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
+            <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
+            <p>Frete: R$ <span id="frete">0.00</span></p>
+            <p>Dias de Atendimento: <span id="dias-atendimento-modal">Segunda a Sexta</span></p>
+            <button onclick="imprimirSimulacao()">Imprimir</button>
+        </div>
+    </div>
+
     <br>
     <div class="info-row">
         <div class="info-column">
@@ -138,13 +200,14 @@
             <input type="number" id="quantidade_volumes" placeholder="Volumes">
         </div>
         <div class="info-column">
-            <label for "valor_nf"></label>
+            <label for ="valor_nf"></label>
             <input type="number" id="valor_nf" placeholder="Valor NF">
         </div>
         <div class="info-column">
             <label for="peso_nf"></label>
             <input type="number" id="peso_nf" placeholder="Peso KG">
         </div>
+
     </div>
     <span id="adicionar_medidas" style="cursor: pointer;">
         <img src="./cubagem.png" width="80" alt="Ícone calc">
@@ -168,15 +231,14 @@
 
 
     <div class="resultado">
-        <a href="#" id="calc" onclick="calcularFrete()">
-            <img src="./calc.png" alt="Ícone calc" class="custom-icon" width="150">
+        <a href="#" id="calc" onclick="calcularFrete(); abrirModal();" class="custom-icon">
+            <img src="./calc.png" alt="Ícone calc" width="150">
         </a>
+
         <a href="#" id="update" onclick="atualizarSistema()">
             <img src="./update.png" alt="Ícone de Atualização" class="custom-icon" width="70">
         </a>
-        <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
-        <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
-        <p>Frete: R$ <span id="frete">0.00</span></p>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -417,6 +479,32 @@
 
             return true;
         }
+
+
+        function abrirModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+
+            var valorFrete = parseFloat(document.getElementById("frete").textContent);
+            var prazoEntrega = 5; // Defina o prazo de entrega desejado
+            var diasAtendimento = "Segunda a Sexta"; // Defina os dias de atendimento da cidade
+
+            document.getElementById("valor-frete-modal").textContent = valorFrete.toFixed(2);
+            document.getElementById("prazo-entrega-modal").textContent = prazoEntrega + " dias úteis";
+            document.getElementById("dias-atendimento-modal").textContent = diasAtendimento;
+        }
+
+        function fecharModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        function imprimirSimulacao() {
+            // Lógica para imprimir a simulação de frete
+            // Você pode usar a função window.print() para imprimir a página
+            window.print();
+        }
+
     </script>
 </body>
 
