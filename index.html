@@ -72,7 +72,8 @@
             width: 75px;
         }
 
-        #altura_nf {
+        #altura_nf,
+        #peso_nf {
             width: 75px;
         }
 
@@ -98,8 +99,8 @@
         }
 
         .modal-content {
-            background-color: #222;
-            color: white;
+            background-color: white;
+            color: black;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -110,7 +111,7 @@
         }
 
         .close {
-            color: white;
+            color: red;
             float: right;
             font-size: 30px;
             cursor: pointer;
@@ -121,7 +122,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: black;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -130,8 +131,120 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color:black;
         }
+
+         
+        body {
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+p{
+    text-align: left;
+}
+
+#container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info-column {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+#cub{
+
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+
+}
+.icon-container img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.resultado {
+    margin-top: 40px;
+    font-size: small;
+
+}
+
+.resultadoicon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-icon {
+    margin: 0 10px; 
+}
+
+
+
+.custom-icon {
+    margin: 0 10px; 
+}
+
+.custom-icon {
+    display: block;
+    margin: 0 auto;
+}
+
+.info-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+#update {
+    margin-left: 40px;
+}
+
+
+@media (max-width: 768px) {
+    .info-column {
+        flex: 0  100%;
+    }
+}
+
     </style>
 </head>
 
@@ -149,6 +262,8 @@
                 <p>Bairro: <span id="bairro_remetente">JARDIM CONTINENTAL</span></p>
                 <p>Cidade: <span id="cidade_remetente">JAU</span></p>
                 <p>UF: SP</p>
+                <br>
+                <img src="./route 66.png" alt="" width="230">
 
             </div>
         </div>
@@ -165,7 +280,7 @@
                 <p>UF: <span id="sigladestino"></span></p>
             </div>
             <br>
-            <div class="info-column">
+            <div class="info-columnl">
                 <label for="cep_entrega">Local de Entrega</label>
                 <input type="number" id="cep_entrega" placeholder="Digite o CEP de Entrega" onblur="buscarCepEntrega()">
                 <div class="resultado">
@@ -184,14 +299,19 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Simulação de Frete</h2>
-            <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
-            <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
-            <p>Frete: R$ <span id="frete">0.00</span></p>
-            <p>Dias de Atendimento: <span id="dias-atendimento-modal">Segunda a Sexta</span></p>
-            <button onclick="imprimirSimulacao()">Imprimir</button>
+            <h2 class="modal-title">Simulação de Frete</h2>
+            <div class="modal-info">
+                <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
+                <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
+                <p>Frete: R$ <span id="frete">0.00</span></p>
+            </div>
+            <div class="modal-footer">
+                <p>Dias de Atendimento: <span id="dias-atendimento-modal">Segunda a Sexta</span></p>
+                <button class="modal-button" onclick="imprimirSimulacao()">Imprimir</button>
+            </div>
         </div>
     </div>
+    
 
     <br>
     <div class="info-row">
@@ -210,8 +330,12 @@
 
     </div>
     <span id="adicionar_medidas" style="cursor: pointer;">
-        <img src="./cubagem.png" width="80" alt="Ícone calc">
+        <div class="icon-container">
+            <img src="./cubsfundo.png" width="80" alt="Ícone calc">
+            <p id="cub">Cubagem</p>
+        </div>
     </span>
+    
     <div id="campos_medidas"></div>
     <div class="info-row" id="campos_medidas" style="display: none;">
         <div class="info-column">
@@ -228,18 +352,18 @@
         </div>
     </div>
 
+   <br><br>
 
-
-    <div class="resultado">
+    <div class="resultadoicon">
         <a href="#" id="calc" onclick="calcularFrete(); abrirModal();" class="custom-icon">
             <img src="./calc.png" alt="Ícone calc" width="150">
         </a>
-
-        <a href="#" id="update" onclick="atualizarSistema()">
-            <img src="./update.png" alt="Ícone de Atualização" class="custom-icon" width="70">
+    
+        <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
+            <img src="./update.png" alt="Ícone de Atualização" width="70">
         </a>
-
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
