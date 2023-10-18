@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotação de Frete</title>
+    <title>Simulador de Frete Route</title>
     <style>
         body {
             background-color: black;
@@ -86,7 +86,6 @@
         }
 
 
-        /* Estilos do modal */
         .modal {
             display: none;
             position: fixed;
@@ -246,7 +245,49 @@
                 flex: 0 100%;
             }
         }
+
+
+
+
+        #historicoModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #historicoModal .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            font-size: small;
+
+        }
+
+        #historicoModal .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        .scrollable-content {
+            max-height: 400px;
+            overflow-y: auto;
+        }
     </style>
+
+
 </head>
 
 <body>
@@ -308,10 +349,23 @@
                 <p>Prazo de Entrega: <span id="prazo-entrega-modal">0 dias úteis</span></p> <!-- Adicione esta linha -->
             </div>
             <div class="modal-footer">
-                <button class="modal-button" onclick="imprimirSimulacao()">Imprimir</button>
             </div>
         </div>
     </div>
+
+    <div id="historicoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharHistoricoModal()">&times;</span>
+            <h2 class="modal-title">Histórico de Simulações</h2>
+            <div class="scrollable-content">
+                <ul id="historicoContent">
+                </ul>
+            </div>
+            <button onclick="resetarHistorico()">Resetar Histórico</button>
+
+        </div>
+    </div>
+
 
 
     <br>
@@ -363,6 +417,11 @@
         <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
             <img src="./update.png" alt="Ícone de Atualização" width="70">
         </a>
+        <a href="#" id="historicoButton" class="custom-icon" onclick="abrirHistoricoModal()">
+            <img src="https://cdn.icon-icons.com/icons2/831/PNG/512/medical_icon_4_icon-icons.com_66661.png"
+                alt="Ícone histórico" width="100">
+        </a>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -516,7 +575,7 @@
 
             } else {
             }
-            var cidadesAtendidas = ["guarulhos","sao paulo","aruja","biritiba-mirim","ferraz de vasconcelos","itaquaquecetuba","mairipora","maua","mogi das cruzes","poa","ribeirao pires","rio grande da serra","salesopolis","santa isabel","santo andre","suzano","santo andre","juquitiba","aracariguama","barueri","caieiras","carapicuiba","cotia","diadema","embu das artes","embu-guacu","francisco morato","franco da rocha","itapecerica da serra","itapevi","jandira","juquitiba","osasco","pirapora do bom jesus","santana de parnaiba","sao bernardo do campo","sao caetano do sul","taboao da serra","vargem grande paulista"];
+            var cidadesAtendidas = ["guarulhos", "sao paulo", "aruja", "biritiba-mirim", "ferraz de vasconcelos", "itaquaquecetuba", "mairipora", "maua", "mogi das cruzes", "poa", "ribeirao pires", "rio grande da serra", "salesopolis", "santa isabel", "santo andre", "suzano", "santo andre", "juquitiba", "aracariguama", "barueri", "caieiras", "carapicuiba", "cotia", "diadema", "embu das artes", "embu-guacu", "francisco morato", "franco da rocha", "itapecerica da serra", "itapevi", "jandira", "juquitiba", "osasco", "pirapora do bom jesus", "santana de parnaiba", "sao bernardo do campo", "sao caetano do sul", "taboao da serra", "vargem grande paulista"];
 
             if (cidadesAtendidas.includes(cidadeDestino)) {
                 if (pesoFrete <= 10) {
@@ -553,6 +612,9 @@
 
 
             document.getElementById("prazo-entrega-modal").textContent = prazo + (prazo === 1 ? " dia útil" : " dias úteis");
+
+            salvarSimulacaoNoLocalStorage();
+
             abrirModal();
 
 
@@ -642,10 +704,150 @@
 
 
 
+        };
+
+        function salvarSimulacaoNoLocalStorage() {
+            var simulacoes = JSON.parse(localStorage.getItem('simulacoes')) || [];
+
+            var dataAtual = new Date().toLocaleDateString();
+            var remetente = $('#empresa_remetente').text();
+            var destinatario = $('#empresa_destino').text();
+            var localEntrega = $('#cidade_entrega').text();
+            var volume = $('#quantidade_volumes').val();
+            var valornf = $('#valor_nf').val();
+            var pesoReal = $('#peso_real').text();
+            var pesoCubico = $('#peso_cubico').text();
+            var frete = $('#frete').text();
+
+            var simulacao = {
+                data: dataAtual,
+                remetente: remetente,
+                destinatario: destinatario,
+                localEntrega: localEntrega,
+                volume: volume,
+                valornf: valornf,
+                pesoReal: pesoReal,
+                pesoCubico: pesoCubico,
+                frete: frete
+            };
+
+            simulacoes.push(simulacao);
+
+            localStorage.setItem('simulacoes', JSON.stringify(simulacoes));
         }
 
 
 
+        function abrirHistoricoModal() {
+            var historicoModal = document.getElementById("historicoModal");
+            historicoModal.style.display = "block";
+            exibirHistorico();
+        }
+
+        function fecharHistoricoModal() {
+            var historicoModal = document.getElementById("historicoModal");
+            historicoModal.style.display = "none";
+        }
+
+        function exibirHistorico() {
+            var historicoContent = document.getElementById('historicoContent');
+            var simulacoes = JSON.parse(localStorage.getItem('simulacoes')) || [];
+
+            historicoContent.innerHTML = '';
+
+            for (var i = 0; i < simulacoes.length; i++) {
+                var simulacao = simulacoes[i];
+                var linha = document.createElement('div'); // Use uma <div> para agrupar o conteúdo
+
+                linha.innerHTML = `
+            <div style="text-align: left;"><br>
+                <img src="./rte.png" alt="Logo da Empresa" width="200"><br><br>
+                <strong>Data:</strong> ${simulacao.data}<br>
+                <strong>Remetente:</strong> ${simulacao.remetente}<br>
+                <strong>Destinatário:</strong> ${simulacao.destinatario}<br>
+                <strong>Local de Entrega:</strong> ${simulacao.localEntrega}<br>
+                <strong>Volume:</strong> ${simulacao.volume}<br>
+                <strong>Valor NF:</strong> R$ ${simulacao.valornf},00<br>
+                <strong>Peso Real (Kg):</strong> ${simulacao.pesoReal}<br>
+                <strong>Peso Cúbico (Kg):</strong> ${simulacao.pesoCubico}<br>
+                <strong>Frete:</strong> ${simulacao.frete}<br><br>
+                <button onclick="imprimirSimulacao(${i})">Imprimir</button><br>
+            </div>
+        `;
+
+                historicoContent.appendChild(linha);
+            }
+        }
+
+        function imprimirSimulacao(simulacaoIndex) {
+            var simulacoes = JSON.parse(localStorage.getItem('simulacoes')) || [];
+            var simulacao = simulacoes[simulacaoIndex];
+            var conteudoParaImprimir = `
+    
+            <div class="container">
+
+                <html>
+        <head>
+            <title>Simulação</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 10px;
+                    border: 2px solid #000; /* Adicione uma borda preta de 2px */
+                }
+
+                .container {
+                    border: 1px solid #000; /* Adicione uma borda preta de 1px ao redor do container */
+                    padding: 10px;
+                }
+
+                .header img {
+                    width: 200px;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                .data {
+                    font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+                <div class="header">
+                </div>
+                <div class="data">Data: ${simulacao.data}</div>
+                <div class="info">
+                    <p>Remetente: ${simulacao.remetente}</p>
+                    <p>Destinatário: ${simulacao.destinatario}</p>
+                    <p>Volume: ${simulacao.volume}</p>
+                    <p>Peso Real (Kg): ${simulacao.pesoReal}</p>
+                    <p>Peso Cúbico (Kg): ${simulacao.pesoCubico}</p>
+                    <p>Frete: ${simulacao.frete}</p>
+
+                </div>
+
+            </div>
+       
+    `;
+
+            var janelaDeImpressao = window.open('', '', 'width=600,height=600');
+            janelaDeImpressao.document.open();
+            janelaDeImpressao.document.write(conteudoParaImprimir);
+            janelaDeImpressao.document.close();
+            janelaDeImpressao.print();
+            janelaDeImpressao.close();
+        }
+
+
+
+
+        function resetarHistorico() {
+            localStorage.removeItem('simulacoes');
+
+            exibirHistorico();
+        }
 
     </script>
 </body>
