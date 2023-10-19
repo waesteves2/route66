@@ -346,9 +346,14 @@
                 <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
                 <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
                 <p>Frete: R$ <span id="frete">0.00</span></p>
-                <p>Prazo de Entrega: <span id="prazo-entrega-modal">0 dias úteis</span></p> <!-- Adicione esta linha -->
+                <p>Prazo de Entrega: <span id="prazo-entrega-modal">0 dias úteis</span></p>
+                <button onclick="imprimirInformacoes()">Imprimir</button>
+
             </div>
             <div class="modal-footer">
+                <div class="modal-footer">
+                </div>
+
             </div>
         </div>
     </div>
@@ -386,8 +391,8 @@
     </div>
     <span id="adicionar_medidas" style="cursor: pointer;">
         <div class="icon-container">
-            <img src="./cubsfundo.png" width="80" alt="Ícone calc">
-            <p id="cub">Cubagem</p>
+            <img src="./cubsfundo.png" width="100" alt="Ícone calc">
+            <p id="cub">Informar Cubagem</p>
         </div>
     </span>
 
@@ -395,15 +400,15 @@
     <div class="info-row" id="campos_medidas" style="display: none;">
         <div class="info-column">
             <label for="comprimento_nf"></label>
-            <input type="number" id="comprimento_nf" placeholder="C (cm)">
+            <input type="number" id="comprimento_nf" placeholder="(Comprimento)">
         </div>
         <div class="info-column">
             <label for="largura_nf"></label>
-            <input type="number" id="largura_nf" placeholder="L (cm)">
+            <input type="number" id="largura_nf" placeholder="(largura)">
         </div>
         <div class="info-column">
             <label for="altura_nf"></label>
-            <input type="number" id="altura_nf" placeholder="A (cm)">
+            <input type="number" id="altura_nf" placeholder="(Altura)">
         </div>
     </div>
 
@@ -411,11 +416,11 @@
 
     <div class="resultadoicon">
         <a href="#" id="calc" onclick="calcularFrete();" class="custom-icon">
-            <img src="./calc.png" alt="Ícone calc" width="150">
+            <img src="./calc2.png" alt="Ícone calc" width="150">
         </a>
 
         <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
-            <img src="./update.png" alt="Ícone de Atualização" width="70">
+            <img src="./update.png" alt="Ícone de Atualização" width="80">
         </a>
         <a href="#" id="historicoButton" class="custom-icon" onclick="abrirHistoricoModal()">
             <img src="https://cdn.icon-icons.com/icons2/831/PNG/512/medical_icon_4_icon-icons.com_66661.png"
@@ -425,6 +430,29 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function imprimirInformacoes() {
+            var janelaDeImpressao = window.open('', '', 'width=600,height=600');
+
+            var conteudoParaImprimir = `
+                <h2>Simulação de Frete</h2>
+                <p>Peso Real (Kg): <span>${document.getElementById("peso_real").textContent}</span></p>
+                <p>Peso Cúbico (Kg): <span>${document.getElementById("peso_cubico").textContent}</span></p>
+                <p>Frete: R$ <span>${document.getElementById("frete").textContent}</span></p>
+                <p>Prazo de Entrega: <span>${document.getElementById("prazo-entrega-modal").textContent}</span></p>
+            `;
+
+            janelaDeImpressao.document.open();
+            janelaDeImpressao.document.write(conteudoParaImprimir);
+            janelaDeImpressao.document.close();
+
+            janelaDeImpressao.print();
+
+            janelaDeImpressao.close();
+        }
+    </script>
+
     <script>
 
         function autoBuscarCNPJ(input) {
@@ -465,15 +493,15 @@
                 numCamposMedidas++;
                 var novoCampo = '<div class="info-row">';
                 novoCampo += '<div class="info-column">';
-                novoCampo += '<label for="comprimento_nf">C (cm)</label>';
+                novoCampo += '<label for="comprimento_nf">(Comprimento)</label>';
                 novoCampo += '<input type="number" id="comprimento_nf_' + numCamposMedidas + '" placeholder="C (cm)">';
                 novoCampo += '</div>';
                 novoCampo += '<div class="info-column">';
-                novoCampo += '<label for="largura_nf">L (cm)</label>';
+                novoCampo += '<label for="largura_nf">(Largura)</label>';
                 novoCampo += '<input type="number" id="largura_nf_' + numCamposMedidas + '" placeholder="L (cm)">';
                 novoCampo += '</div>';
                 novoCampo += '<div class="info-column">';
-                novoCampo += '<label for="altura_nf">A (cm)</label>';
+                novoCampo += '<label for="altura_nf">(Altura)</label>';
                 novoCampo += '<input type="number" id="altura_nf_' + numCamposMedidas + '" placeholder="A (cm)">';
                 novoCampo += '</div>';
                 novoCampo += '</div>';
@@ -757,7 +785,7 @@
 
             for (var i = 0; i < simulacoes.length; i++) {
                 var simulacao = simulacoes[i];
-                var linha = document.createElement('div'); // Use uma <div> para agrupar o conteúdo
+                var linha = document.createElement('div');
 
                 linha.innerHTML = `
             <div style="text-align: left;"><br>
@@ -773,7 +801,6 @@
                 <strong>Frete:</strong> ${simulacao.frete}<br><br>
                 <button onclick="imprimirSimulacao(${i})">Imprimir</button><br>
                 <hr>
-
             </div>
         `;
 
@@ -827,7 +854,6 @@
                     <p>Peso Real (Kg): ${simulacao.pesoReal}</p>
                     <p>Peso Cúbico (Kg): ${simulacao.pesoCubico}</p>
                     <p>Frete: ${simulacao.frete}</p>
-
 
                 </div>
 
