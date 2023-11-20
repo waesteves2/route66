@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
 
-
     <title>Simulador de Frete Route</title>
+
+    
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: rgba(61, 207, 233, 0.288);
+            color: black;
             font-family: Arial, sans-serif;
             padding: 20px;
+            text-align: center;
         }
 
         #container {
@@ -21,11 +23,116 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            background-color: rgba(61, 207, 233, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .info-column {
-            width: 100%;
+        .info-column,
+        .info-column1,
+        .info-column2,
+        .info-column0 {
+            flex: 1;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #007bff77;
         }
+
+        .info-column0 {
+            display: none;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: small;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .resultadoicon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .custom-icon img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .custom-icon:hover img {
+            transform: scale(1.1);
+        }
+
+        #historicoButton img {
+            width: 100%;
+            max-width: 110px;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #historicoButton:hover img {
+            transform: scale(1.1);
+        }
+
+        h1, h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+    <style>
+        #container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
 
         input[type="text"],
         input[type="number"] {
@@ -88,7 +195,6 @@
             margin-left: 40px;
         }
 
-
         .modal {
             display: none;
             position: fixed;
@@ -136,10 +242,9 @@
             background-color: black;
         }
 
-
         body {
-            background-color: #333;
-            color: #fff;
+            background-color: rgba(61, 207, 233, 0.288);
+            color: black;
             font-family: Arial, sans-serif;
             padding: 20px;
             text-align: center;
@@ -149,19 +254,36 @@
             text-align: left;
         }
 
-        #container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+
 
         .info-column {
             flex: 1;
+            margin: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+
+
+        .info-column1 {
+            flex: 1;
+            display: flex;
+            float: left;
             margin: 10px;
             padding: 10px;
-            background-color: #444;
+            border-radius: 10px;
+
+        }
+
+
+        .info-column2 {
+
+            display: block;
+
+            flex: 1;
+            margin: 10px;
+            padding: 10px;
+            background-color: #007bff77;
             border-radius: 10px;
         }
 
@@ -175,24 +297,17 @@
         }
 
         #cub {
-
             display: block;
             margin: 0 auto;
             font-size: 16px;
             color: #fff;
             text-align: center;
-
-        }
-
-        .icon-container img {
-            display: block;
-            margin: 0 auto;
         }
 
 
 
         button {
-            background-color: black;
+            background-color: #007bff;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -203,7 +318,6 @@
         .resultado {
             margin-top: 40px;
             font-size: small;
-
         }
 
         .resultadoicon {
@@ -215,8 +329,6 @@
         .custom-icon {
             margin: 0 10px;
         }
-
-
 
         .custom-icon {
             margin: 0 10px;
@@ -232,6 +344,8 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            background-color: #007bff00;
+
         }
 
         h2 {
@@ -241,15 +355,6 @@
         #update {
             margin-left: 40px;
         }
-
-
-        @media (max-width: 768px) {
-            .info-column {
-                flex: 0 100%;
-            }
-        }
-
-
 
 
         #historicoModal {
@@ -271,7 +376,6 @@
             border: 1px solid #888;
             width: 80%;
             font-size: small;
-
         }
 
         #historicoModal .close {
@@ -283,7 +387,6 @@
             cursor: pointer;
         }
 
-
         .scrollable-content {
             max-height: 400px;
             overflow-y: auto;
@@ -293,6 +396,19 @@
             color: #fefefe;
             text-decoration: none;
         }
+
+        .modal-info {
+
+            font-size: 20px;
+        }
+
+        h2 {
+
+            color: black
+        }
+
+
+        
     </style>
 
 
@@ -300,24 +416,7 @@
 
 <body>
     <div id="container">
-        <div class="info-column">
-            <label for="cpf_cnpj_remetente">CNPJ Remetente</label>
-            <input type="text" id="cpf_cnpj_remetente" placeholder="Digite o CNPJ do Remetente"
-                value="01.455.957/0001-95" readonly>
-            <div class="resultado">
-                <h2>Remetente</h2>
-                <p>Razão Social: <span id="empresa_remetente">DISTRIBUIDORA DE ELETRONICOS ROUTE 66 LTDA</span></p>
-                <p>Endereço: <span id="logradouro_remetente">AV ANTONIO ABID CHAMMAS</span> nº <span
-                        id="numero_remetente">86</span></p>
-                <p>Bairro: <span id="bairro_remetente">JARDIM CONTINENTAL</span></p>
-                <p>Cidade: <span id="cidade_remetente">JAU</span></p>
-                <p>UF: SP</p>
-                <br>
-                <img src="./route 66.png" alt="" width="230">
-
-            </div>
-        </div>
-        <div class="info-column">
+        <div class="info-column2">
             <label for="cpf_cnpj_destino">CNPJ Destinatário</label>
             <input type="number" id="cpf_cnpj_destino" placeholder="Digite o CNPJ do Destino"
                 onkeyup="autoBuscarCNPJ(this)">
@@ -337,33 +436,101 @@
                     <h2>Endereço de Entrega</h2>
                     <p>Endereço: <span id="logradouro_entrega"></span><span id="numero_entrega"></span></p>
                     <p>Bairro: <span id="bairro_entrega"></span></p>
-                    <p>Cidade: <span id="cidade_entrega">
-                            <p>UF: <span id="estado-sigla"></span></p>
-                        </span></p>
+                    <p>Cidade: <span id="cidade_entrega"></span></p>
+                    <p>UF: <span id="estado-sigla"></span></p>
+                </div>
+            </div>
+        </div>
 
+        <div class="info-column2">
+            <div class="info-column1">
+                <label id="vol" for="quantidade_volumes"></label>
+                <input type="number" id="quantidade_volumes" placeholder="Volumes">
+            </div>
+            <div class="info-column1">
+                <label for="valor_nf"></label>
+                <input type="number" id="valor_nf" placeholder="Valor NF">
+            </div>
+            <div class="info-column1">
+                <label for="peso_nf"></label>
+                <input type="number" id="peso_nf" placeholder="Peso KG">
+
+            </div>
+
+            <span id="adicionar_medidas" style="cursor: pointer;">
+                <div class="icon-container">
+                    <img src="./cubsfundo.png" width="100" alt="Ícone calc">
+                    <p id="cub">Inserir Medidas</p>
+                </div>
+            </span>
+
+            <div id="campos_medidas"></div>
+            <div class="info-column0" id="campos_medidas" style="display: none;">
+                <div class="info-column0">
+                    <label for="comprimento_nf"></label>
+                    <input type="number" id="comprimento_nf" placeholder="(Comprimento)">
+                </div>
+                <div class="info-column0">
+                    <label for="largura_nf"></label>
+                    <input type="number" id="largura_nf" placeholder="(largura)">
+                </div>
+                <div class="info-column0">
+                    <label for="altura_nf"></label>
+                    <input type="number" id="altura_nf" placeholder="(Altura)">
                 </div>
             </div>
 
-        </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
+            <div class="resultadoicon">
+                <a href="#" id="calc" onclick="calcularFrete();" class="custom-icon">
+                    <img src="./calc2.png" alt="Ícone calc" width="150">
+
+                </a>
+                <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
+                    <img src="./update.png" alt="Ícone de Atualização" width="80">
+
+                </a>
+                <a href="#" id="historicoButton" class="custom-icon" onclick="abrirHistoricoModal()">
+                    <img src="https://cdn.icon-icons.com/icons2/831/PNG/512/medical_icon_4_icon-icons.com_66661.png"
+                        alt="Ícone histórico" width="110">
+
+                </a>
+
+
+            </div>
+
+            <br>
+            <br>
+            <img src="./rte.png" alt="" width="350">
+
+        </div>
     </div>
+
+    <br><br>
+
 
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <h2 class="modal-title">Simulação de Frete</h2>
+            <h2 class="modal-title">Cotação de Frete</h2>
             <div class="modal-info">
                 <p>Peso Real (Kg): <span id="peso_real">0.00</span></p>
                 <p>Peso Cúbico (Kg): <span id="peso_cubico">0.00</span></p>
                 <p>Frete: R$ <span id="frete">0.00</span></p>
                 <p>Prazo de Entrega: <span id="prazo-entrega-modal">0 dias úteis</span></p>
                 <button onclick="imprimirInformacoes()">Imprimir</button>
-
             </div>
             <div class="modal-footer">
                 <div class="modal-footer">
                 </div>
-
             </div>
         </div>
     </div>
@@ -378,72 +545,7 @@
             </div>
             <button onclick="resetarHistorico()">Resetar Histórico</button>
             <button onclick="exportarParaXLSX()">Exportar Cotações</button>
-
-
-
         </div>
-    </div>
-
-
-
-    <br>
-    <div class="info-row">
-        <div class="info-column">
-            <label id="vol" for="quantidade_volumes"></label>
-            <input type="number" id="quantidade_volumes" placeholder="Volumes">
-        </div>
-        <div class="info-column">
-            <label for="valor_nf"></label>
-            <input type="number" id="valor_nf" placeholder="Valor NF">
-        </div>
-        <div class="info-column">
-            <label for="peso_nf"></label>
-            <input type="number" id="peso_nf" placeholder="Peso KG">
-        </div>
-
-    </div>
-    <span id="adicionar_medidas" style="cursor: pointer;">
-        <div class="icon-container">
-            <img src="./cubsfundo.png" width="100" alt="Ícone calc">
-            <p id="cub">Informar Cubagem</p>
-        </div>
-    </span>
-
-
-
-    <div id="campos_medidas"></div>
-    <div class="info-row" id="campos_medidas" style="display: none;">
-        <div class="info-column">
-            <label for="comprimento_nf"></label>
-            <input type="number" id="comprimento_nf" placeholder="(Comprimento)">
-        </div>
-        <div class="info-column">
-            <label for="largura_nf"></label>
-            <input type="number" id="largura_nf" placeholder="(largura)">
-        </div>
-        <div class="info-column">
-            <label for="altura_nf"></label>
-            <input type="number" id="altura_nf" placeholder="(Altura)">
-        </div>
-    </div>
-
-    <br><br>
-
-    <div class="resultadoicon">
-        <a href="#" id="calc" onclick="calcularFrete();" class="custom-icon">
-            <img src="./calc2.png" alt="Ícone calc" width="150">
-        </a>
-
-        <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
-            <img src="./update.png" alt="Ícone de Atualização" width="80">
-        </a>
-        <a href="#" id="historicoButton" class="custom-icon" onclick="abrirHistoricoModal()">
-            <img src="https://cdn.icon-icons.com/icons2/831/PNG/512/medical_icon_4_icon-icons.com_66661.png"
-                alt="Ícone histórico" width="100">
-
-        </a>
-
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -478,7 +580,6 @@
             var livro = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(livro, folhaDeDados, 'Cotacoes');
 
-            // Exporta o arquivo
             XLSX.writeFile(livro, 'cotacoes.xlsx');
         }
 
@@ -537,14 +638,14 @@
         }
 
         var numCamposMedidas = 1;
-        var maxCamposMedidas = 50;
+        var maxCamposMedidas = 100;
 
         $('#adicionar_medidas').click(function () {
             if (numCamposMedidas < maxCamposMedidas) {
                 numCamposMedidas++;
                 var novoCampo = '<div class="info-row">';
                 novoCampo += '<div class="info-column">';
-                novoCampo += '<label for="comprimento_nf">(Comprimento)</label>';
+                novoCampo += '<label for="comprimento_nf">(Comp)</label>';
                 novoCampo += '<input type="number" id="comprimento_nf_' + numCamposMedidas + '" placeholder="C (cm)">';
                 novoCampo += '</div>';
                 novoCampo += '<div class="info-column">';
@@ -566,7 +667,7 @@
             var quantidadeVolumes = parseInt($('#quantidade_volumes').val());
             var pesoInicial = parseFloat($('#peso_nf').val());
             var pesoCubicoTotal = 0;
-            var medidasInformadas = false;  
+            var medidasInformadas = false;
 
             for (var i = 1; i <= numCamposMedidas; i++) {
                 var comprimentoInput = $('#comprimento_nf_' + i).val();
@@ -589,7 +690,7 @@
 
             if (!medidasInformadas) {
                 alert('Informe as medida para calcular o Frete.');
-                return 0; 
+                return 0;
             }
 
             var pesoCubicoFinal = pesoCubicoTotal * quantidadeVolumes;
@@ -606,16 +707,23 @@
 
         var taxasDeFrete = {
             "01455957000195": 125,
-            "OutroCNPJ1": 50,
-            "OutroCNPJ2": 75
+            "06176436000201": 153.99,
+            "68149228000181": 76.99,
         };
 
         function calcularPrazoEntrega(cidadeDestino) {
             cidadeDestino = cidadeDestino.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             var prazoEntrega = {
-                "aruja": 2, "ferraz de vasconcelos": 2, "guarulhos": 1, "itaquaquecetuba": 2, "mairipora": 2, "maua": 2, "poa": 2, "ribeirao pires": 2, "rio grande da serra": 2, "santa isabel": 4, "santo andre": 1, "sao paulo": 1, "aracariguama": 3, "barueri": 1, "caieiras": 2, "carapicuiba": 2, "cotia": 1, "diadema": 1, "embu das artes": 2, "embu-guacu": 4, "francisco morato": 2, "franco da rocha": 2, "itapecerica da serra": 2, "itapevi": 2, "jandira": 2, "osasco": 1, "pirapora do bom jesus": 3, "santana de parnaiba": 2, "sao bernardo do campo": 1, "sao caetano do sul": 2, "sao paulo": 1, "taboao da serra": 2, "vargem grande paulista": 2, "adamantina": 1, "caconde": 4, "tapiratiba": 4, "colombia": 4, "arabela": 1, "dracena": 1, "flora rica": 1, "florida paulista": 1, "guaraciaba d'oeste": 1, "inubia paulista": 1, "irapuru": 1, "jacipora": 1, "junqueiropolis": 1, "lucelia": 1, "mariapolis": 1, "monte castelo": 1, "nova guataporanga": 1, "oasis": 1, "osvaldo cruz": 1, "ouro verde": 1, "pacaembu": 1, "panorama": 1, "parapua": 1, "pauliceia": 1, "pracinha": 1, "sagres": 1, "salmourao": 1, "santa mercedes": 1, "sao joao do pau d'alho": 1, "terra nova d'oeste": 1, "tupi paulista": 1, "americana": 1, "nova odessa": 1, "santa barbara d oeste": 1, "americana": 1, "aguas de lindoia": 2, "amparo": 2, "arcadas": 2, "jaguariuna": 2, "lindoia": 2, "monte alegre do sul": 6, "pedreira": 2, "serra negra": 2, "andradina": 2, "castilho": 4, "guaracai": 3, "itapura": 4, "lavinia": 3, "mirandopolis": 3, "murutinga do sul": 3, "nova independencia": 4, "aracatuba": 2, "bento de abreu": 4, "bilac": 6, "birigui": 2, "brauna": 6, "brejo alegre": 6, "buritama": 4, "clementina": 6, "coroados": 6, "gabriel monteiro": 6, "glicerio": 6, "guararapes": 3, "lourdes": 6, "piacatu": 6, "planalto": 6, "planalto": 6, "rubiacea": 3, "santo antonio do aracangua": 6, "santopolis do aguapei": 6, "turiuba": 6, "valparaiso": 3, "zacarias": 6, "americo brasiliense": 1, "araraquara": 1, "boa esperanca do sul": 3, "rincao": 3, "santa lucia": 3, "trabiju": 3, "araras": 1, "assis": 1, "candido mota": 1, "cruzalia": 1, "echapora": 1, "florinea": 1, "gardenia": 1, "iepe": 1, "joao ramalho": 1, "maracai": 1, "nantes": 1, "nova alexandria": 1, "palmital": 1, "paraguacu paulista": 1, "pedrinhas paulista": 1, "platina": 1, "quata": 1, "rancharia": 1, "taruma": 1, "atibaia": 2, "bom jesus dos perdoes": 4, "nazare paulista": 4, "aguas de santa barbara": 2, "arandu": 2, "avare": 1, "cerqueira cesar": 2, "iaras": 2, "itai": 2, "paranapanema": 4, "altair": 6, "baguacu": 6, "barretos": 2, "cajobi": 4, "guaraci": 6, "marcondesia": 4, "monte verde paulista": 4, "olimpia": 2, "severinia": 4, "altinopolis": 2, "batatais": 1, "brodowski": 2, "jardinopolis": 2, "juruce": 2, "morro agudo": 2, "nuporanga": 4, "sales oliveira": 3, "orlandia": 2, "agudos": 1, "bauru": 1, "borebi": 1, "cabralia paulista": 1, "duartina": 1, "lucianopolis": 1, "macatuba": 1, "pederneiras": 1, "piratininga": 1, "agulha": 6, "bebedouro": 1, "botafogo": 1, "candido rodrigues": 4, "colina": 2, "fernando prestes": 6, "ibitiuva": 1, "jaborandi": 2, "monte azul paulista": 2, "pirangi": 3, "pitangueiras": 2, "taiacu": 4, "taiuva": 4, "taquaral": 4, "taquaral": 4, "terra roxa": 2, "viradouro": 1, "vista alegre do alto": 3, "anhembi": 5, "aparecida de sao manuel": 2, "areiopolis": 2, "bofete": 5, "botucatu": 1, "itatinga": 2, "lencois paulista": 1, "pardinho": 5, "pratania": 2, "santa maria da serra": 5, "sao manuel": 1, "batatuba": 6, "braganca paulista": 2, "morungaba": 6, "pedra bela": 6, "pinhalzinho": 2, "piracaia": 6, "socorro": 2, "tuiuti": 6, "campinas": 1, "campinas": 1, "cosmopolis": 2, "hortolandia": 2, "monte mor": 2, "nova veneza": 2, "paulinia": 2, "sumare": 2, "capivari": 1, "elias fausto": 3, "mombuca": 6, "rafard": 1, "caraguatatuba": 7, "ilhabela": 11, "sao sebastiao": 9, "ubatuba": 8, "ariranha": 1, "catanduva": 1, "catigua": 3, "elisiario": 1, "embauba": 3, "ibira": 1, "irapua": 4, "itajobi": 1, "marapoama": 1, "novais": 3, "palmares paulista": 3, "paraiso": 3, "pindorama": 1, "sales": 4, "santa adelia": 1, "tabapua": 3, "urupes": 1, "boituva": 2, "cerquilho": 1, "cesario lange": 3, "conchas": 2, "guarei": 6, "ipero": 2, "jumirim": 2, "laranjal paulista": 2, "maristela": 3, "pereiras": 2, "porangaba": 6, "porto feliz": 2, "quadra": 6, "tatui": 2, "tiete": 2, "torre de pedra": 6, "cajuru": 2, "cassia dos coqueiros": 4, "cravinhos": 1, "luis antonio": 5, "santa cruz da esperanca": 1, "santa rosa de viterbo": 2, "sao simao": 1, "serra azul": 3, "serrana": 1, "aparecida d'oeste": 3, "araba": 2, "aspasia": 6, "auriflama": 3, "bandeirantes d'oeste": 6, "brasitania": 6, "dirce reis": 6, "dolcinopolis": 6, "estrela d'oeste": 4, "fernandopolis": 1, "guarani d'oeste": 6, "guzolandia": 3, "ilha solteira": 3, "indiapora": 6, "jales": 2, "macedonia": 6, "marinopolis": 3, "meridiano": 6, "mesopolis": 6, "mira estrela": 6, "nova canaa paulista": 6, "ouroeste": 2, "palmeira d'oeste": 3, "paranapua": 6, "pedranopolis": 6, "pereira barreto": 3, "pontalinda": 6, "populina": 6, "rubineia": 6, "santa albertina": 6, "santa clara d'oeste": 6, "santa fe do sul": 2, "santa rita d'oeste": 6, "santa salete": 6, "santana da ponte pensa": 6, "sao francisco": 6, "sao joao das duas pontes": 6, "sud mennucci": 3, "suzanapolis": 3, "tres fronteiras": 3, "turmalina": 6, "urania": 2, "vitoria brasil": 6, "cristais paulista": 4, "franca": 1, "itirapua": 4, "jeriquara": 4, "patrocinio paulista": 4, "pedregulho": 4, "restinga": 4, "ribeirao corrente": 6, "rifaina": 6, "aparecida": 2, "arapei": 6, "areias": 6, "cachoeira paulista": 3, "canas": 4, "cruzeiro": 2, "cunha": 6, "guaratingueta": 2, "lavrinhas": 4, "lorena": 2, "piquete": 6, "potim": 2, "queluz": 4, "roseira": 4, "sao jose do barreiro": 6, "silveiras": 6, "guarulhos": 1, "arealva": 3, "borborema": 1, "gaviao peixoto": 2, "iacanga": 3, "ibitinga": 1, "itaju": 5, "itapolis": 1, "nova europa": 2, "novo horizonte": 1, "pongai": 5, "reginopolis": 3, "tabatinga": 1, "uru": 5, "indaiatuba": 1, "alambari": 4, "angatuba": 3, "campina do monte alegre": 3, "itapetininga": 2, "pilar do sul": 4, "rechan": 2, "sao miguel arcanjo": 3, "sarapui": 4, "apiai": 4, "barra do chapeu": 6, "bom sucesso de itarare": 6, "buri": 4, "capao bonito": 3, "guapiara": 4, "itabera": 4, "itaoca": 6, "itapeva": 2, "itapirapua paulista": 6, "itarare": 3, "nova campina": 6, "ribeira": 6, "ribeirao branco": 4, "ribeirao grande": 6, "taquarivai": 4, "indaiatuba": 1, "itu": 1, "salto": 2, "guariba": 1, "guariroba": 5, "guatapara": 6, "jaboticabal": 1, "monte alto": 1, "pradopolis": 2, "taquaritinga": 1, "bariri": 1, "barra bonita": 1, "bocaina": 2, "boraceia": 5, "dois corregos": 1, "guarapua": 5, "igaracu do tiete": 1, "itapui": 1, "jau": 1, "mineiros do tiete": 2, "torrinha": 3, "cabreuva": 1, "cajamar": 1, "campo limpo paulista": 2, "itatiba": 2, "itupeva": 1, "jacare": 2, "jarinu": 3, "jordanesia": 2, "jundiai": 1, "varzea paulista": 2, "iracemapolis": 1, "limeira": 1, "alto alegre": 6, "avai": 6, "avanhandava": 2, "balbinos": 6, "barbosa": 6, "cafelandia": 2, "getulina": 5, "guaicara": 2, "guaimbe": 6, "guaranta": 2, "lins": 2, "luiziania": 6, "penapolis": 3, "pirajui": 3, "presidente alves": 6, "promissao": 2, "sabino": 5, "alvaro de carvalho": 2, "fernao": 2, "galia": 2, "garca": 2, "julio mesquita": 2, "lutecia": 2, "marilia": 1, "oriente": 2, "oscar bressane": 2, "paulopolis": 2, "pompeia": 2, "quintana": 2, "vera cruz": 2, "dobrada": 2, "matao": 1, "motuca": 5, "santa ernestina": 2, "sao lourenco do turvo": 3, "adolfo": 4, "bady bassitt": 2, "balsamo": 2, "engenheiro balduino": 2, "ida iolanda": 3, "jaci": 2, "jose bonifacio": 2, "macaubal": 3, "mendonca": 4, "mirassol": 2, "moncoes": 6, "monte aprazivel": 2, "neves paulista": 3, "nipoa": 3, "nova alianca": 3, "poloni": 3, "sebastianopolis do sul": 6, "tanabi": 2, "ubarana": 4, "uniao paulista": 6, "campestrinho": 6, "casa branca": 1, "divinolandia": 3, "igarai": 6, "itobi": 4, "lagoa branca": 6, "mococa": 2, "sao benedito das areias": 6, "sao jose do rio pardo": 2, "sao sebastiao da grama": 3, "vargem grande do sul": 2, "venda branca": 6, "biritiba-mirim": 3, "mogi das cruzes": 2, "salesopolis": 3, "suzano": 2, "artur nogueira": 2, "conchal": 2, "engenheiro coelho": 3, "estiva gerbi": 2, "holambra": 2, "itapira": 1, "mogi guacu": 2, "mogi mirim": 2, "santo antonio de posse": 3, "alvinlandia": 1, "campos novos paulista": 1, "canitar": 1, "chavantes": 1, "espirito santo do turvo": 1, "ibirarema": 1, "ipaussu": 1, "lupercio": 1, "ocaucu": 1, "ourinhos": 1, "paulistania": 1, "ribeirao do sul": 1, "salto grande": 1, "santa cruz do rio pardo": 1, "sao pedro do turvo": 1, "ubirajara": 1, "piracicaba": 1, "rio das pedras": 1, "saltinho": 1, "bernardino de campos": 2, "fartura": 2, "manduri": 2, "oleo": 2, "piraju": 1, "sarutaia": 2, "taguai": 2, "tejupa": 2, "timburi": 2, "descalvado": 1, "leme": 1, "pirassununga": 1, "porto ferreira": 1, "santa cruz da conceicao": 5, "santa cruz das palmeiras": 1, "santa rita do passa quatro": 1, "tambau": 1, "alfredo marcondes": 1, "alvares machado": 1, "anhumas": 1, "caiabu": 1, "caiua": 1, "emilianopolis": 1, "espigao": 1, "indiana": 1, "martinopolis": 1, "mirante do paranapanema": 1, "narandiba": 1, "piquerobi": 1, "pirapozinho": 1, "presidente bernardes": 1, "presidente epitacio": 1, "presidente prudente": 1, "presidente venceslau": 1, "primavera": 1, "regente feijo": 1, "ribeirao dos indios": 1, "santo anastacio": 1, "santo expedito": 1, "taciba": 1, "tarabai": 1, "barra do turvo": 6, "cajati": 3, "cananeia": 6, "eldorado": 4, "iguape": 3, "ilha comprida": 3, "iporanga": 6, "itariri": 4, "jacupiranga": 3, "juquia": 4, "juquitiba": 6, "miracatu": 4, "pariquera-acu": 3, "pedro de toledo": 4, "registro": 2, "sete barras": 4, "ribeirao preto": 1, "ribeirao preto": 1, "bonfim paulista": 1, "ribeirao preto": 1, "aguas de sao pedro": 1, "ajapi": 1, "analandia": 3, "assistencia": 1, "charqueada": 1, "cordeiropolis": 1, "corumbatai": 3, "ipeuna": 1, "rio claro": 1, "santa gertrudes": 1, "sao pedro": 1, "agua vermelha": 1, "brotas": 2, "dourado": 3, "ibate": 2, "itirapina": 2, "ribeirao bonito": 3, "sao carlos": 1, "aguai": 3, "aguas da prata": 4, "espirito santo do pinhal": 2, "santo antonio do jardim": 2, "sao joao da boa vista": 1, "aramina": 2, "buritizal": 4, "guaira": 2, "guara": 2, "igarapava": 2, "ipua": 2, "ituverava": 2, "miguelopolis": 3, "sao joaquim da barra": 2, "sao jose da bela vista": 6, "cedral": 2, "duplo ceu": 6, "engenheiro schmitt": 2, "guapiacu": 2, "icem": 4, "ipigua": 4, "mirassolandia": 4, "nova granada": 2, "onda verde": 4, "orindiuva": 4, "palestina": 2, "paulo de faria": 4, "potirendaba": 3, "sao jose do rio preto": 1, "uchoa": 3, "cacapava": 3, "campos do jordao": 3, "eugenio de melo": 2, "guararema": 4, "igarata": 6, "jacarei": 2, "jambeiro": 4, "lagoinha": 6, "monteiro lobato": 6, "moreira cesar": 4, "natividade da serra": 6, "paraibuna": 4, "pindamonhangaba": 2, "redencao da serra": 6, "santa branca": 6, "santo antonio do pinhal": 6, "sao bento do sapucai": 6, "sao francisco xavier": 6, "sao jose dos campos": 2, "sao luiz do paraitinga": 6, "barrinha": 3, "dumont": 3, "pontal": 2, "sertaozinho": 1, "aluminio": 3, "aracoiaba da serra": 4, "capela do alto": 4, "ibiuna": 3, "mairinque": 3, "paruru": 6, "piedade": 3, "salto de pirapora": 4, "sao roque": 3, "sorocaba": 1, "tapirai": 6, "votorantim": 2, "barao de antonina": 6, "coronel macedo": 5, "itaporanga": 3, "riversul": 6, "taquarituba": 1, "taubate": 2, "tremembe": 4, "arco-iris": 2, "bastos": 2, "bora": 2, "herculandia": 2, "iacri": 2, "juliania": 2, "parnaso": 2, "queiroz": 2, "rinopolis": 2, "tupa": 1, "universo": 2, "varpa": 2, "louveira": 2, "valinhos": 2, "vinhedo": 1, "alvares florence": 6, "americo de campos": 6, "cardoso": 6, "cosmorama": 4, "floreal": 3, "gastao vidigal": 6, "general salgado": 3, "magda": 3, "nhandeara": 3, "nova castilho": 6, "nova luzitania": 6, "parisi": 6, "pontes gestal": 6, "riolandia": 6, "sao joao de iracema": 6, "simonsen": 3, "valentim gentil": 3, "votuporanga": 1
+                "aruja": 2, "ferraz de vasconcelos": 2, "lages": 2, "guarulhos": 1, "itaquaquecetuba": 2, "mairipora": 2, "maua": 2, "poa": 2, "ribeirao pires": 2, "rio grande da serra": 2, "santa isabel": 4, "santo andre": 1, "sao paulo": 1, "aracariguama": 3, "barueri": 1, "caieiras": 2, "carapicuiba": 2, "cotia": 1, "diadema": 1, "embu das artes": 2, "embu-guacu": 4, "francisco morato": 2, "franco da rocha": 2, "itapecerica da serra": 2, "itapevi": 2, "jandira": 2, "osasco": 1, "pirapora do bom jesus": 3, "santana de parnaiba": 2, "sao bernardo do campo": 1, "sao caetano do sul": 2, "sao paulo": 1, "taboao da serra": 2, "vargem grande paulista": 2, "adamantina": 1, "caconde": 4, "tapiratiba": 4, "colombia": 4, "arabela": 1, "dracena": 1, "flora rica": 1, "florida paulista": 1, "guaraciaba d'oeste": 1, "inubia paulista": 1, "irapuru": 1, "jacipora": 1, "junqueiropolis": 1, "lucelia": 1, "mariapolis": 1, "monte castelo": 1, "nova guataporanga": 1, "oasis": 1, "osvaldo cruz": 1, "ouro verde": 1, "pacaembu": 1, "panorama": 1, "parapua": 1, "pauliceia": 1, "pracinha": 1, "sagres": 1, "salmourao": 1, "santa mercedes": 1, "sao joao do pau d'alho": 1, "terra nova d'oeste": 1, "tupi paulista": 1, "americana": 1, "nova odessa": 1, "santa barbara d oeste": 1, "americana": 1, "aguas de lindoia": 2, "amparo": 2, "arcadas": 2, "jaguariuna": 2, "lindoia": 2, "monte alegre do sul": 6, "pedreira": 2, "serra negra": 2, "andradina": 2, "castilho": 4, "guaracai": 3, "itapura": 4, "lavinia": 3, "mirandopolis": 3, "murutinga do sul": 3, "nova independencia": 4, "aracatuba": 2, "bento de abreu": 4, "bilac": 6, "birigui": 2, "brauna": 6, "brejo alegre": 6, "buritama": 4, "clementina": 6, "coroados": 6, "gabriel monteiro": 6, "glicerio": 6, "guararapes": 3, "lourdes": 6, "piacatu": 6, "planalto": 6, "planalto": 6, "rubiacea": 3, "santo antonio do aracangua": 6, "santopolis do aguapei": 6, "turiuba": 6, "valparaiso": 3, "zacarias": 6, "americo brasiliense": 1, "araraquara": 1, "boa esperanca do sul": 3, "rincao": 3, "santa lucia": 3, "trabiju": 3, "araras": 1, "assis": 1, "candido mota": 1, "cruzalia": 1, "echapora": 1, "florinea": 1, "gardenia": 1, "iepe": 1, "joao ramalho": 1, "maracai": 1, "nantes": 1, "nova alexandria": 1, "palmital": 1, "paraguacu paulista": 1, "pedrinhas paulista": 1, "platina": 1, "quata": 1, "rancharia": 1, "taruma": 1, "atibaia": 2, "bom jesus dos perdoes": 4, "nazare paulista": 4, "aguas de santa barbara": 2, "arandu": 2, "avare": 1, "cerqueira cesar": 2, "iaras": 2, "itai": 2, "paranapanema": 4, "altair": 6, "baguacu": 6, "barretos": 2, "cajobi": 4, "guaraci": 6, "marcondesia": 4, "monte verde paulista": 4, "olimpia": 2, "severinia": 4, "altinopolis": 2, "batatais": 1, "brodowski": 2, "jardinopolis": 2, "juruce": 2, "morro agudo": 2, "nuporanga": 4, "sales oliveira": 3, "orlandia": 2, "agudos": 1, "bauru": 1, "borebi": 1, "cabralia paulista": 1, "duartina": 1, "lucianopolis": 1, "macatuba": 1, "pederneiras": 1, "piratininga": 1, "agulha": 6, "bebedouro": 1, "botafogo": 1, "candido rodrigues": 4, "colina": 2, "fernando prestes": 6, "ibitiuva": 1, "jaborandi": 2, "monte azul paulista": 2, "pirangi": 3, "pitangueiras": 2, "taiacu": 4, "taiuva": 4, "taquaral": 4, "taquaral": 4, "terra roxa": 2, "viradouro": 1, "vista alegre do alto": 3, "anhembi": 5, "aparecida de sao manuel": 2, "areiopolis": 2, "bofete": 5, "botucatu": 1, "itatinga": 2, "lencois paulista": 1, "pardinho": 5, "pratania": 2, "santa maria da serra": 5, "sao manuel": 1, "batatuba": 6, "braganca paulista": 2, "morungaba": 6, "pedra bela": 6, "pinhalzinho": 2, "piracaia": 6, "socorro": 2, "tuiuti": 6, "campinas": 1, "campinas": 1, "cosmopolis": 2, "hortolandia": 2, "monte mor": 2, "nova veneza": 2, "paulinia": 2, "sumare": 2, "capivari": 1, "elias fausto": 3, "mombuca": 6, "rafard": 1, "caraguatatuba": 7, "ilhabela": 11, "sao sebastiao": 9, "ubatuba": 8, "ariranha": 1, "catanduva": 1, "catigua": 3, "elisiario": 1, "embauba": 3, "ibira": 1, "irapua": 4, "itajobi": 1, "marapoama": 1, "novais": 3, "palmares paulista": 3, "paraiso": 3, "pindorama": 1, "sales": 4, "santa adelia": 1, "tabapua": 3, "urupes": 1, "boituva": 2, "cerquilho": 1, "cesario lange": 3, "conchas": 2, "guarei": 6, "ipero": 2, "jumirim": 2, "laranjal paulista": 2, "maristela": 3, "pereiras": 2, "porangaba": 6, "porto feliz": 2, "quadra": 6, "tatui": 2, "tiete": 2, "torre de pedra": 6, "cajuru": 2, "cassia dos coqueiros": 4, "cravinhos": 1, "luis antonio": 5, "santa cruz da esperanca": 1, "santa rosa de viterbo": 2, "sao simao": 1, "serra azul": 3, "serrana": 1, "aparecida d'oeste": 3, "araba": 2, "aspasia": 6, "auriflama": 3, "bandeirantes d'oeste": 6, "brasitania": 6, "dirce reis": 6, "dolcinopolis": 6, "estrela d'oeste": 4, "fernandopolis": 1, "guarani d'oeste": 6, "guzolandia": 3, "ilha solteira": 3, "indiapora": 6, "jales": 2, "macedonia": 6, "marinopolis": 3, "meridiano": 6, "mesopolis": 6, "mira estrela": 6, "nova canaa paulista": 6, "ouroeste": 2, "palmeira d'oeste": 3, "paranapua": 6, "pedranopolis": 6, "pereira barreto": 3, "pontalinda": 6, "populina": 6, "rubineia": 6, "santa albertina": 6, "santa clara d'oeste": 6, "santa fe do sul": 2, "santa rita d'oeste": 6, "santa salete": 6, "santana da ponte pensa": 6, "sao francisco": 6, "sao joao das duas pontes": 6, "sud mennucci": 3, "suzanapolis": 3, "tres fronteiras": 3, "turmalina": 6, "urania": 2, "vitoria brasil": 6, "cristais paulista": 4, "franca": 1, "itirapua": 4, "jeriquara": 4, "patrocinio paulista": 4, "pedregulho": 4, "restinga": 4, "ribeirao corrente": 6, "rifaina": 6, "aparecida": 2, "arapei": 6, "areias": 6, "cachoeira paulista": 3, "canas": 4, "cruzeiro": 2, "cunha": 6, "guaratingueta": 2, "lavrinhas": 4, "lorena": 2, "piquete": 6, "potim": 2, "queluz": 4, "roseira": 4, "sao jose do barreiro": 6, "silveiras": 6, "guarulhos": 1, "arealva": 3, "borborema": 1, "gaviao peixoto": 2, "iacanga": 3, "ibitinga": 1, "itaju": 5, "itapolis": 1, "nova europa": 2, "novo horizonte": 1, "pongai": 5, "reginopolis": 3, "tabatinga": 1, "uru": 5, "indaiatuba": 1, "alambari": 4, "angatuba": 3, "campina do monte alegre": 3, "itapetininga": 2, "pilar do sul": 4, "rechan": 2, "sao miguel arcanjo": 3, "sarapui": 4, "apiai": 4, "barra do chapeu": 6, "bom sucesso de itarare": 6, "buri": 4, "capao bonito": 3, "guapiara": 4, "itabera": 4, "itaoca": 6, "itapeva": 2, "itapirapua paulista": 6, "itarare": 3, "nova campina": 6, "ribeira": 6, "ribeirao branco": 4, "ribeirao grande": 6, "taquarivai": 4, "indaiatuba": 1, "itu": 1, "salto": 2, "guariba": 1, "guariroba": 5, "guatapara": 6, "jaboticabal": 1, "monte alto": 1, "pradopolis": 2, "taquaritinga": 1, "bariri": 1, "barra bonita": 1, "bocaina": 2, "boraceia": 5, "dois corregos": 1, "guarapua": 5, "igaracu do tiete": 1, "itapui": 1, "jau": 1, "mineiros do tiete": 2, "torrinha": 3, "cabreuva": 1, "cajamar": 1, "campo limpo paulista": 2, "itatiba": 2, "itupeva": 1, "jacare": 2, "jarinu": 3, "jordanesia": 2, "jundiai": 1, "varzea paulista": 2, "iracemapolis": 1, "limeira": 1, "alto alegre": 6, "avai": 6, "avanhandava": 2, "balbinos": 6, "barbosa": 6, "cafelandia": 2, "getulina": 5, "guaicara": 2, "guaimbe": 6, "guaranta": 2, "lins": 2, "luiziania": 6, "penapolis": 3, "pirajui": 3, "presidente alves": 6, "promissao": 2, "sabino": 5, "alvaro de carvalho": 2, "fernao": 2, "galia": 2, "garca": 2, "julio mesquita": 2, "lutecia": 2, "marilia": 1, "oriente": 2, "oscar bressane": 2, "paulopolis": 2, "pompeia": 2, "quintana": 2, "vera cruz": 2, "dobrada": 2, "matao": 1, "motuca": 5, "santa ernestina": 2, "sao lourenco do turvo": 3, "adolfo": 4, "bady bassitt": 2, "balsamo": 2, "engenheiro balduino": 2, "ida iolanda": 3, "jaci": 2, "jose bonifacio": 2, "macaubal": 3, "mendonca": 4, "mirassol": 2, "moncoes": 6, "monte aprazivel": 2, "neves paulista": 3, "nipoa": 3, "nova alianca": 3, "poloni": 3, "sebastianopolis do sul": 6, "tanabi": 2, "ubarana": 4, "uniao paulista": 6, "campestrinho": 6, "casa branca": 1, "divinolandia": 3, "igarai": 6, "itobi": 4, "lagoa branca": 6, "mococa": 2, "sao benedito das areias": 6, "sao jose do rio pardo": 2, "sao sebastiao da grama": 3, "vargem grande do sul": 2, "venda branca": 6, "biritiba-mirim": 3, "mogi das cruzes": 2, "salesopolis": 3, "suzano": 2, "artur nogueira": 2, "conchal": 2, "engenheiro coelho": 3, "estiva gerbi": 2, "holambra": 2, "itapira": 1, "mogi guacu": 2, "mogi mirim": 2, "santo antonio de posse": 3, "alvinlandia": 1, "campos novos paulista": 1, "canitar": 1, "chavantes": 1, "espirito santo do turvo": 1, "ibirarema": 1, "ipaussu": 1, "lupercio": 1, "ocaucu": 1, "ourinhos": 1, "paulistania": 1, "ribeirao do sul": 1, "salto grande": 1, "santa cruz do rio pardo": 1, "sao pedro do turvo": 1, "ubirajara": 1, "piracicaba": 1, "rio das pedras": 1, "saltinho": 1, "bernardino de campos": 2, "fartura": 2, "manduri": 2, "oleo": 2, "piraju": 1, "sarutaia": 2, "taguai": 2, "tejupa": 2, "timburi": 2, "descalvado": 1, "leme": 1, "pirassununga": 1, "porto ferreira": 1, "santa cruz da conceicao": 5, "santa cruz das palmeiras": 1, "santa rita do passa quatro": 1, "tambau": 1, "alfredo marcondes": 1, "alvares machado": 1, "anhumas": 1, "caiabu": 1, "caiua": 1, "emilianopolis": 1, "espigao": 1, "indiana": 1, "martinopolis": 1, "mirante do paranapanema": 1, "narandiba": 1, "piquerobi": 1, "pirapozinho": 1, "presidente bernardes": 1, "presidente epitacio": 1, "presidente prudente": 1, "presidente venceslau": 1, "primavera": 1, "regente feijo": 1, "ribeirao dos indios": 1, "santo anastacio": 1, "santo expedito": 1, "taciba": 1, "tarabai": 1, "barra do turvo": 6, "cajati": 3, "cananeia": 6, "eldorado": 4, "iguape": 3, "ilha comprida": 3, "iporanga": 6, "itariri": 4, "jacupiranga": 3, "juquia": 4, "juquitiba": 6, "miracatu": 4, "pariquera-acu": 3, "pedro de toledo": 4, "registro": 2, "sete barras": 4, "ribeirao preto": 1, "ribeirao preto": 1, "bonfim paulista": 1, "ribeirao preto": 1, "aguas de sao pedro": 1, "ajapi": 1, "analandia": 3, "assistencia": 1, "charqueada": 1, "cordeiropolis": 1, "corumbatai": 3, "ipeuna": 1, "rio claro": 1, "santa gertrudes": 1, "sao pedro": 1, "agua vermelha": 1, "brotas": 2, "dourado": 3, "ibate": 2, "itirapina": 2, "ribeirao bonito": 3, "sao carlos": 1, "aguai": 3, "aguas da prata": 4, "espirito santo do pinhal": 2, "santo antonio do jardim": 2, "sao joao da boa vista": 1, "aramina": 2, "buritizal": 4, "guaira": 2, "guara": 2, "igarapava": 2, "ipua": 2, "ituverava": 2, "miguelopolis": 3, "sao joaquim da barra": 2, "sao jose da bela vista": 6, "cedral": 2, "duplo ceu": 6, "engenheiro schmitt": 2, "guapiacu": 2, "icem": 4, "ipigua": 4, "mirassolandia": 4, "nova granada": 2, "onda verde": 4, "orindiuva": 4, "palestina": 2, "paulo de faria": 4, "potirendaba": 3, "sao jose do rio preto": 1, "uchoa": 3, "cacapava": 3, "campos do jordao": 3, "eugenio de melo": 2, "guararema": 4, "igarata": 6, "jacarei": 2, "jambeiro": 4, "lagoinha": 6, "monteiro lobato": 6, "moreira cesar": 4, "natividade da serra": 6, "paraibuna": 4, "pindamonhangaba": 2, "redencao da serra": 6, "santa branca": 6, "santo antonio do pinhal": 6, "sao bento do sapucai": 6, "sao francisco xavier": 6, "sao jose dos campos": 2, "sao luiz do paraitinga": 6, "barrinha": 3, "dumont": 3, "pontal": 2, "sertaozinho": 1, "aluminio": 3, "aracoiaba da serra": 4, "capela do alto": 4, "ibiuna": 3, "mairinque": 3, "paruru": 6, "piedade": 3, "salto de pirapora": 4, "sao roque": 3, "sorocaba": 1, "tapirai": 6, "votorantim": 2, "barao de antonina": 6, "coronel macedo": 5, "itaporanga": 3, "riversul": 6, "taquarituba": 1, "taubate": 2, "tremembe": 4, "arco-iris": 2, "bastos": 2, "bora": 2, "herculandia": 2, "iacri": 2, "juliania": 2, "parnaso": 2, "queiroz": 2, "rinopolis": 2, "tupa": 1, "universo": 2, "varpa": 2, "louveira": 2, "valinhos": 2, "vinhedo": 1, "alvares florence": 6, "americo de campos": 6, "cardoso": 6, "cosmorama": 4, "floreal": 3, "gastao vidigal": 6, "general salgado": 3, "magda": 3, "nhandeara": 3, "nova castilho": 6, "nova luzitania": 6, "parisi": 6, "pontes gestal": 6, "riolandia": 6, "sao joao de iracema": 6, "simonsen": 3, "valentim gentil": 3, "votuporanga": 1,
+                "apiuna": 6, "palma sola": 6, "dionisio cerqueira": 3, "ascurra": 6, "campo ere": 3, "benedito novo": 6, "blumenau": 2, "doutor pedrinho": 6, "gaspar": 2, "indaial": 2, "luiz alves": 2, "pomerode": 2, "rio dos cedros": 6, "rodeio": 6, "timbo": 2, "botuvera": 6, "brusque": 3, "canelinha": 2, "gaspar": 2, "guabiruba": 2, "itajai": 2, "major gercino": 6, "nova trento": 4, "sao joao batista": 4, "cacador": 2, "calmon": 6, "fraiburgo": 2, "iomere": 2, "lebon regis": 6, "matos costa": 6, "rio das antas": 2, "videira": 2, "abelardo luz": 6, "arvoredo": 6, "bom jesus": 6, "caxambu do sul": 6, "chapeco": 2, "cordilheira alta": 2, "coronel freitas": 6, "coronel martins": 6, "entre rios": 6, "faxinal dos guedes": 6, "galvao": 6, "guatambu": 6, "ipuacu": 6, "jupia": 7, "lajeado grande": 6, "marema": 6, "ouro verde": 6, "paial": 6, "passos maia": 6, "planalto alegre": 6, "ponte serrada": 6, "sao domingos": 6, "vargeao": 6, "xanxere": 2, "xaxim": 2, "ararangua": 3, "balneario arroio do silva": 3, "balneario gaivota": 5, "balneario rincao": 3, "cocal do sul": 3, "criciuma": 3, "ermo": 3, "forquilhinha": 3, "icara": 3, "jacinto machado": 5, "maracaja": 3, "meleiro": 3, "morro da fumaca": 3, "morro grande": 7, "nova veneza": 3, "passo de torres": 4, "praia grande": 4, "santa rosa do sul": 4, "sao joao do sul": 4, "sideropolis": 3, "sombrio": 3, "timbe do sul": 7, "treviso": 3, "turvo": 3, "urussanga": 3, "corupa": 4, "guaramirim": 2, "jaragua do sul": 2, "massaranduba": 3, "schroeder": 2, "agua doce": 4, "alto bela vista": 6, "arabuta": 6, "arroio trinta": 3, "campos novos": 4, "capinzal": 4, "catanduvas": 3, "concordia": 4, "erval velho": 3, "herval d oeste": 2, "ibiam": 6, "ibicare": 3, "ipira": 4, "ipumirim": 6, "irani": 3, "ita": 6, "jabora": 4, "joacaba": 2, "lacerdopolis": 3, "lindoia do sul": 6, "luzerna": 2, "macieira": 6, "monte carlo": 6, "ouro": 3, "peritiba": 6, "pinheiro preto": 3, "piratuba": 4, "presidente castello branco": 6, "salto veloso": 3, "santa helena": 6, "seara": 4, "tangara": 3, "treze tilias": 3, "vargem": 6, "vargem bonita": 4, "xavantina": 6, "zortea": 6, "balneario camboriu": 3, "balneario picarras": 4, "barra velha": 4, "camboriu": 3, "ilhota": 2, "itajai": 2, "navegantes": 2, "penha": 4, "sao joao do itaperiu": 6, "araquari": 2, "balneario barra do sul": 6, "itapocu": 6, "joinville": 2, "sao francisco do sul": 4, "abdon batista": 7, "alfredo wagner": 3, "anita garibaldi": 5, "bocaina do sul": 5, "bom jardim da serra": 7, "bom retiro": 3, "brunopolis": 7, "campo belo do sul": 5, "capao alto": 5, "celso ramos": 7, "cerro negro": 5, "correia pinto": 3, "curitibanos": 3, "frei rogerio": 7, "lages": 3, "otacilio costa": 3, "painel": 3, "palmeira": 3, "ponte alta": 3, "ponte alta do norte": 5, "rio rufino": 5, "santa cecilia": 5, "sao cristovao do sul": 5, "sao joaquim": 3, "sao jose do cerrito": 5, "timbo grande": 8, "urubici": 3, "urupema": 5, "bela vista do toldo": 6, "campo alegre": 5, "canoinhas": 3, "itaiopolis": 4, "mafra": 2, "major vieira": 6, "monte castelo": 6, "papanduva": 4, "rio negrinho": 2, "sao bento do sul": 2, "tres barras": 3, "aguas de chapeco": 2, "aguas frias": 3, "bom jesus do oeste": 6, "caibi": 2, "cunhatai": 6, "formosa do sul": 6, "irati": 6, "jardinopolis": 6, "modelo": 4, "mondai": 4, "nova erechim": 3, "nova itaberaba": 6, "palmitos": 2, "pinhalzinho": 2, "quilombo": 6, "riqueza": 2, "saltinho": 6, "santiago do sul": 6, "sao carlos": 2, "saudades": 2, "serra alta": 4, "sul brasil": 6, "uniao do oeste": 6, "agrolandia": 4, "agronomica": 2, "atalanta": 6, "aurora": 4, "braco do trombudo": 6, "chapadao do lageado": 6, "dona emma": 6, "ibirama": 3, "imbuia": 6, "ituporanga": 4, "jose boiteux": 6, "laurentino": 4, "leoberto leal": 6, "lontras": 2, "mirim doce": 6, "petrolandia": 6, "pouso redondo": 3, "presidente getulio": 3, "presidente nereu": 6, "rio do campo": 6, "rio do oeste": 4, "rio do sul": 3, "salete": 6, "santa terezinha": 6, "taio": 3, "trombudo central": 4, "vidal ramos": 6, "vitor meireles": 6, "witmarsum": 6, "anchieta": 6, "bandeirante": 6, "barra bonita": 6, "belmonte": 6, "cunha pora": 4, "descanso": 6, "flor do sertao": 6, "guaraciaba": 3, "guaruja do sul": 4, "ipora do oeste": 4, "iraceminha": 6, "itapiranga": 5, "maravilha": 2, "paraiso": 6, "princesa": 6, "romelandia": 6, "santa helena": 6, "santa terezinha do progresso": 7, "sao joao do oeste": 7, "sao jose do cedro": 2, "sao miguel da boa vista": 7, "sao miguel do oeste": 2, "tigrinhos": 7, "tunapolis": 6, "bombinhas": 7, "governador celso ramos": 6, "itapema": 4, "porto belo": 4, "tijucas": 2, "armazem": 4, "braco do norte": 3, "capivari de baixo": 2, "garopaba": 4, "grao para": 7, "gravatal": 2, "imarui": 8, "imbituba": 4, "jaguaruna": 4, "laguna": 4, "lauro muller": 5, "orleans": 3, "paulo lopes": 8, "pedras grandes": 6, "pescaria brava": 3, "rio fortuna": 8, "sangao": 4, "santa rosa de lima": 8, "sao ludgero": 3, "sao martinho": 8, "treze de maio": 7, "tubarao": 2,
+                "apucarana": 2, "novo horizonte": 3, "irineopolis": 6, "porto uniao": 2, "itapoa": 2, "garuva": 2, "sao bernardino": 3, "sao lourenco oeste": 3, "arapongas": 3, "rio negro": 2, "california": 2, "cambira": 2, "marilandia dol": 6, "novo itacolomi": 6, "rio bom": 6, "sabaudia": 4, "vila reis": 2, "altamira dorana": 6, "araruna": 2, "barbosa ferraz": 6, "boa esperanca": 6, "boa esperanca": 6, "campina dagoa": 4, "campo mourao": 2, "corumbatai dol": 6, "engenheiro beltrao": 4, "farol": 4, "fenix": 6, "goioere": 2, "iretama": 6, "janiopolis": 6, "juranda": 2, "luiziana": 6, "mambore": 6, "mariluz": 6, "mato rico": 6, "moreira sales": 6, "nova cantu": 6, "parana d'oeste": 6, "peabiru": 2, "quarto centenario": 6, "quinta dol": 6, "rancho alegre d'oeste": 6, "roncador": 6, "ubirata": 2, "anahy": 6, "assis chateaubriand": 4, "boa vista aparecida": 4, "braganey": 6, "cafelandia": 4, "campo bonito": 6, "capitao leonidasrques": 4, "cascavel": 2, "catanduvas": 4, "catanduvas": 4, "corbelia": 4, "diamante dol": 6, "espigao alto iguacu": 4, "formosa doste": 6, "guaraniacu": 4, "ibema": 4, "iguatu": 6, "iracema doste": 6, "jesuitas": 6, "lindoeste": 4, "nova aurora": 4, "quedas douacu": 4, "santa lucia": 6, "santa tereza oeste": 4, "tres barras parana": 4, "tupassi": 4, "cianorte": 2, "cidade gaucha": 4, "guaporema": 4, "indianopolis": 4, "japura": 4, "jussara": 6, "rondon": 4, "sao manoel parana": 6, "sao tome": 4, "tapejara": 3, "tapira": 4, "terra boa": 3, "tuneiras doste": 6, "assai": 2, "congonhinhas": 2, "cornelio procopio": 2, "leopolis": 2, "nova america colina": 2, "nova fatima": 2, "nova santarbara": 2, "rancho alegre": 2, "santa cecilia pavao": 2, "santa mariana": 2, "santo antonio paraiso": 2, "sao jeronimo serra": 2, "sao sebastiao amoreira": 2, "sertaneja": 2, "urai": 2, "foz douacu": 2, "santa terezinha itaipu": 4, "ampere": 2, "barracao": 3, "bela vista caroba": 6, "boa esperanca iguacu": 6, "bom jesus sul": 4, "capanema": 3, "cruzeiro douacu": 6, "dois vizinhos": 2, "eneas marques": 4, "flor darra dol": 4, "francisco beltrao": 2, "manfrinopolis": 6, "marmeleiro": 2, "nova esperanca sudoeste": 4, "nova prata iguacu": 4, "perola d'oeste": 3, "pinhal deo bento": 6, "planalto": 3, "pranchita": 2, "realeza": 2, "renascenca": 2, "salgado filho": 6, "salto dontra": 4, "santa izabel oeste": 2, "santo antonio sudoeste": 2, "sao jorge d'oeste": 4, "boa ventura sao roque": 6, "campina domao": 6, "candoi": 6, "cantagalo": 6, "colonia vitoria": 2, "entre rios": 4, "foz dordao": 6, "goioxim": 6, "guara": 4, "guarapuava": 2, "inacio martins": 6, "laranjal": 6, "laranjeiras dol": 3, "marquinho": 6, "nova laranjeiras": 6, "palmital": 6, "palmital": 6, "pinhao": 4, "pitanga": 4, "porto barreiro": 6, "prudentopolis": 4, "reserva douacu": 6, "rio bonito iguacu": 6, "santa maria oeste": 6, "turvo": 6, "virmond": 6, "arapua": 3, "ariranha doai": 3, "borrazopolis": 2, "candido dereu": 3, "cruzmaltina": 2, "faxinal": 2, "grandes rios": 6, "ivaipora": 2, "jardim alegre": 2, "kalore": 3, "lidianopolis": 2, "lunardelli": 2, "manoel ribas": 3, "marumbi": 3, "maua darra": 2, "nova tebas": 6, "rio branco ivai": 6, "rosario doai": 6, "loanda": 3, "porto rico": 6, "querencia dorte": 6, "santa cruz monte castelo": 6, "santa isabel ivai": 3, "santa monica": 6, "sao pedro parana": 3, "alvorada dol": 4, "bela vista paraiso": 4, "cambe": 2, "florestopolis": 4, "guaravera": 6, "ibipora": 2, "irere": 4, "jaguapita": 4, "jataizinho": 3, "lerroville": 6, "londrina": 1, "maravilha": 2, "maravilha": 2, "miraselva": 4, "paiquere": 6, "porecatu": 4, "prado ferreira": 4, "primeiro deio": 4, "rolandia": 2, "sao martinho": 4, "sertanopolis": 2, "tamarana": 6, "warta": 4, "alto alegre": 3, "alto alegre": 3, "angulo": 3, "astorga": 3, "atalaia": 3, "bom sucesso": 4, "bom sucesso": 4, "cafeara": 4, "centenario dol": 4, "colorado": 3, "doutor camargo": 4, "floresta": 4, "florida": 3, "godoy moreira": 4, "guaraci": 4, "iguaracu": 3, "itaguaje": 4, "itambe": 4, "itambe": 4, "ivatuba": 4, "jandaia dol": 2, "lobato": 3, "lupionopolis": 4, "mandaguacu": 3, "mandaguari": 2, "marialva": 2, "maringa": 2, "munhoz delo": 3, "nossa senhoras gracas": 3, "ourizona": 3, "paicandu": 2, "paranacity": 2, "pitangueiras": 3, "santa fe": 3, "santa ines": 4, "santo inacio": 4, "sao joao ivai": 4, "sao jorge ivai": 3, "sao pedro ivai": 4, "sarandi": 2, "sarandi": 2, "maringa": 2, "adhemar derros": 6, "alto parana": 3, "amapora": 6, "cruzeiro dol": 6, "diamante dorte": 6, "florai": 3, "guairaca": 3, "guairaca": 3, "guairaca": 3, "inaja": 6, "itauna dol": 6, "jardim olinda": 6, "mandiocaba": 2, "marilena": 4, "mirador": 6, "nova alianca ivai": 6, "nova esperanca": 3, "nova londrina": 4, "paraiso dorte": 4, "paranapoema": 6, "paranavai": 2, "planaltina dorana": 6, "presidente casteloanco": 3, "santo antonio caiua": 6, "sao carlos ivai": 4, "sao joao caiua": 6, "tamboara": 4, "terra rica": 4, "uniflor": 6, "bom sucesso sul": 4, "chopinzinho": 2, "clevelandia": 4, "coronel domingosares": 6, "coronel vivida": 2, "honorio serpa": 6, "itapejara d'oeste": 4, "mangueirinha": 3, "mariopolis": 4, "palmas": 4, "pato branco": 2, "sao joao": 2, "sao joao": 2, "sao joao": 2, "sao joao": 2, "saudade douacu": 6, "sulina": 6, "vere": 4, "vitorino": 3, "carambei": 4, "castro": 4, "fernandes pinheiro": 6, "guamiranga": 6, "imbituva": 4, "ipiranga": 6, "ipiranga": 6, "irati": 3, "ivai": 6, "palmeira": 3, "pirai dol": 6, "ponta grossa": 2, "porto amazonas": 6, "reboucas": 6, "teixeira soares": 3, "abatia": 2, "andira": 2, "arapoti": 2, "bandeirantes": 2, "barra docare": 2, "cambara": 2, "carlopolis": 2, "conselheiro mairinck": 2, "guapirama": 2, "ibaiti": 2, "itambaraca": 2, "jaboti": 2, "jacarezinho": 2, "jaguariaiva": 2, "japira": 2, "joaquim tavora": 2, "jundiai dol": 2, "pinhalao": 2, "quatigua": 2, "ribeirao claro": 2, "ribeirao donhal": 2, "salto doarare": 2, "santa amelia": 2, "santana doarare": 2, "santo antonio platina": 1, "sao jose boa vista": 2, "senges": 2, "siqueira campos": 2, "tomazina": 2, "wenceslau braz": 2, "adrianopolis": 3, "agudos dol": 4, "alexandra": 2, "almirante tamandare": 2, "antonina": 2, "araucaria": 2, "areia brancas assis": 2, "balsa nova": 2, "bateias": 2, "bocaiuva dol": 3, "borda dompo": 2, "bugre": 2, "cachoeira deo jose": 2, "campina grande sul": 2, "campo largo": 2, "campo largo roseira": 2, "campo magro": 2, "cerro azul": 3, "colombo": 2, "colonia murici": 2, "contenda": 2, "curitiba": 2, "doutor ulysses": 4, "fazenda rioande": 2, "guaraquecaba": 6, "guaratuba": 6, "itaperucu": 2, "lapa": 2, "mandirituba": 2, "matinhos": 2, "matinhos": 2, "morretes": 2, "paranagua": 2, "pinhais": 2, "piraquara": 2, "pontal dorana": 2, "quatro barras": 2, "quitandinha": 2, "rio branco sul": 2, "sao joses pinhais": 2, "tijucas dol": 2, "tunas dorana": 3, "campina grande sul": 2, "sao joses pinhais": 2, "ceu azul": 3, "diamante d'oeste": 6, "itaipulandia": 3, "matelandia": 3, "medianeira": 2, "missal": 3, "ramilandia": 6, "santa helena": 3, "sao miguel iguacu": 2, "serranopolis douacu": 6, "vera cruz oeste": 6, "curiuva": 4, "figueira": 4, "imbau": 4, "lagoa": 6, "lagoa": 4, "ortigueira": 4, "reserva": 4, "sapopema": 4, "telemaco borba": 2, "tibagi": 4, "ventania": 4, "entre rios oeste": 6, "marechal candidondon": 3, "maripa": 4, "mercedes": 6, "nova santasa": 4, "novo sarandi": 6, "ouro verde oeste": 6, "palotina": 3, "pato bragado": 6, "quatro pontes": 4, "sao joses palmeiras": 6, "sao pedro iguacu": 6, "toledo": 2, "alto paraiso": 6, "alto piquiri": 6, "altonia": 3, "brasilandia dol": 6, "cafezal dol": 3, "cruzeiro doste": 4, "douradina": 4, "esperanca nova": 3, "francisco alves": 3, "guaipora": 3, "guaira": 4, "icaraima": 6, "ipora": 3, "ivate": 4, "maria helena": 6, "nova olimpia": 6, "perobal": 3, "perola": 3, "sao jorge patrocinio": 3, "serra dosurados": 4, "terra roxa": 3, "umuarama": 2, "xambre": 3, "bituruna": 6, "cruz machado": 6, "general carneiro": 6, "mallet": 6, "paula freitas": 6, "paulo frontin": 6, "porto vitoria": 6, "rio azul": 6, "rio claro sul": 6, "sao cristovao": 2, "sao cristovao": 2, "uniao datoria": 2,
+                "aracruz": 5, "fundao": 6, "bom jesus do norte": 7, "sao jose do calcado": 7, "ibiracu": 6, "joao neiva": 6, "praia grande": 5, "praia grande": 5, "timbui": 5, "timbui": 5, "alegre": 6, "alegre": 6, "anchieta": 5, "atilio vivacqua": 6, "brejetuba": 7, "cachoeiro de itapemirim": 5, "camara": 5, "castelo": 6, "celina": 5, "conceicao do castelo": 6, "divino de sao lourenco": 7, "dona america": 5, "dores do rio preto": 7, "guacui": 6, "ibatiba": 6, "ibitirama": 6, "iconha": 5, "irupi": 8, "itaici": 5, "itaipava": 5, "itaoca": 5, "itapemirim": 5, "iuna": 6, "jeronimo monteiro": 6, "marataizes": 5, "menino jesus": 5, "mimoso do sul": 6, "muniz freire": 7, "muqui": 6, "piuma": 5, "ponte de itabapoana": 5, "presidente kennedy": 7, "rio novo do sul": 5, "sao jose das torres": 5, "sao pedro": 5, "vargem alta": 6, "venda nova do imigrante": 6, "vieira machado": 5, "baunilha": 4, "boapaba": 4, "colatina": 4, "jaguare": 5, "linhares": 5, "marilandia": 5, "nova venecia": 5, "pontal do ipiranga": 4, "povoacao": 5, "regencia": 5, "sao domingos do norte": 5, "sao gabriel da palha": 5, "sao mateus": 5, "sooretama": 5, "serra": 4, "afonso claudio": 8, "alfredo chaves": 8, "alto santa maria": 9, "arace": 5, "araguaia": 10, "cariacica": 5, "domingos martins": 7, "guarapari": 6, "ibitirui": 5, "marechal floriano": 7, "paraju": 5, "ribeirao do cristo": 5, "sagrada familia": 5, "santa leopoldina": 8, "santa maria de jetiba": 7, "santa teresa": 7, "serra": 5, "viana": 5, "vila velha": 5, "vitoria": 5, "agua doce do norte": 8, "aguia branca": 8, "alto rio novo": 8, "baixo guandu": 8, "barra de sao francisco": 8, "boa esperanca": 8, "conceicao da barra": 8, "ecoporanga": 8, "governador lindenberg": 8, "itaguacu": 7, "itaperuna": 8, "itarana": 7, "itarana": 7, "laranja da terra": 7, "mantenopolis": 8, "montanha": 8, "mucurici": 8, "pancas": 8, "pedro canario": 8, "pinheiros": 8, "ponto belo": 8, "rio bananal": 8, "santa luzia do azul": 5, "sao roque do canaa": 8, "vila pavao": 8, "vila valerio": 8,
+                "araxa": 2, "iturama": 2, "carneirinho": 6, "canapolis": 6, "limeira do oeste": 6, "campos altos": 11, "ibia": 4, "perdizes": 3, "pratinha": 11, "sacramento": 2, "tapira": 6, "alfredo vasconcelos": 6, "alto rio doce": 12, "antonio carlos": 6, "aracitaba": 12, "barbacena": 2, "bias fortes": 12, "capela nova": 12, "cipotanea": 12, "desterro do melo": 12, "ibertioga": 12, "oliveira fortes": 12, "paiva": 12, "ressaquinha": 6, "santa barbara do tugurio": 12, "santa rita do ibitipoca": 12, "santana do garambeu": 12, "senhora dos remedios": 12, "borda da mata": 3, "bueno brandao": 4, "inconfidentes": 3, "ouro fino": 3, "tocos do moji": 6, "aguanil": 6, "campo belo": 2, "candeias": 4, "cristais": 6, "boa esperanca": 2, "boa esperanca": 2, "boa esperanca": 2, "campo do meio": 2, "campos gerais": 2, "guape": 6, "ilicinea": 6, "aiuruoca": 12, "alagoa": 12, "baependi": 2, "bocaina de minas": 12, "carmo de minas": 4, "carvalhos": 12, "caxambu": 2, "conceicao do rio verde": 4, "cruzilia": 3, "dom vicoso": 12, "itamonte": 2, "itanhandu": 2, "liberdade": 12, "minduri": 6, "passa quatro": 3, "passa vinte": 12, "pouso alto": 2, "sao lourenco": 2, "sao sebastiao do rio verde": 12, "seritinga": 12, "serranos": 12, "soledade de minas": 4, "virginia": 12, "alpinopolis": 3, "alterosa": 2, "areado": 2, "carmo do rio claro": 2, "conceicao da aparecida": 4, "monte belo": 2, "sao jose da barra": 6, "antonio pereira": 2, "belo vale": 12, "caranaiba": 12, "carandai": 6, "casa grande": 12, "catas altas da noruega": 12, "congonhas": 3, "conselheiro lafaiete": 2, "cristiano otoni": 6, "desterro de entre rios": 12, "entre rios de minas": 6, "itaverava": 12, "jeceaba": 6, "lamim": 12, "mariana": 2, "ouro branco": 3, "ouro preto": 2, "queluzito": 12, "rio espera": 12, "santana dos montes": 12, "sao bras do suacui": 6, "senhora de oliveira": 12, "bacao": 2, "belo horizonte": 3, "betim": 3, "bonfim": 8, "brumadinho": 4, "caete": 6, "confins": 3, "contagem": 3, "esmeraldas": 6, "florestal": 6, "ibirite": 3, "igarape": 6, "itabirito": 6, "itatiaiucu": 6, "jaboticatubas": 8, "juatuba": 6, "lagoa santa": 3, "mario campos": 4, "mateus leme": 6, "moeda": 8, "nova lima": 3, "nova uniao": 6, "piedade dos gerais": 8, "raposos": 6, "ravena": 6, "ribeirao das neves": 3, "rio acima": 6, "rio manso": 8, "sabara": 6, "santa luzia": 3, "sao joaquim de bicas": 6, "sarzedo": 4, "vespasiano": 3, "belo oriente": 6, "belo oriente": 6, "coronel fabriciano": 3, "guanhaes": 8, "ipatinga": 3, "itabira": 4, "joao monlevade": 4, "santa barbara": 8, "santana do paraiso": 6, "timoteo": 3, "corinto": 6, "curvelo": 3, "felixlandia": 6, "inimutaba": 4, "alvorada de minas": 13, "andrequice": 13, "augusto de lima": 13, "buenopolis": 13, "couto de magalhaes de minas": 13, "datas": 13, "diamantina": 13, "felicio dos santos": 13, "gouveia": 13, "joaquim felicio": 13, "monjolos": 13, "morro da garca": 13, "pedro lessa": 13, "presidente juscelino": 13, "presidente kubitschek": 13, "santo antonio do itambe": 13, "santo hipolito": 13, "sao goncalo do rio preto": 13, "senador modestino goncalves": 13, "serra azul de minas": 13, "serro": 13, "tres marias": 13, "carmo da mata": 4, "carmo do cajuru": 6, "carmopolis de minas": 6, "claudio": 3, "divinopolis": 2, "itaguara": 6, "marilandia": 6, "monsenhor joao alexandre": 6, "oliveira": 3, "santo antonio dos campos": 6, "sao goncalo do para": 6, "sao sebastiao do oeste": 6, "barroso": 3, "dores de campos": 3, "prados": 4, "extrema": 3, "itapeva": 3, "munhoz": 13, "toledo": 13, "carvalhopolis": 12, "coqueiral": 12, "cordislandia": 12, "fama": 2, "santana da vargem": 12, "sao bento abade": 12, "sao thome das letras": 12, "arcos": 2, "bambui": 4, "capitolio": 4, "corrego fundo": 4, "formiga": 2, "iguatama": 4, "itapecerica": 6, "lagoa da prata": 2, "luz": 6, "moema": 6, "pains": 4, "pedra do indaia": 4, "pimenta": 2, "piumhi": 2, "santo antonio do monte": 4, "sao roque de minas": 6, "vargem bonita": 6, "campo florido": 6, "conceicao das alagoas": 2, "fronteira": 6, "frutal": 2, "itapagipe": 3, "pirajuba": 6, "planura": 4, "alpercata": 6, "barra do ariranha": 7, "caratinga": 4, "central de minas": 8, "divino das laranjeiras": 8, "dom cavati": 7, "engenheiro caldas": 7, "governador valadares": 2, "inhapim": 7, "itabirinha": 8, "itambacuri": 8, "mantena": 8, "mendes pimentel": 8, "santo antonio do manhuacu": 4, "sao joao do manteninha": 8, "tarumirim": 7, "teofilo otoni": 4, "ubaporanga": 7, "bom jesus da penha": 6, "guaranesia": 2, "guaxupe": 2, "juruaia": 2, "muzambinho": 3, "nova resende": 3, "sao pedro da uniao": 6, "igaratinga": 3, "itauna": 3, "maravilhas": 6, "papagaios": 6, "para de minas": 3, "pequi": 6, "sao jose da varginha": 6, "campina verde": 6, "capinopolis": 4, "gurinhata": 6, "ituiutaba": 2, "monte alegre de minas": 4, "prata": 4, "santa vitoria": 4, "alem paraiba": 13, "andrelandia": 6, "arantina": 6, "argirita": 13, "belmiro braga": 13, "bicas": 3, "bom jardim de minas": 6, "chacara": 13, "chiador": 13, "coronel pacheco": 3, "descoberto": 13, "estrela dalva": 13, "ewbank da camara": 4, "goiana": 3, "guarara": 3, "juiz de fora": 3, "lima duarte": 6, "mar de espanha": 3, "maripa de minas": 6, "matias barbosa": 4, "olaria": 13, "pedro teixeira": 13, "pequeri": 6, "piau": 13, "pirapetinga": 13, "rio novo": 3, "rio preto": 13, "rochedo de minas": 3, "santa barbara do monte verde": 13, "santa rita de jacutinga": 13, "santana do deserto": 13, "santo antonio do aventureiro": 13, "santos dumont": 4, "sao joao nepomuceno": 3, "sao vicente de minas": 6, "senador cortes": 6, "simao pereira": 13, "volta grande": 6, "bom sucesso": 4, "cana verde": 6, "carmo da cachoeira": 6, "carrancas": 12, "ibituruna": 12, "ijaci": 6, "ingai": 12, "itumirim": 6, "itutinga": 6, "lavras": 2, "luminarias": 12, "nazareno": 6, "nepomuceno": 3, "perdoes": 2, "ribeirao vermelho": 4, "santana do jacare": 12, "santo antonio do amparo": 4, "machado": 2, "poco fundo": 2, "serrania": 3, "alegria": 3, "alto caparao": 13, "alto jequitiba": 13, "caiana": 13, "caparao": 13, "caputira": 13, "carangola": 5, "chale": 13, "conceicao de ipanema": 13, "divino": 4, "durande": 13, "espera feliz": 5, "faria lemos": 13, "fervedouro": 13, "ipanema": 13, "lajinha": 13, "luisburgo": 13, "manhuacu": 3, "manhumirim": 4, "martins soares": 13, "matipo": 13, "mutum": 13, "orizania": 13, "pedra bonita": 13, "pedra dourada": 13, "pocrane": 13, "reduto": 13, "santa barbara do leste": 13, "santa margarida": 13, "santana do manhuacu": 4, "sao francisco do gloria": 13, "sao joao do manhuacu": 13, "sao jose do mantimento": 13, "sao pedro do avai": 4, "sericita": 13, "simonesia": 13, "taparuba": 13, "tombos": 13, "vermelho novo": 13, "bocaiuva": 14, "brasilia de minas": 14, "capitao eneas": 5, "coracao de jesus": 14, "espinosa": 14, "francisco sa": 14, "janauba": 14, "januaria": 14, "japonvar": 14, "lontra": 14, "luislandia": 14, "mamonas": 14, "mato verde": 14, "mirabela": 14, "monte azul": 14, "montes claros": 4, "nova porteirinha": 14, "pedras de maria da cruz": 14, "porteirinha": 14, "salinas": 14, "sao francisco": 14, "sao joao da lagoa": 14, "sao pedro da garca": 4, "taiobeiras": 14, "verdelandia": 14, "berizal": 14, "bonito de minas": 14, "botumirim": 14, "campo azul": 14, "catuti": 14, "chapada gaucha": 14, "claro dos pocoes": 14, "conego marinho": 14, "cristalia": 14, "curral de dentro": 14, "engenheiro navarro": 14, "francisco dumont": 14, "fruta de leite": 14, "gameleiras": 14, "glaucilandia": 14, "grao mogol": 14, "guaraciama": 14, "ibiracatu": 14, "icarai de minas": 14, "indaiabira": 14, "itacambira": 14, "itacarambi": 14, "jaiba": 14, "josenopolis": 14, "juramento": 14, "juvenilia": 14, "manga": 14, "matias cardoso": 14, "miravania": 14, "montalvania": 14, "montezuma": 14, "ninheira": 14, "novorizonte": 14, "olhos dagua": 14, "olhos d'agua": 14, "padre carvalho": 14, "pai pedro": 14, "patis": 14, "pintopolis": 14, "riacho dos machados": 14, "rio pardo de minas": 14, "rubelita": 14, "santa cruz de salinas": 14, "santo antonio do retiro": 14, "sao joao da ponte": 14, "sao joao das missoes": 14, "sao joao do pacui": 14, "sao joao do paraiso": 14, "sao romao": 14, "serranopolis de minas": 14, "ubai": 14, "vargem grande do rio pardo": 14, "varzelandia": 14, "antonio prado de minas": 13, "barao de monte alto": 4, "cataguases": 3, "eugenopolis": 4, "itamarati de minas": 13, "laranjal": 4, "leopoldina": 4, "miradouro": 6, "mirai": 3, "muriae": 3, "palma": 13, "patrocinio do muriae": 4, "recreio": 4, "rosario da limeira": 13, "santana de cataguases": 13, "vieiras": 13, "abaete": 8, "araujos": 2, "biquinhas": 13, "boa vista de minas": 2, "bom despacho": 2, "cedro do abaete": 13, "conceicao do para": 4, "dores do indaia": 13, "estrela do indaia": 13, "jaguara": 6, "leandro ferreira": 8, "martinho campos": 8, "morada nova de minas": 13, "nova serrana": 2, "onca de pitangui": 11, "paineiras": 13, "perdigao": 2, "pitangui": 4, "pompeu": 8, "quartel geral": 13, "serra da saudade": 13, "joao pinheiro": 4, "paracatu": 2, "unai": 3, "fortaleza de minas": 7, "itau de minas": 2, "passos": 2, "sao joao batista do gloria": 4, "arapua": 6, "carmo do paranaiba": 2, "lagamar": 4, "lagoa formosa": 2, "patos de minas": 2, "presidente olegario": 4, "rio paranaiba": 3, "sao gotardo": 3, "vazante": 4, "abadia dos dourados": 2, "brejo bonito": 4, "coromandel": 2, "cruzeiro da fortaleza": 4, "guimarania": 4, "irai de minas": 4, "monte carmelo": 2, "patrocinio": 2, "romaria": 4, "salitre de minas": 4, "sao joao da serra negra": 4, "serra do salitre": 4, "buritizeiro": 4, "jequitai": 13, "pirapora": 3, "varzea da palma": 4, "ibiai": 13, "lagoa dos patos": 13, "lassance": 13, "ponto chique": 13, "santa fe de minas": 13, "bandeira do sul": 3, "botelhos": 3, "cabo verde": 4, "caldas": 4, "campestre": 3, "ibitiura de minas": 6, "ipuiuna": 4, "pocos de caldas": 2, "santa rita de caldas": 4, "bom repouso": 4, "camanducaia": 2, "cambui": 2, "careacu": 4, "congonhal": 3, "corrego do bom jesus": 12, "espirito santo do dourado": 12, "estiva": 2, "heliodora": 6, "monte verde": 4, "natercia": 6, "pouso alegre": 2, "pouso alegre": 2, "sao joao da mata": 6, "sao sebastiao da bela vista": 4, "senador amaral": 12, "senador jose bento": 12, "silvianopolis": 6, "turvolandia": 12, "ribeirao das neves": 3, "brazopolis": 4, "cachoeira de minas": 4, "conceicao das pedras": 12, "conceicao dos ouros": 4, "consolacao": 12, "cristina": 4, "delfim moreira": 12, "goncalves": 12, "itajuba": 2, "maria da fe": 4, "marmelopolis": 12, "paraisopolis": 4, "pedralva": 4, "pirangucu": 12, "piranguinho": 2, "santa rita do sapucai": 2, "sao jose do alegre": 4, "sapucai-mirim": 12, "wenceslau braz": 12, "conceicao da barra de minas": 12, "coronel xavier chaves": 12, "lagoa dourada": 6, "madre de deus de minas": 12, "piedade do rio grande": 12, "resende costa": 3, "rio das mortes": 12, "ritapolis": 12, "santa cruz de minas": 2, "sao joao del rei": 2, "sao sebastiao da vitoria": 6, "sao tiago": 12, "tiradentes": 6, "capetinga": 6, "cassia": 3, "delfinopolis": 6, "ibiraci": 6, "itamogi": 4, "jacui": 4, "monte santo de minas": 3, "pratapolis": 3, "sao sebastiao do paraiso": 2, "sao tomas de aquino": 4, "aracai": 6, "cachoeira da prata": 6, "caetanopolis": 4, "capim branco": 3, "cordisburgo": 6, "fortuna de minas": 6, "inhauma": 6, "matozinhos": 3, "paraopeba": 4, "pedro leopoldo": 3, "prudente de morais": 3, "sao jose da lapa": 3, "sete lagoas": 2, "tres coracoes": 2, "eloi mendes": 2, "paraguacu": 2, "tres pontas": 2, "astolfo dutra": 6, "dona euzebia": 6, "guarani": 6, "guidoval": 6, "guiricema": 6, "merces": 6, "pirauba": 6, "rio pomba": 4, "rodeiro": 6, "santana do campestre": 6, "sao geraldo": 13, "sao geraldo": 13, "sao sebastiao da vargem alegre": 13, "silverania": 13, "tabuleiro": 13, "tocantins": 3, "uba": 3, "visconde do rio branco": 4, "agua comprida": 6, "conquista": 6, "delta": 3, "nova ponte": 3, "pedrinopolis": 6, "santa juliana": 3, "uberaba": 2, "verissimo": 6, "araguari": 2, "cascalho rico": 6, "estrela do sul": 6, "indianopolis": 6, "uberlandia": 2, "cambuquira": 4, "campanha": 3, "jesuania": 4, "lambari": 4, "monsenhor paulo": 6, "olimpio noronha": 12, "sao goncalo do sapucai": 12, "varginha": 2, "abre campo": 13, "acaiaca": 13, "alvinopolis": 13, "amparo da serra": 13, "araponga": 13, "barra longa": 13, "bras pires": 13, "cajuri": 13, "canaa": 13, "coimbra": 4, "diogo de vasconcelos": 13, "divinesia": 13, "dom silverio": 13, "dores do turvo": 13, "ervalia": 4, "guaraciaba": 13, "jequeri": 13, "oratorios": 13, "paula candido": 13, "pedra do anta": 13, "piedade de ponte nova": 13, "piranga": 13, "ponte nova": 3, "porto firme": 13, "presidente bernardes": 13, "raul soares": 13, "rio casca": 13, "rio doce": 13, "santa cruz do escalvado": 13, "santo antonio do grama": 13, "sao miguel do anta": 13, "sao pedro dos ferros": 13, "sem peixe": 13, "senador firmino": 13, "teixeiras": 4, "urucania": 13, "vicosa": 3,
+                "angra dos reis": 3, "barra mansa": 3, "engenheiro passos": 7, "fumaca": 7, "itatiaia": 3, "lidice": 4, "paraty": 4, "penedo": 3, "porto real": 3, "quatis": 3, "resende": 3, "rio claro": 3, "visconde de maua": 7, "arrozal": 3, "avelar": 5, "barra do pirai": 3, "conservatoria": 5, "engenheiro paulo de frontin": 5, "ipiabas": 4, "japeri": 4, "mendes": 5, "miguel pereira": 5, "paracambi": 3, "parapeuna": 5, "paty do alferes": 5, "pinheiral": 3, "pirai": 3, "rio das flores": 5, "valenca": 3, "vassouras": 4, "volta redonda": 3, "afonso arinos": 4, "comendador levy gasparian": 4, "inconfidencia": 8, "paraiba do sul": 4, "sapucaia": 6, "tres rios": 4, "werneck": 8, "aperibe": 6, "barcelos": 6, "cambuci": 6, "campos dos goytacazes": 4, "carapebus": 6, "conceicao de macabu": 6, "ibitioca": 6, "itaocara": 6, "miracema": 6, "morangaba": 4, "morro do coco": 4, "mussurepe": 5, "pipeiras": 6, "pureza": 6, "quissama": 6, "santa maria": 8, "santo amaro de campos": 4, "santo antonio de padua": 6, "santo eduardo": 4, "sao fidelis": 6, "sao francisco de itabapoana": 5, "sao joao da barra": 5, "serrinha": 6, "tocos": 8, "travessao": 4, "vila nova de campos": 4, "corrego do ouro": 8, "frade": 8, "glicerio": 8, "macae": 4, "sana": 8, "boa ventura": 5, "bom jesus do itabapoana": 5, "bom jesus do querendo": 8, "calheiros": 8, "carabucu": 8, "cardoso moreira": 6, "comendador venancio": 5, "italva": 6, "itaperuna": 4, "laje do muriae": 6, "natividade": 6, "ourania": 8, "porciuncula": 6, "raposo": 5, "retiro do muriae": 5, "rosal": 8, "santa clara": 8, "sao joaquim": 8, "sao jose de uba": 6, "varre-sai": 6, "barra alegre": 7, "bom jardim": 7, "cachoeiras de macacu": 7, "cantagalo": 7, "carmo": 6, "cordeiro": 7, "duas barras": 7, "macuco": 7, "monnerat": 5, "nova friburgo": 5, "papucaia": 5, "piao": 7, "santa maria madalena": 8, "sao sebastiao do alto": 8, "sumidouro": 7, "teresopolis": 5, "trajano de moraes": 7, "belford roxo": 5, "duque de caxias": 5, "guapimirim": 6, "itaborai": 6, "itaguai": 5, "mage": 5, "mangaratiba": 6, "marica": 5, "mesquita": 5, "nilopolis": 5, "niteroi": 5, "nova iguacu": 5, "piabeta": 5, "queimados": 6, "rio de janeiro": 5, "sao joao de meriti": 5, "seropedica": 5, "sao goncalo": 7, "areal": 6, "petropolis": 4, "sao jose do vale do rio preto": 6, "belford roxo": 5, "duque de caxias": 5, "mesquita": 5, "nilopolis": 5, "niteroi": 5, "nova iguacu": 5, "queimados": 6, "rio de janeiro": 5, "sao goncalo": 7, "sao joao de meriti": 5, "araruama": 4, "armacao dos buzios": 4, "arraial do cabo": 6, "barra de sao joao": 4, "cabo frio": 4, "casimiro de abreu": 6, "iguaba grande": 4, "rio bonito": 4, "rio das ostras": 4, "sao pedro da aldeia": 4, "saquarema": 4, "silva jardim": 6, "tangua": 4,
             };
+
+
 
             if (prazoEntrega.hasOwnProperty(cidadeDestino)) {
                 return prazoEntrega[cidadeDestino];
@@ -626,17 +734,7 @@
 
         function calcularFrete() {
             var pesoFrete = calcularPesoCubico();
-            var cidadeDestino = '';
-
-            if ($('#cidade_entrega').text() && $('#cep_entrega').val()) {
-                cidadeDestino = $('#cidade_entrega').text().toLowerCase();
-            } else if ($('#cidade_destino').text()) {
-                cidadeDestino = $('#cidade_destino').text().toLowerCase();
-            }
-
-            cidadeDestino = cidadeDestino.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
-            var prazo = calcularPrazoEntrega(cidadeDestino);
+            var cidadeDestino = obterCidadeDestino();
 
             if (pesoFrete === 0) {
                 return;
@@ -644,55 +742,720 @@
 
             var frete = 0;
 
-            var cidadesAtendidas = ["jau", "ribeirao preto", "campinas", "botucatu", "americana", "jundiai"];
-
-            if (cidadesAtendidas.includes(cidadeDestino)) {
-                if (pesoFrete <= 5) {
-                    frete = 41.69;
-                } else if (pesoFrete <= 15) {
-                    frete = 44.27;
-                } else if (pesoFrete <= 30) {
-                    frete = 47.95;
-                } else if (pesoFrete <= 40) {
-                    frete = 51.53;
-                } else if (pesoFrete <= 60) {
-                    frete = 74.94;
-                } else if (pesoFrete <= 100) {
-                    frete = 94.40;
-                } else {
-                    var taxa100Kg = Math.floor(pesoFrete / 100) * 8.34;
-                    var taxaExcedente = (pesoFrete > 100) ? (pesoFrete - 100) * 1.52 : 0;
-                    frete = 94.40 + taxa100Kg + taxaExcedente;
-                }
-
-
+            if (cidadesAtendidas1(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas1(pesoFrete);
+            } else if (cidadesAtendidas2(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas2(pesoFrete);
+            } else if (cidadesAtendidas3(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas3(pesoFrete);
+            } else if (cidadesAtendidas4(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas4(pesoFrete);
+            } else if (cidadesAtendidas5(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas5(pesoFrete);
+            } else if (cidadesAtendidas6(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas6(pesoFrete);
+            } else if (cidadesAtendidas7(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas7(pesoFrete);
+            } else if (cidadesAtendidas8(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas8(pesoFrete);
+            } else if (cidadesAtendidas9(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas9(pesoFrete);
+            } else if (cidadesAtendidas10(cidadeDestino)) {
+                frete = calcularFreteCidadesAtendidas10(pesoFrete);
             } else {
+                frete = calcularFreteCidadeNaoAtendida();
             }
+
+            exibirResultadosNaTela(frete);
+        }
+
+        function obterCidadeDestino() {
+            var cidadeDestino = '';
+
+
+            if ($('#cidade_entrega').text() && $('#cep_entrega').val()) {
+                cidadeDestino = $('#cidade_entrega').text().toLowerCase();
+            } else if ($('#cidade_destino').text()) {
+                cidadeDestino = $('#cidade_destino').text().toLowerCase();
+            }
+                estadoDestino = $('#estado-sigla').text().toLowerCase();
+
+            return cidadeDestino.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+        //cidades sp capital
+        function cidadesAtendidas1(cidadeDestino) {
             var cidadesAtendidas = ["guarulhos", "sao paulo", "aruja", "biritiba-mirim", "ferraz de vasconcelos", "itaquaquecetuba", "mairipora", "maua", "mogi das cruzes", "poa", "ribeirao pires", "rio grande da serra", "salesopolis", "santa isabel", "santo andre", "suzano", "santo andre", "juquitiba", "aracariguama", "barueri", "caieiras", "carapicuiba", "cotia", "diadema", "embu das artes", "embu-guacu", "francisco morato", "franco da rocha", "itapecerica da serra", "itapevi", "jandira", "juquitiba", "osasco", "pirapora do bom jesus", "santana de parnaiba", "sao bernardo do campo", "sao caetano do sul", "taboao da serra", "vargem grande paulista"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades sp interior
+        function cidadesAtendidas2(cidadeDestino) {
+            var cidadesAtendidas = ["adamantina", "ilha comprida", "santa maria da serra", "adolfo", "agua vermelha", "aguai", "aguas da prata", "aguas de lindoia", "aguas de santa barbara", "aguas de sao pedro", "agudos", "agulha", "ajapi", "alambari", "alfredo marcondes", "altair", "altinopolis", "alto alegre", "aluminio", "alvares florence", "alvares machado", "alvaro de carvalho", "alvinlandia", "americana", "americo brasiliense", "americo de campos", "amparo", "analandia", "andradina", "angatuba", "anhembi", "anhumas", "aparecida", "aparecida d'oeste", "aparecida de sao manuel", "apiai", "araba", "arabela", "aracariguama", "aracatuba", "aracoiaba da serra", "aramina", "arandu", "arapei", "araraquara", "araras", "arcadas", "arco-iris", "arealva", "areias", "areiopolis", "ariranha", "artur nogueira", "aasia", "assis", "assistencia", "atibaia", "auriflama", "avai", "avanhandava", "avare", "bady bassitt", "baguacu", "balbinos", "balsamo", "bananal", "bandeirantes d'oeste", "barao de antonina", "barbosa", "bariri", "barra bonita", "barra do chapeu", "barra do turvo", "barretos", "barrinha", "bastos", "batatais", "batatuba", "bauru", "bebedouro", "bento de abreu", "bernardino de campos", "bilac", "birigui", "boa eeranca do sul", "bocaina", "bofete", "boituva", "bom jesus dos perdoes", "bom sucesso de itarare", "bonfim paulista", "bora", "boraceia", "borborema", "borebi", "botafogo", "botucatu", "braganca paulista", "brasitania", "brauna", "brejo alegre", "brodowski", "brotas", "buri", "buritama", "buritizal", "cabralia paulista", "cabreuva", "cacapava", "cachoeira paulista", "caconde", "cafelandia", "caiabu", "caiua", "cajamar", "cajati", "cajobi", "cajuru", "campestrinho", "campina do monte alegre", "campinas", "campo limpo paulista", "campos do jordao", "campos novos paulista", "cananeia", "canas", "candido mota", "candido rodrigues", "canitar", "capao bonito", "capela do alto", "capivari", "cardoso", "casa branca", "cassia dos coqueiros", "castilho", "catanduva", "catigua", "cedral", "cerqueira cesar", "cerquilho", "cesario lange", "charqueada", "chavantes", "clementina", "colina", "colombia", "conchal", "conchas", "cordeiropolis", "coroados", "coronel macedo", "corumbatai", "cosmopolis", "cosmorama", "cravinhos", "cristais paulista", "cruzalia", "cruzeiro", "cunha", "descalvado", "dirce reis", "divinolandia", "dobrada", "dois corregos", "dolcinopolis", "dourado", "dracena", "duartina", "dumont", "duplo ceu", "echapora", "eldorado", "elias fausto", "elisiario", "embauba", "emilianopolis", "engenheiro balduino", "engenheiro coelho", "engenheiro schmitt", "eigao", "eirito santo do pinhal", "eirito santo do turvo", "estiva gerbi", "estrela d'oeste", "eugenio de melo", "fartura", "fernando prestes", "fernandopolis", "fernao", "flora rica", "floreal", "florida paulista", "florinea", "franca", "gabriel monteiro", "galia", "garca", "gardenia", "gastao vidigal", "gaviao peixoto", "general salgado", "getulina", "glicerio", "guaicara", "guaimbe", "guaira", "guapiacu", "guapiara", "guara", "guaracai", "guaraci", "guaraciaba d'oeste", "guarani d'oeste", "guaranta", "guarapua", "guararapes", "guaratingueta", "guarei", "guariba", "guariroba", "guatapara", "guzolandia", "herculandia", "holambra", "holambra ii", "hortolandia", "iacanga", "iacri", "iaras", "ibate", "ibira", "ibirarema", "ibitinga", "ibitiuva", "ibiuna", "icem", "ida iolanda", "iepe", "igaracu do tiete", "igarai", "igarapava", "igarata", "iguape", "ilha solteira", "indaiatuba", "indiana", "indiapora", "inubia paulista", "ipaussu", "ipero", "ipeuna", "ipigua", "iporanga", "ipua", "iracemapolis", "irapua", "irapuru", "itabera", "itai", "itajobi", "itaju", "itaoca", "itapetininga", "itapeva", "itapira", "itapirapua paulista", "itapolis", "itaporanga", "itapui", "itapura", "itarare", "itariri", "itatiba", "itatinga", "itirapina", "itirapua", "itobi", "itu", "itupeva", "ituverava", "jaborandi", "jaboticabal", "jacare", "jacarei", "jaci", "jacipora", "jacupiranga", "jaguariuna", "jales", "jambeiro", "jardinopolis", "jarinu", "jau", "jeriquara", "joanopolis", "joao ramalho", "jordanesia", "jose bonifacio", "juliania", "julio mesquita", "jumirim", "jundiai", "junqueiropolis", "juquia", "juruce", "lagoa branca", "lagoinha", "laranjal paulista", "lavinia", "lavrinhas", "leme", "lencois paulista", "limeira", "lindoia", "lins", "lorena", "lourdes", "louveira", "lucelia", "lucianopolis", "luis antonio", "luiziania", "lupercio", "lutecia", "macatuba", "macaubal", "macedonia", "magda", "mairinque", "manduri", "maracai", "marapoama", "marcondesia", "mariapolis", "marilia", "marinopolis", "maristela", "martinopolis", "matao", "mendonca", "meridiano", "mesopolis", "miguelopolis", "mineiros do tiete", "mira estrela", "miracatu", "mirandopolis", "mirassol", "mirassolandia", "mococa", "mogi guacu", "mogi mirim", "mombuca", "moncoes", "monte alegre do sul", "monte alto", "monte aprazivel", "monte azul paulista", "monte castelo", "monte mor", "monte verde paulista", "monteiro lobato", "moreira cesar", "morro agudo", "morungaba", "motuca", "murutinga do sul", "nantes", "natividade da serra", "nazare paulista", "neves paulista", "nhandeara", "nipoa", "nova alexandria", "nova alianca", "nova campina", "nova canaa paulista", "nova castilho", "nova europa", "nova granada", "nova guataporanga", "nova independencia", "nova luzitania", "nova odessa", "nova veneza", "novais", "novo horizonte", "nuporanga", "oasis", "ocaucu", "oleo", "olimpia", "onda verde", "oriente", "orindiuva", "orlandia", "oscar bressane", "osvaldo cruz", "ourinhos", "ouro verde", "ouroeste", "pacaembu", "palestina", "palmares paulista", "palmeira d'oeste", "palmital", "panorama", "paraguacu paulista", "paraibuna", "paraiso", "paranapanema", "paranapua", "parapua", "pardinho", "pariquera-acu", "parisi", "parnaso", "paruru", "patrocinio paulista", "pauliceia", "paulinia", "paulistania", "paulo de faria", "paulopolis", "pederneiras", "pedra bela", "pedranopolis", "pedregulho", "pedreira", "pedrinhas paulista", "pedro de toledo", "penapolis", "pereira barreto", "pereiras", "peruibe", "piacatu", "piedade", "pilar do sul", "pindamonhangaba", "pindorama", "pinhalzinho", "piquerobi", "piquete", "piracaia", "piracicaba", "piraju", "pirajui", "pirangi", "pirapozinho", "pirassununga", "piratininga", "pitangueiras", "planalto", "planalto", "platina", "poloni", "pompeia", "pongai", "pontal", "pontalinda", "pontes gestal", "populina", "porangaba", "porto feliz", "porto ferreira", "potim", "potirendaba", "pracinha", "pradopolis", "pratania", "presidente alves", "presidente bernardes", "presidente epitacio", "presidente prudente", "presidente venceslau", "promissao", "quadra", "quata", "queiroz", "queluz", "quintana", "rafard", "rancharia", "rechan", "redencao da serra", "regente feijo", "reginopolis", "registro", "restinga", "ribeira", "ribeirao bonito", "ribeirao branco", "ribeirao corrente", "ribeirao do sul", "ribeirao dos indios", "ribeirao grande", "ribeirao preto", "rifaina", "rincao", "rinopolis", "rio claro", "rio das pedras", "riolandia", "riversul", "roseira", "rubiacea", "rubineia", "sabino", "sagres", "sales", "sales oliveira", "salmourao", "saltinho", "salto", "salto de pirapora", "salto grande", "santa adelia", "santa albertina", "santa barbara d oeste", "santa branca", "santa clara d'oeste", "santa cruz da conceicao", "santa cruz da eeranca", "santa cruz das palmeiras", "santa cruz do rio pardo", "santa ernestina", "santa fe do sul", "santa gertrudes", "santa lucia", "santa mercedes", "santa rita d'oeste", "santa rita do passa quatro", "santa rosa de viterbo", "santa salete", "santana da ponte pensa", "santo anastacio", "santo antonio da alegria", "santo antonio de posse", "santo antonio do aracangua", "santo antonio do jardim", "santo antonio do pinhal", "santo expedito", "santopolis do aguapei", "sao benedito das areias", "sao bento do sapucai", "sao carlos", "sao francisco", "sao francisco xavier", "sao joao da boa vista", "sao joao das duas pontes", "sao joao de iracema", "sao joao do pau d'alho", "sao joaquim da barra", "sao jose da bela vista", "sao jose do barreiro", "sao jose do rio pardo", "sao jose do rio preto", "sao jose dos campos", "sao lourenco do turvo", "sao luiz do paraitinga", "sao manuel", "sao miguel arcanjo", "sao pedro", "sao pedro do turvo", "sao roque", "sao sebastiao", "sao sebastiao da grama", "sao simao", "sarapui", "sarutaia", "sebastianopolis do sul", "serra azul", "serra negra", "serrana", "sertaozinho", "sete barras", "severinia", "silveiras", "simonsen", "socorro", "sorocaba", "sud mennucci", "sumare", "suzanapolis", "tabapua", "tabatinga", "taciba", "taguai", "taiacu", "taiuva", "tambau", "tanabi", "tapirai", "tapiratiba", "taquaral", "taquaral", "taquaritinga", "taquarituba", "taquarivai", "tarabai", "taruma", "tatui", "taubate", "tejupa", "terra nova d'oeste", "terra roxa", "tiete", "timburi", "torre de pedra", "torrinha", "trabiju", "tremembe", "tres fronteiras", "tuiuti", "tupa", "tupi paulista", "turiuba", "turmalina", "ubarana", "ubirajara", "uchoa", "uniao paulista", "universo", "urania", "uru", "urupes", "valentim gentil", "valinhos", "valparaiso", "vargem", "vargem grande do sul", "varpa", "varzea paulista", "venda branca", "vera cruz", "vinhedo", "viradouro", "vista alegre do alto", "vitoria brasil", "votorantim", "votuporanga", "zacarias"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades sc und 133
+        function cidadesAtendidas3(cidadeDestino) {
+            var cidadesAtendidas = ["aguas mornas", "angelina", "anitapolis", "antonio carlos", "rancho queimado", "santo amaro da imperatriz", "sao bonifacio", "sao pedro de alcantara", "apiuna", "ascurra", "benedito novo", "blumenau", "doutor pedrinho", "gaspar", "indaial", "luiz alves", "pomerode", "rio dos cedros", "rodeio", "timbo", "botuvera", "canelinha", "gaspar", "guabiruba", "itajai", "major gercino", "nova trento", "sao joao batista", "cacador", "calmon", "fraiburgo", "iomere", "lebon regis", "matos costa", "rio das antas", "videira", "abelardo luz", "arvoredo", "bom jesus", "caxambu do sul", "chapeco", "cordilheira alta", "coronel freitas", "coronel martins", "entre rios", "faxinal dos guedes", "galvao", "guatambu", "ipuacu", "jupia", "lajeado grande", "marema", "ouro verde", "ouro verde", "paial", "passos maia", "planalto alegre", "ponte serrada", "sao domingos", "vargeao", "xanxere", "xaxim", "ararangua", "balneario arroio do silva", "balneario gaivota", "balneario rincao", "cocal do sul", "criciuma", "ermo", "forquilhinha", "icara", "jacinto machado", "maracaja", "meleiro", "morro da fumaca", "morro grande", "nova veneza", "passo de torres", "praia grande", "santa rosa do sul", "sao joao do sul", "sideropolis", "sombrio", "timbe do sul", "treviso", "turvo", "urussanga", "corupa", "guaramirim", "jaragua do sul", "massaranduba", "schroeder", "agua doce", "alto bela vista", "arabuta", "arroio trinta", "campos novos", "capinzal", "catanduvas", "concordia", "erval velho", "herval d oeste", "ibiam", "ibicare", "ipira", "ipumirim", "irani", "ita", "jabora", "joacaba", "lacerdopolis", "lindoia do sul", "luzerna", "macieira", "monte carlo", "ouro", "peritiba", "pinheiro preto", "piratuba", "presidente castello branco", "salto veloso", "santa helena", "seara", "tangara", "treze tilias", "vargem", "vargem bonita", "xavantina", "zortea", "balneario camboriu", "balneario picarras", "barra velha", "camboriu", "ilhota", "itajai", "navegantes", "penha", "sao joao do itaperiu", "araquari", "balneario barra do sul", "itapocu", "joinville", "sao francisco do sul", "abdon batista", "alfredo wagner", "anita garibaldi", "bocaina do sul", "bom jardim da serra", "bom retiro", "brunopolis", "campo belo do sul", "capao alto", "celso ramos", "cerro negro", "correia pinto", "curitibanos", "frei rogerio", "lages", "otacilio costa", "painel", "palmeira", "ponte alta", "ponte alta do norte", "rio rufino", "santa cecilia", "sao cristovao do sul", "sao joaquim", "sao jose do cerrito", "timbo grande", "urubici", "urupema", "bela vista do toldo", "campo alegre", "canoinhas", "itaiopolis", "mafra", "major vieira", "monte castelo", "papanduva", "rio negrinho", "sao bento do sul", "tres barras", "aguas de chapeco", "aguas frias", "bom jesus do oeste", "caibi", "cunhatai", "formosa do sul", "irati", "jardinopolis", "modelo", "mondai", "nova erechim", "nova itaberaba", "palmitos", "pinhalzinho", "quilombo", "riqueza", "saltinho", "santiago do sul", "sao carlos", "saudades", "serra alta", "sul brasil", "uniao do oeste", "agrolandia", "agronomica", "atalanta", "aurora", "braco do trombudo", "chapadao do lageado", "dona emma", "ibirama", "imbuia", "ituporanga", "jose boiteux", "laurentino", "leoberto leal", "lontras", "mirim doce", "petrolandia", "pouso redondo", "presidente getulio", "presidente nereu", "rio do campo", "rio do oeste", "rio do sul", "salete", "santa terezinha", "taio", "trombudo central", "vidal ramos", "vitor meireles", "witmarsum", "anchieta", "bandeirante", "barra bonita", "belmonte", "cunha pora", "descanso", "flor do sertao", "guaraciaba", "guaruja do sul", "ipora do oeste", "iraceminha", "itapiranga", "maravilha", "paraiso", "princesa", "romelandia", "santa helena", "santa terezinha do progresso", "sao joao do oeste", "sao jose do cedro", "sao miguel da boa vista", "sao miguel do oeste",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades sc capital
+        function cidadesAtendidas4(cidadeDestino) {
+            var cidadesAtendidas = ["biguacu", "florianopolis", "palhoca", "sao jose"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades sc interior
+        function cidadesAtendidas5(cidadeDestino) {
+            var cidadesAtendidas = ["abdon batista", "abelardo luz", "agrolandia", "agronomica", "agua doce", "aguas de chapeco", "aguas frias", "alfredo wagner", "alto bela vista", "anchieta", "anita garibaldi", "apiuna", "arabuta", "araquari", "ararangua", "armazem", "arroio trinta", "arvoredo", "ascurra", "atalanta", "aurora", "balneario arroio do silva", "balneario barra do sul", "balneario camboriu", "balneario gaivota", "balneario picarras", "balneario rincao", "bandeirante", "barra bonita", "barra velha", "bela vista do toldo", "belmonte", "benedito novo", "blumenau", "bocaina do sul", "bom jardim da serra", "bom jesus", "bom jesus do oeste", "bom retiro", "bombinhas", "botuvera", "braco do norte", "braco do trombudo", "brunopolis", "brusque", "cacador", "caibi", "calmon", "camboriu", "campo alegre", "campo belo do sul", "campo ere", "campos novos", "canelinha", "canoinhas", "capao alto", "capinzal", "capivari de baixo", "catanduvas", "caxambu do sul", "celso ramos", "cerro negro", "chapadao do lageado", "chapeco", "claraiba", "cocal do sul", "concordia", "cordilheira alta", "coronel freitas", "coronel martins", "correia pinto", "corupa", "criciuma", "cunha pora", "cunhatai", "curitibanos", "descanso", "dionisio cerqueira", "dona emma", "doutor pedrinho", "entre rios", "ermo", "erval velho", "faxinal dos guedes", "flor do sertao", "formosa do sul", "forquilhinha", "fraiburgo", "frei rogerio", "galvao", "garopaba", "gaspar", "governador celso ramos", "grao para", "gravatal", "guabiruba", "guaraciaba", "guaramirim", "guaruja do sul", "guatambu", "herval d oeste", "ibiam", "ibicare", "ibirama", "icara", "ilhota", "imarui", "imbituba", "imbuia", "indaial", "iomere", "ipira", "ipora do oeste", "ipuacu", "ipumirim", "iraceminha", "irani", "irati", "ita", "itaiopolis", "itajai", "itapema", "itapiranga", "itapocu", "ituporanga", "jabora", "jacinto machado", "jaguaruna", "jaragua do sul", "jardinopolis", "joacaba", "joinville", "jose boiteux", "jupia", "lacerdopolis", "lages", "laguna", "lajeado grande", "laurentino", "lauro muller", "lebon regis", "leoberto leal", "lindoia do sul", "lontras", "luiz alves", "luzerna", "macieira", "mafra", "major gercino", "major vieira", "maracaja", "maravilha", "marema", "massaranduba", "matos costa", "meleiro", "mirim doce", "modelo", "mondai", "monte carlo", "monte castelo", "morro da fumaca", "morro grande", "navegantes", "nova erechim", "nova itaberaba", "nova trento", "nova veneza", "orleans", "otacilio costa", "ouro", "ouro verde", "paial", "painel", "palma sola", "palmeira", "palmitos", "papanduva", "paraiso", "passo de torres", "passos maia", "paulo lopes", "pedras grandes", "penha", "peritiba", "pescaria brava", "petrolandia", "pinhalzinho", "pinheiro preto", "piratuba", "planalto alegre", "pomerode", "ponte alta", "ponte alta do norte", "ponte serrada", "porto belo", "pouso redondo", "praia grande", "presidente castello branco", "presidente getulio", "presidente nereu", "princesa", "quilombo", "rio das antas", "rio do campo", "rio do oeste", "rio do sul", "rio dos cedros", "rio fortuna", "rio negrinho", "rio rufino", "riqueza", "rodeio", "romelandia", "salete", "saltinho", "salto veloso", "sangao", "santa cecilia", "santa helena", "santa helena", "santa rosa de lima", "santa rosa do sul", "santa terezinha", "santa terezinha do progresso", "santiago do sul", "sao bento do sul", "sao carlos", "sao cristovao do sul", "sao domingos", "sao francisco do sul", "sao joao batista", "sao joao do itaperiu", "sao joao do oeste", "sao joao do sul", "sao joaquim", "sao jose do cedro", "sao jose do cerrito", "sao ludgero", "sao martinho", "sao miguel da boa vista", "sao miguel do oeste", "saudades", "schroeder", "seara", "serra alta", "sideropolis", "sombrio", "sul brasil", "taio", "tangara", "tigrinhos", "tijucas", "timbe do sul", "timbo", "timbo grande", "tres barras", "treviso", "treze de maio", "treze tilias", "trombudo central", "tubarao", "tunapolis", "turvo", "uniao do oeste", "urubici", "urupema", "urussanga", "vargeao", "vargem", "vargem bonita", "vidal ramos", "videira", "vitor meireles", "witmarsum", "xanxere", "xavantina", "xaxim", "zortea"
+            ];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
 
-            if (cidadesAtendidas.includes(cidadeDestino)) {
-                if (pesoFrete <= 10) {
-                    frete = 120.88;
-                } else if (pesoFrete <= 20) {
-                    frete = 139.73;
-                } else if (pesoFrete <= 40) {
-                    frete = 156.97;
-                } else if (pesoFrete <= 60) {
-                    frete = 178.88;
-                } else if (pesoFrete <= 100) {
-                    frete = 203.25;
-                } else {
-                    var taxa100Kg = Math.floor(pesoFrete / 100) * 8.34;
-                    var taxaExcedente = (pesoFrete > 100) ? (pesoFrete - 100) * 1.52 : 0;
-                    frete = 203.25 + taxa100Kg + taxaExcedente;
-                }
+        //cidades pr 
+        function cidadesAtendidas6(cidadeDestino) {
+            var cidadesAtendidas = ["abatia", "novo horizonte", "irineopolis", "porto uniao", "itapoa", "garuva", "sao bernardino", "sao lourenco do oeste", "adhemar de barros", "alexandra", "almirante tamandare", "alto alegre", "alto parana", "altonia", "amapora", "ampere", "andira", "angulo", "antonina", "apucarana", "arapongas", "arapoti", "araruna", "araucaria", "areia branca dos assis", "assai", "assis chateaubriand", "astorga", "atalaia", "balsa nova", "bandeirantes", "barbosa ferraz", "barracao", "bateias", "bela vista do paraiso", "bituruna", "boa esperanca", "boa ventura de sao roque", "bom jesus do sul", "bom sucesso", "bom sucesso do sul", "borda do campo", "bugre", "cachoeira de sao jose", "cafeara", "cafezal do sul", "california", "cambara", "cambe", "cambira", "campina da lagoa", "campina do simao", "campina grande do sul", "campo largo", "campo largo da roseira", "campo magro", "campo mourao", "candoi", "cantagalo", "capanema", "carambei", "carlopolis", "caavel", "castro", "centenario do sul", "ceu azul", "chopinzinho", "cianorte", "cidade gaucha", "clevelandia", "colombo", "colonia murici", "colonia vitoria", "colorado", "conselheiro mairinck", "contenda", "corbelia", "cornelioocopio", "coronel vivida", "corumbatai do sul", "cruz machado", "cruzeiro do oeste", "cruzeiro do sul", "curitiba", "curiuva", "diamante d'oeste", "diamante do norte", "diamante do sul", "dois vizinhos", "douradina", "doutor camargo", "engenheiro beltrao", "entre rios", "esperanca nova", "espigao alto do iguacu", "farol", "fazenda rio grande", "fenix", "fernandes pinheiro", "figueira", "flor da serra do sul", "florai", "floresta", "florestopolis", "florida", "formosa do oeste", "foz do iguacu", "foz do jordao", "francio alves", "francio beltrao", "general carneiro", "godoy moreira", "goioere", "goioxim", "guaipora", "guairaca", "guapirama", "guara", "guaraci", "guarapuava", "guaratuba", "guaravera", "honorio serpa", "ibaiti", "ibipora", "iguaracu", "imbau", "imbituva", "indianopolis", "ipora", "irati", "irere", "iretama", "itaguaje", "itaipulandia", "itambe", "itapejara d'oeste", "itaperucu", "itauna do sul", "ivate", "ivatuba", "jaboti", "jacarezinho", "jaguapita", "jandaia do sul", "janiopolis", "japira", "japura", "jardim olinda", "jataizinho", "joaquim tavora", "jundiai do sul", "juranda", "jussara", "laranjal", "laranjeiras do sul", "lerroville", "loanda", "lobato", "londrina", "luiziana", "lupionopolis", "mallet", "mambore", "mandaguacu", "mandaguari", "mandiocaba", "mandirituba", "manfrinopolis", "mangueirinha", "maravilha", "marechal candido rondon", "marialva", "marilandia do sul", "marilena", "maringa", "mariopolis", "maripa", "marmeleiro", "matelandia", "matinhos", "medianeira", "missal", "moreira sales", "morretes", "munhoz de melo", "nossa senhora das gracas", "nova alianca do ivai", "nova america da colina", "nova cantu", "nova esperanca", "nova esperanca do sudoeste", "nova fatima", "nova londrina", "novaata do iguacu", "nova santa rosa", "novo itacolomi", "novo sarandi", "ourizona", "paicandu", "paiquere", "palmas", "palmeira", "palmital", "palotina", "paraiso do norte", "parana d'oeste", "paranacity", "paranagua", "paranavai", "pato branco", "paula freitas", "paulo frontin", "peabiru", "perobal", "perola", "perola d'oeste", "pinhais", "pinhal de sao bento", "pinhalao", "pinhao", "pirai do sul", "piraquara", "pitanga", "planaltina do parana", "planalto", "ponta grossa", "pontal do parana", "porecatu", "porto vitoria", "ado ferreira", "anchita", "esidente castelo branco", "udentopolis", "quarto centenario", "quatigua", "quatro barras", "quatro pontes", "quinta do sol", "quitandinha", "ramilandia", "rancho alegre d'oeste", "realeza", "renaenca", "reserva do iguacu", "ribeirao claro", "ribeirao do pinhal", "rio azul", "rio bonito do iguacu", "rio branco do sul", "rio claro do sul", "rio negro", "rolandia", "roncador", "rondon", "rosario do ivai", "sabaudia", "salto do lontra", "santa cruz de monte castelo", "santa fe", "santa helena", "santa ines", "santa isabel do ivai", "santa izabel do oeste", "santa maria do oeste", "santa mariana", "santa tereza do oeste", "santa terezinha de itaipu", "santo antonio da platina", "santo antonio do sudoeste", "santo inacio", "sao carlos do ivai", "sao cristovao", "sao joao", "sao joao do ivai", "sao jorge do ivai", "sao jorge do patrocinio", "sao jose dos pinhais", "sao manoel do parana", "sao martinho", "sao miguel do iguacu", "sao pedro do iguacu", "sao pedro do ivai", "sao pedro do parana", "sao sebastiao da amoreira", "sao tome", "sarandi", "saudade do iguacu", "serra dos dourados", "serranopolis do iguacu", "sertanopolis", "siqueira campos", "sulina", "tamboara", "tapejara", "tapira", "teixeira soares", "telemaco borba", "terra boa", "terra rica", "tijucas do sul", "toledo", "tomazina", "tuneiras do oeste", "tupassi", "turvo", "ubirata", "umuarama", "uniao da vitoria", "uniflor", "urai", "vera cruz do oeste", "vere", "vila reis", "virmond", "vitorino", "warta", "wenceslau braz", "xambre"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades es
+        function cidadesAtendidas7(cidadeDestino) {
+            var cidadesAtendidas = ["afonso claudio", "agua doce do norte", "aguia branca", "alegre", "alegre", "alfredo chav", "alto rio novo", "alto santa maria", "anchieta", "apiaca", "arace", "aracruz", "araguaia", "atilio vivacqua", "baixo guandu", "barra de sao francisco", "barra do riacho", "baunilha", "boaperanca", "bom jus do norte", "brejetuba", "cachoeiro de itapemirim", "camara", "cariacica", "castelo", "celina", "colatina", "conceicao da barra", "conceicao do castelo", "divino de sao lourenco", "domingos martins", "dona america", "dordo rio preto", "ecoporanga", "fundao", "governador lindenberg", "guacui", "guarapari", "ibatiba", "ibiracu", "ibitirama", "ibitirui", "iconha", "irupi", "itaguacu", "itaici", "itaipava", "itaoca", "itapemirim", "itaperuna", "itarana", "iuna", "jaguare", "jeronimo monteiro", "joao neiva", "laranja da terra", "linhar", "mantenopolis", "marataiz", "marechal floriano", "marilandia", "menino jus", "mimoso do sul", "montanha", "mucurici", "muniz freire", "muqui", "nova venecia", "pancas", "paraju", "pedro canario", "pinheiros", "piuma", "ponte de itabapoana", "ponto belo", "praia grande", "pridente kennedy", "regencia", "ribeirao do cristo", "rio bananal", "rio novo do sul", "sagrada familia", "santa leopoldina", "santa luzia do azul", "santa maria de jetiba", "santa tera", "sao domingos do norte", "sao gabriel da palha", "sao jose das torr", "sao jose do calcado", "sao mateus", "sao pedro", "sao roque do canaa", "serra", "sooretama", "timbui", "vargem alta", "venda nova do imigrante", "viana", "vieira machado", "vila pavao", "vila valerio", "vila velha", "vitoria"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+        //cidades mg 
+        function cidadesAtendidas8(cidadeDestino) {
+            var cidadesAtendidas = ["abadia dos dourados", "abaete", "agua comprida", "aguanil", "alegria", "alexandrita", "alfenas", "alfredo vasconcelos", "almeida", "alpercata", "alpinopolis", "alterosa", "andrequice", "antonio carlos", "antonio pereira", "antonio prado de minas", "antunes", "aracai", "araguari", "arapua", "araujos", "araxa", "arcos", "areado", "astolfo dutra", "bacao", "baependi", "bambui", "bandeira do sul", "barao de monte alto", "barbacena", "barroso", "belo horizonte", "belo oriente", "belo oriente", "betim", "bicas", "biquinhas", "boa esperanca", "boa esperanca", "boa esperanca", "boa vista de minas", "bom despacho", "bom jardim de minas", "bom jesus da penha", "bom repouso", "bom sucesso", "bonfim", "borda da mata", "botelhos", "brazopolis", "brejo bonito", "brumadinho", "bueno brandao", "cabo verde", "cachoeira da prata", "cachoeira de minas", "caetanopolis", "caete", "caiana", "caldas", "camanducaia", "cambui", "cambuquira", "campanha", "campestre", "campina verde", "campo belo", "campo do meio", "campo florido", "campos altos", "campos gerais", "cana verde", "canapolis", "candeias", "capetinga", "capim branco", "capinopolis", "capitolio", "carandai", "caratinga", "careacu", "carmo da cachoeira", "carmo da mata", "carmo de minas", "carmo do cajuru", "carmo do paranaiba", "carmo do rio claro", "carmopolis de minas", "carneirinho", "cascalho rico", "cassia", "caxambu", "cedro do abaete", "central de minas", "chale", "chiador", "claudio", "coimbra", "conceicao da aparecida", "conceicao das alagoas", "conceicao de ipanema", "conceicao do para", "conceicao do rio verde", "conceicao dos ouros", "confins", "congonhal", "conquista", "conselheiro lafaiete", "contagem", "contria", "coracao de jesus", "cordisburgo", "corinto", "coromandel", "coronel fabriciano", "coronel pacheco", "corrego fundo", "cristais", "cristiano otoni", "cristina", "cruzeiro da fortaleza", "cruzilia", "curvelo", "delfinopolis", "delta", "desativado", "divino das laranjeiras", "divinopolis", "divisa nova", "dom cavati", "dom modesto", "dores de campos", "dores do indaia", "eloi mendes", "engenheiro caldas", "entre rios de minas", "esmeraldas", "estiva", "estrela do indaia", "estrela do sul", "ewbank da camara", "extrema", "fama", "faria lemos", "felixlandia", "florestal", "formiga", "fortaleza de minas", "fortuna de minas", "fronteira", "frutal", "goiana", "governador valadares", "guanhaes", "guape", "guaranesia", "guarani", "guarara", "guaxupe", "guidoval", "guimarania", "guiricema", "gurinhata", "heliodora", "ibia", "ibiraci", "ibirite", "ibitiura de minas", "igarape", "igaratinga", "iguatama", "ijaci", "ilicinea", "inativo", "inconfidentes", "indianopolis", "inhapim", "inhauma", "inimutaba", "ipanema", "ipatinga", "ipuiuna", "irai de minas", "itabira", "itabirinha", "itabirito", "itaguara", "itajuba", "itamarati de minas", "itambacuri", "itamogi", "itamonte", "itanhandu", "itapagipe", "itapecerica", "itapeva", "itatiaiucu", "itau de minas", "itauna", "ituiutaba", "itumirim", "iturama", "jaboticatubas", "jacui", "japonvar", "jeceaba", "jequitai", "jesuania", "joao monlevade", "joao pinheiro", "juatuba", "juiz de fora", "juruaia", "lagamar", "lagoa da prata", "lagoa formosa", "lagoa santa", "lajinha", "lambari", "lavras", "leandro ferreira", "limeira do oeste", "lontra", "luisburgo", "luislandia", "luz", "machado", "major porto", "mamonas", "manhuacu", "mantena", "mantena", "mar de espanha", "maravilhas", "maria da fe", "marilandia", "mario campos", "maripa de minas", "martinho campos", "mateus leme", "mato verde", "matozinhos", "mendes pimentel", "merces", "minduri", "mirabela", "moeda", "moema", "monsenhor joao alexandre", "monsenhor paulo", "monte alegre de minas", "monte azul", "monte belo", "monte carmelo", "monte santo de minas", "monte siao", "monte verde", "montes claros", "morada nova de minas", "muriae", "muzambinho", "natercia", "nazareno", "nepomuceno", "nova lima", "nova ponte", "nova porteirinha", "nova resende", "nova serrana", "nova uniao", "olhos d'agua", "olhos dagua", "olimpio noronha", "oliveira", "onca de pitangui", "onca de pitangui", "ouro fino", "ouro preto_distrito", "paineiras", "pains", "palma", "papagaios", "para de minas", "paracatu", "paraguacu", "paraisopolis", "paraopeba", "passa quatro", "passos", "patos de minas", "patrocinio", "pedra do indaia", "pedralva", "pedras de maria da cruz", "pedrinopolis", "pedro leopoldo", "pedro lessa", "pequeri", "pequi", "perdigao", "perdizes", "perdoes", "piedade dos gerais", "pimenta", "pirajuba", "piranguinho", "pirapora", "pitangui", "piumhi", "planura", "poco fundo", "pocos de caldas", "pocrane", "pompeu", "pouso alegre", "pouso alegre", "pouso alto", "prados", "prata", "pratapolis", "pratinha", "presidente olegario", "prudente de morais", "quartel geral", "raposos", "ravena", "resende costa", "ressaquinha", "ribeirao das neves", "ribeirao vermelho", "rio acima", "rio manso", "rio novo", "rio paranaiba", "rio preto", "rochedo de minas", "romaria", "rosario da limeira", "sabara", "sacramento", "salitre de minas", "santa barbara", "santa barbara do leste", "santa barbara do monte verde", "santa cruz de minas", "santa cruz do escalvado", "santa juliana", "santa luzia", "santa rita de caldas", "santa rita de jacutinga", "santa rita do sapucai", "santa vitoria", "santana do campestre", "santana do jacare", "santana do paraiso", "santo antonio do amparo", "santo antonio do manhuacu", "santo antonio do monte", "santo antonio dos campos", "sao bras do suacui", "sao francisco do gloria", "sao goncalo do para", "sao goncalo do sapucai", "sao gotardo", "sao joao batista do gloria", "sao joao da lagoa", "sao joao da mata", "sao joao da serra negra", "sao joao del rei", "sao joao do manteninha", "sao joaquim de bicas", "sao jose da barra", "sao jose da lapa", "sao jose da varginha", "sao jose do alegre", "sao jose do mantimento", "sao jose dos salgados", "sao lourenco", "sao pedro da garca", "sao pedro da uniao", "sao pedro dos ferros", "sao roque de minas", "sao sebastiao da bela vista", "sao sebastiao da vitoria", "sao sebastiao do oeste", "sao sebastiao do paraiso", "sao tomas de aquino", "sao vicente de minas", "sapucai-mirim", "sarzedo", "senador cortes", "senador firmino", "serra da saudade", "serra do salitre", "serrania", "sete lagoas", "silveirania", "silvianopolis", "soledade de minas", "taparuba", "tapira", "tapirai", "tarumirim", "teofilo otoni", "timoteo", "tocantins", "tombos", "tres coracoes", "tres pontas", "uba", "ubaporanga", "uberaba", "uberlandia", "unai", "vargem bonita", "varginha", "varzelandia", "vazante", "verdelandia", "verissimo", "vermelho novo", "vespasiano", "vicosa", "virgolandia", "wenceslau braz",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+         //cidades sc capital
+        function cidadesAtendidas9(cidadeDestino) {
+            var cidadesAtendidas = ["afonso arinos", "angra dos reis", "anta", "aperibe", "araruama", "areal", "armacao dos buzios", "arraial do cabo", "arrozal", "avelar", "barcelos", "barra alegre", "barra de sao joao", "barra do pirai", "barra mansa", "belford roxo", "bom jardim", "bom jesus do itabapoana", "cabo frio", "cachoeiras de macacu", "cambuci", "campos dos goytacazes", "cantagalo", "carapebus", "cardoso moreira", "carmo", "casimiro de abreu", "comendador levy gasparian", "conceicao de macabu", "conservatoria", "cordeiro", "corrego do ouro", "duas barras", "duque de caxias", "engenheiro paulo de frontin", "guapimirim", "iguaba grande", "itaborai", "itaguai", "itaipava", "italva", "itaocara", "itaperuna", "itatiaia", "japeri", "laje do muriae", "macae", "macuco", "mage", "mangaratiba", "marica", "mendes", "mesquita", "miguel pereira", "miracema", "morro do coco", "natividade", "nilopolis", "niteroi", "nova friburgo", "nova iguacu", "papucaia", "paracambi", "paraiba do sul", "parapeuna", "paraty", "paty do alferes", "petropolis", "piabeta", "pinheiral", "pirai", "porciuncula", "porto real", "pureza", "quatis", "queimados", "quissama", "raposo", "resende", "rio bonito", "rio claro", "rio das flores", "rio das ostras", "rio de janeiro", "santa maria madalena", "santo amaro de campos", "santo antonio de padua", "santo eduardo", "sao fidelis", "sao francisco de itabapoana", "sao goncalo", "sao joao da barra", "sao joao de meriti", "sao jose de uba", "sao jose do vale do rio preto", "sao pedro da aldeia", "sao sebastiao do alto", "sapucaia", "saquarema", "seropedica", "silva jardim", "sumidouro", "tangua", "teresopolis", "trajano de moraes", "travessao", "tres rios", "valenca", "varre-sai", "vassouras", "volta redonda"];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        // tabela grande SP//
+        function calcularFreteCidadesAtendidas1(pesoFrete,) {
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 60.50;
+            } else if (pesoFrete <= 15) {
+                frete = 77.09;
+            } else if (pesoFrete <= 40) {
+                frete = 92.26;
+            } else if (pesoFrete <= 60) {
+                frete = 111.54;
+            } else if (pesoFrete <= 100) {
+                frete = 132.98;
             } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.16603;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 132.98 + taxaTotal + taxaExcessoPeso + taxaPedagio;
             }
 
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.11;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 1.66;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 37.11;
+            frete += taxaSecCat;
+            console.log("Valor da taxa sec-cat: " + taxaSecCat);
 
 
             var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
 
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela interior SP//
+        function calcularFreteCidadesAtendidas2(pesoFrete) {
+            var frete = 0;
+
+            if (pesoFrete <= 5) {
+                frete = 28.39;
+            } else if (pesoFrete <= 15) {
+                frete = 30.57;
+            } else if (pesoFrete <= 30) {
+                frete = 33.81;
+            } else if (pesoFrete <= 40) {
+                frete = 36.96;
+            } else if (pesoFrete <= 60) {
+                frete = 57.56;
+            } else if (pesoFrete <= 100) {
+                frete = 74.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.16603;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 74.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.11;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 1.28;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela sc 133 //
+        function calcularFreteCidadesAtendidas3(pesoFrete) {
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.5;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 5.18;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela sc capital//
+
+        function calcularFreteCidadesAtendidas4(pesoFrete) {
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.5;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 5.18;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 18.79;
+            frete += taxaSecCat;
+            console.log("Valor da taxa sec-cat: " + taxaSecCat);
+
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela SC interior//
+
+        function calcularFreteCidadesAtendidas5(pesoFrete) {
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.5;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 5.18;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela pr
+
+        function calcularFreteCidadesAtendidas6(pesoFrete) {
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 53.92;
+            } else if (pesoFrete <= 20) {
+                frete = 69.20;
+            } else if (pesoFrete <= 40) {
+                frete = 84.63;
+            } else if (pesoFrete <= 60) {
+                frete = 113.44;
+            } else if (pesoFrete <= 100) {
+                frete = 149.25;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.646;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 149.25 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = 1.5;
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 5.18;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela es
+
+        function calcularFreteCidadesAtendidas7(pesoFrete) {
+            var frete = 0;
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.334;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaFreteValor = valor_nf * 0.00345; 
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaGriss = Math.max(valor_nf * 0.001, 1.24); 
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+         //tabela mg
+
+         function calcularFreteCidadesAtendidas8(pesoFrete) {
+            var frete = 0;
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaFreteValor = valor_nf * 0.00345; 
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaGriss = Math.max(valor_nf * 0.001,1.24); 
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaSecCat = 8.29;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela rj
+
+        function calcularFreteCidadesAtendidas9(pesoFrete) {
+            var frete = 0;
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaFreteValor = valor_nf * 0.00345; 
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaGriss = Math.max(valor_nf * 0.001, 1.24); 
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+
+
+
+        function calcularFreteCidadeNaoAtendida() {
+            var frete = 0;
+            console.log("Valor do frete para cidade não atendida: " + frete);
+            return frete;
+        }
+
+        function exibirResultadosNaTela(frete) {
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
             var taxa = taxasDeFrete[cnpjDestinatario] || 0;
 
             frete = frete + taxa;
@@ -702,17 +1465,12 @@
 
             $('#frete').text(frete.toFixed(2));
 
-
-
-            document.getElementById("prazo-entrega-modal").textContent = prazo + (prazo === 1 ? " dia útil" : " dias úteis");
+            document.getElementById("prazo-entrega-modal").textContent = calcularPrazoEntrega(obterCidadeDestino()) + (calcularPrazoEntrega(obterCidadeDestino()) === 1 ? " dia útil" : " dias úteis");
 
             salvarSimulacaoNoLocalStorage();
 
             abrirModal();
-
-
         }
-
         function limparDados() {
             $('#cpf_cnpj_remetente').val('');
             $('#cpf_cnpj_destino').val('');
@@ -856,7 +1614,7 @@
             <div style="text-align: left;"><br>
                 <img src="./rte.png" alt="Logo da Empresa" width="200"><br><br>
                 <strong>Data:</strong> ${simulacao.data}<br>
-                <strong>Remetente:</strong> ${simulacao.remetente}<br>
+                <strong>Remetente: Distribuidora Route 66</strong> ${simulacao.remetente}<br>
                 <strong>Destinatário:</strong> ${simulacao.destinatario}<br>
                 <strong>Local de Entrega:</strong> ${simulacao.localEntrega}<br>
                 <strong>Volume:</strong> ${simulacao.volume}<br>
