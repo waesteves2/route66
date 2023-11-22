@@ -11,7 +11,7 @@
     
     <style>
         body {
-            background-color: rgba(61, 207, 233, 0.288);
+            background-color: white;
             color: black;
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -23,8 +23,7 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            background-color: rgba(61, 207, 233, 0.1);
-            border-radius: 10px;
+            background-image: linear-gradient(109.09deg,#004491 8.09%,#004899 90.31%);            border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -37,7 +36,7 @@
             margin: 10px;
             padding: 10px;
             border-radius: 10px;
-            background-color: #007bff77;
+            background-color: #004491 ;
         }
 
         .info-column0 {
@@ -54,7 +53,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #004491;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -149,7 +148,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #004491;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -243,7 +242,7 @@
         }
 
         body {
-            background-color: rgba(61, 207, 233, 0.288);
+            background-color:white;
             color: black;
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -491,7 +490,7 @@
 
             <div class="resultadoicon">
                 <a href="#" id="calc" onclick="calcularFrete();" class="custom-icon">
-                    <img src="./calc2.png" alt="Ícone calc" width="150">
+                    <img src="./calc.png" alt="Ícone calc" width="150">
 
                 </a>
                 <a href="#" id="update" onclick="atualizarSistema()" class="custom-icon">
@@ -789,9 +788,10 @@
         }
         //cidades sp interior
         function cidadesAtendidas2(cidadeDestino) {
-            var cidadesAtendidas = ["adamantina", "ilha comprida", "santa maria da serra", "adolfo", "agua vermelha", "aguai", "aguas da prata", "aguas de lindoia", "aguas de santa barbara", "aguas de sao pedro", "agudos", "agulha", "ajapi", "alambari", "alfredo marcondes", "altair", "altinopolis", "alto alegre", "aluminio", "alvares florence", "alvares machado", "alvaro de carvalho", "alvinlandia", "americana", "americo brasiliense", "americo de campos", "amparo", "analandia", "andradina", "angatuba", "anhembi", "anhumas", "aparecida", "aparecida d'oeste", "aparecida de sao manuel", "apiai", "araba", "arabela", "aracariguama", "aracatuba", "aracoiaba da serra", "aramina", "arandu", "arapei", "araraquara", "araras", "arcadas", "arco-iris", "arealva", "areias", "areiopolis", "ariranha", "artur nogueira", "aasia", "assis", "assistencia", "atibaia", "auriflama", "avai", "avanhandava", "avare", "bady bassitt", "baguacu", "balbinos", "balsamo", "bananal", "bandeirantes d'oeste", "barao de antonina", "barbosa", "bariri", "barra bonita", "barra do chapeu", "barra do turvo", "barretos", "barrinha", "bastos", "batatais", "batatuba", "bauru", "bebedouro", "bento de abreu", "bernardino de campos", "bilac", "birigui", "boa eeranca do sul", "bocaina", "bofete", "boituva", "bom jesus dos perdoes", "bom sucesso de itarare", "bonfim paulista", "bora", "boraceia", "borborema", "borebi", "botafogo", "botucatu", "braganca paulista", "brasitania", "brauna", "brejo alegre", "brodowski", "brotas", "buri", "buritama", "buritizal", "cabralia paulista", "cabreuva", "cacapava", "cachoeira paulista", "caconde", "cafelandia", "caiabu", "caiua", "cajamar", "cajati", "cajobi", "cajuru", "campestrinho", "campina do monte alegre", "campinas", "campo limpo paulista", "campos do jordao", "campos novos paulista", "cananeia", "canas", "candido mota", "candido rodrigues", "canitar", "capao bonito", "capela do alto", "capivari", "cardoso", "casa branca", "cassia dos coqueiros", "castilho", "catanduva", "catigua", "cedral", "cerqueira cesar", "cerquilho", "cesario lange", "charqueada", "chavantes", "clementina", "colina", "colombia", "conchal", "conchas", "cordeiropolis", "coroados", "coronel macedo", "corumbatai", "cosmopolis", "cosmorama", "cravinhos", "cristais paulista", "cruzalia", "cruzeiro", "cunha", "descalvado", "dirce reis", "divinolandia", "dobrada", "dois corregos", "dolcinopolis", "dourado", "dracena", "duartina", "dumont", "duplo ceu", "echapora", "eldorado", "elias fausto", "elisiario", "embauba", "emilianopolis", "engenheiro balduino", "engenheiro coelho", "engenheiro schmitt", "eigao", "eirito santo do pinhal", "eirito santo do turvo", "estiva gerbi", "estrela d'oeste", "eugenio de melo", "fartura", "fernando prestes", "fernandopolis", "fernao", "flora rica", "floreal", "florida paulista", "florinea", "franca", "gabriel monteiro", "galia", "garca", "gardenia", "gastao vidigal", "gaviao peixoto", "general salgado", "getulina", "glicerio", "guaicara", "guaimbe", "guaira", "guapiacu", "guapiara", "guara", "guaracai", "guaraci", "guaraciaba d'oeste", "guarani d'oeste", "guaranta", "guarapua", "guararapes", "guaratingueta", "guarei", "guariba", "guariroba", "guatapara", "guzolandia", "herculandia", "holambra", "holambra ii", "hortolandia", "iacanga", "iacri", "iaras", "ibate", "ibira", "ibirarema", "ibitinga", "ibitiuva", "ibiuna", "icem", "ida iolanda", "iepe", "igaracu do tiete", "igarai", "igarapava", "igarata", "iguape", "ilha solteira", "indaiatuba", "indiana", "indiapora", "inubia paulista", "ipaussu", "ipero", "ipeuna", "ipigua", "iporanga", "ipua", "iracemapolis", "irapua", "irapuru", "itabera", "itai", "itajobi", "itaju", "itaoca", "itapetininga", "itapeva", "itapira", "itapirapua paulista", "itapolis", "itaporanga", "itapui", "itapura", "itarare", "itariri", "itatiba", "itatinga", "itirapina", "itirapua", "itobi", "itu", "itupeva", "ituverava", "jaborandi", "jaboticabal", "jacare", "jacarei", "jaci", "jacipora", "jacupiranga", "jaguariuna", "jales", "jambeiro", "jardinopolis", "jarinu", "jau", "jeriquara", "joanopolis", "joao ramalho", "jordanesia", "jose bonifacio", "juliania", "julio mesquita", "jumirim", "jundiai", "junqueiropolis", "juquia", "juruce", "lagoa branca", "lagoinha", "laranjal paulista", "lavinia", "lavrinhas", "leme", "lencois paulista", "limeira", "lindoia", "lins", "lorena", "lourdes", "louveira", "lucelia", "lucianopolis", "luis antonio", "luiziania", "lupercio", "lutecia", "macatuba", "macaubal", "macedonia", "magda", "mairinque", "manduri", "maracai", "marapoama", "marcondesia", "mariapolis", "marilia", "marinopolis", "maristela", "martinopolis", "matao", "mendonca", "meridiano", "mesopolis", "miguelopolis", "mineiros do tiete", "mira estrela", "miracatu", "mirandopolis", "mirassol", "mirassolandia", "mococa", "mogi guacu", "mogi mirim", "mombuca", "moncoes", "monte alegre do sul", "monte alto", "monte aprazivel", "monte azul paulista", "monte castelo", "monte mor", "monte verde paulista", "monteiro lobato", "moreira cesar", "morro agudo", "morungaba", "motuca", "murutinga do sul", "nantes", "natividade da serra", "nazare paulista", "neves paulista", "nhandeara", "nipoa", "nova alexandria", "nova alianca", "nova campina", "nova canaa paulista", "nova castilho", "nova europa", "nova granada", "nova guataporanga", "nova independencia", "nova luzitania", "nova odessa", "nova veneza", "novais", "novo horizonte", "nuporanga", "oasis", "ocaucu", "oleo", "olimpia", "onda verde", "oriente", "orindiuva", "orlandia", "oscar bressane", "osvaldo cruz", "ourinhos", "ouro verde", "ouroeste", "pacaembu", "palestina", "palmares paulista", "palmeira d'oeste", "palmital", "panorama", "paraguacu paulista", "paraibuna", "paraiso", "paranapanema", "paranapua", "parapua", "pardinho", "pariquera-acu", "parisi", "parnaso", "paruru", "patrocinio paulista", "pauliceia", "paulinia", "paulistania", "paulo de faria", "paulopolis", "pederneiras", "pedra bela", "pedranopolis", "pedregulho", "pedreira", "pedrinhas paulista", "pedro de toledo", "penapolis", "pereira barreto", "pereiras", "peruibe", "piacatu", "piedade", "pilar do sul", "pindamonhangaba", "pindorama", "pinhalzinho", "piquerobi", "piquete", "piracaia", "piracicaba", "piraju", "pirajui", "pirangi", "pirapozinho", "pirassununga", "piratininga", "pitangueiras", "planalto", "planalto", "platina", "poloni", "pompeia", "pongai", "pontal", "pontalinda", "pontes gestal", "populina", "porangaba", "porto feliz", "porto ferreira", "potim", "potirendaba", "pracinha", "pradopolis", "pratania", "presidente alves", "presidente bernardes", "presidente epitacio", "presidente prudente", "presidente venceslau", "promissao", "quadra", "quata", "queiroz", "queluz", "quintana", "rafard", "rancharia", "rechan", "redencao da serra", "regente feijo", "reginopolis", "registro", "restinga", "ribeira", "ribeirao bonito", "ribeirao branco", "ribeirao corrente", "ribeirao do sul", "ribeirao dos indios", "ribeirao grande", "ribeirao preto", "rifaina", "rincao", "rinopolis", "rio claro", "rio das pedras", "riolandia", "riversul", "roseira", "rubiacea", "rubineia", "sabino", "sagres", "sales", "sales oliveira", "salmourao", "saltinho", "salto", "salto de pirapora", "salto grande", "santa adelia", "santa albertina", "santa barbara d oeste", "santa branca", "santa clara d'oeste", "santa cruz da conceicao", "santa cruz da eeranca", "santa cruz das palmeiras", "santa cruz do rio pardo", "santa ernestina", "santa fe do sul", "santa gertrudes", "santa lucia", "santa mercedes", "santa rita d'oeste", "santa rita do passa quatro", "santa rosa de viterbo", "santa salete", "santana da ponte pensa", "santo anastacio", "santo antonio da alegria", "santo antonio de posse", "santo antonio do aracangua", "santo antonio do jardim", "santo antonio do pinhal", "santo expedito", "santopolis do aguapei", "sao benedito das areias", "sao bento do sapucai", "sao carlos", "sao francisco", "sao francisco xavier", "sao joao da boa vista", "sao joao das duas pontes", "sao joao de iracema", "sao joao do pau d'alho", "sao joaquim da barra", "sao jose da bela vista", "sao jose do barreiro", "sao jose do rio pardo", "sao jose do rio preto", "sao jose dos campos", "sao lourenco do turvo", "sao luiz do paraitinga", "sao manuel", "sao miguel arcanjo", "sao pedro", "sao pedro do turvo", "sao roque", "sao sebastiao", "sao sebastiao da grama", "sao simao", "sarapui", "sarutaia", "sebastianopolis do sul", "serra azul", "serra negra", "serrana", "sertaozinho", "sete barras", "severinia", "silveiras", "simonsen", "socorro", "sorocaba", "sud mennucci", "sumare", "suzanapolis", "tabapua", "tabatinga", "taciba", "taguai", "taiacu", "taiuva", "tambau", "tanabi", "tapirai", "tapiratiba", "taquaral", "taquaral", "taquaritinga", "taquarituba", "taquarivai", "tarabai", "taruma", "tatui", "taubate", "tejupa", "terra nova d'oeste", "terra roxa", "tiete", "timburi", "torre de pedra", "torrinha", "trabiju", "tremembe", "tres fronteiras", "tuiuti", "tupa", "tupi paulista", "turiuba", "turmalina", "ubarana", "ubirajara", "uchoa", "uniao paulista", "universo", "urania", "uru", "urupes", "valentim gentil", "valinhos", "valparaiso", "vargem", "vargem grande do sul", "varpa", "varzea paulista", "venda branca", "vera cruz", "vinhedo", "viradouro", "vista alegre do alto", "vitoria brasil", "votorantim", "votuporanga", "zacarias"];
+            var cidadesAtendidas = ["adamantina", "ilha comprida", "bauru","santa maria da serra", "adolfo", "agua vermelha", "aguai", "aguas da prata", "aguas de lindoia", "aguas de santa barbara", "aguas de sao pedro", "agudos", "agulha", "ajapi", "alambari", "alfredo marcondes", "altair", "altinopolis", "alto alegre", "aluminio", "alvares florence", "alvares machado", "alvaro de carvalho", "alvinlandia", "americana", "americo brasiliense", "americo de campos", "amparo", "analandia", "andradina", "angatuba", "anhembi", "anhumas", "aparecida", "aparecida d'oeste", "aparecida de sao manuel", "apiai", "araba", "arabela", "aracariguama", "aracatuba", "aracoiaba da serra", "aramina", "arandu", "arapei", "araraquara", "araras", "arcadas", "arco-iris", "arealva", "areias", "areiopolis", "ariranha", "artur nogueira", "aasia", "assis", "assistencia", "atibaia", "auriflama", "avai", "avanhandava", "avare", "bady bassitt", "baguacu", "balbinos", "balsamo", "bananal", "bandeirantes d'oeste", "barao de antonina", "barbosa", "barra do chapeu", "barra do turvo", "barretos", "barrinha", "bastos", "batatais", "batatuba", "bebedouro", "bento de abreu", "bernardino de campos", "bilac", "birigui", "boa eeranca do sul", "bofete", "boituva", "bom jesus dos perdoes", "bom sucesso de itarare", "bonfim paulista", "bora", "borborema", "borebi", "botafogo", "botucatu", "braganca paulista", "brasitania", "brauna", "brejo alegre", "brodowski", "buri", "buritama", "buritizal", "cabralia paulista", "cabreuva", "cacapava", "cachoeira paulista", "caconde", "cafelandia", "caiabu", "caiua", "cajamar", "cajati", "cajobi", "cajuru", "campestrinho", "campina do monte alegre", "campinas", "campo limpo paulista", "campos do jordao", "campos novos paulista", "cananeia", "canas", "candido mota", "candido rodrigues", "canitar", "capao bonito", "capela do alto", "capivari", "cardoso", "casa branca", "cassia dos coqueiros", "castilho", "catanduva", "catigua", "cedral", "cerqueira cesar", "cerquilho", "cesario lange", "charqueada", "chavantes", "clementina", "colina", "colombia", "conchal", "conchas", "cordeiropolis", "coroados", "coronel macedo", "corumbatai", "cosmopolis", "cosmorama", "cravinhos", "cristais paulista", "cruzalia", "cruzeiro", "cunha", "descalvado", "dirce reis", "divinolandia", "dobrada", "dolcinopolis", "dourado", "dracena", "duartina", "dumont", "duplo ceu", "echapora", "eldorado", "elias fausto", "elisiario", "embauba", "emilianopolis", "engenheiro balduino", "engenheiro coelho", "engenheiro schmitt", "eigao", "eirito santo do pinhal", "eirito santo do turvo", "estiva gerbi", "estrela d'oeste", "eugenio de melo", "fartura", "fernando prestes", "fernandopolis", "fernao", "flora rica", "floreal", "florida paulista", "florinea", "franca", "gabriel monteiro", "galia", "garca", "gardenia", "gastao vidigal", "gaviao peixoto", "general salgado", "getulina", "glicerio", "guaicara", "guaimbe", "guaira", "guapiacu", "guapiara", "guara", "guaracai", "guaraci", "guaraciaba d'oeste", "guarani d'oeste", "guaranta", "guarapua", "guararapes", "guaratingueta", "guarei", "guariba", "guariroba", "guatapara", "guzolandia", "herculandia", "holambra", "holambra ii", "hortolandia", "iacanga", "iacri", "iaras", "ibate", "ibira", "ibirarema", "ibitinga", "ibitiuva", "ibiuna", "icem", "ida iolanda", "iepe",  "igarai", "igarapava", "igarata", "iguape", "ilha solteira", "indaiatuba", "indiana", "indiapora", "inubia paulista", "ipaussu", "ipero", "ipeuna", "ipigua", "iporanga", "ipua", "iracemapolis", "irapua", "irapuru", "itabera", "itai", "itajobi", "itaju", "itaoca", "itapetininga", "itapeva", "itapira", "itapirapua paulista", "itapolis", "itaporanga", "itapura", "itarare", "itariri", "itatiba", "itatinga", "itirapina", "itirapua", "itobi", "itu", "itupeva", "ituverava", "jaborandi", "jaboticabal", "jacare", "jacarei", "jaci", "jacipora", "jacupiranga", "jaguariuna", "jales", "jambeiro", "jardinopolis", "jarinu", "jeriquara", "joanopolis", "joao ramalho", "jordanesia", "jose bonifacio", "juliania", "julio mesquita", "jumirim", "jundiai", "junqueiropolis", "juquia", "juruce", "lagoa branca", "lagoinha", "laranjal paulista", "lavinia", "lavrinhas", "leme", "lencois paulista", "limeira", "lindoia", "lins", "lorena", "lourdes", "louveira", "lucelia", "lucianopolis", "luis antonio", "luiziania", "lupercio", "lutecia", "macatuba", "macaubal", "macedonia", "magda", "mairinque", "manduri", "maracai", "marapoama", "marcondesia", "mariapolis", "marilia", "marinopolis", "maristela", "martinopolis", "matao", "mendonca", "meridiano", "mesopolis", "miguelopolis", "mira estrela", "miracatu", "mirandopolis", "mirassol", "mirassolandia", "mococa", "mogi guacu", "mogi mirim", "mombuca", "moncoes", "monte alegre do sul", "monte alto", "monte aprazivel", "monte azul paulista", "monte castelo", "monte mor", "monte verde paulista", "monteiro lobato", "moreira cesar", "morro agudo", "morungaba", "motuca", "murutinga do sul", "nantes", "natividade da serra", "nazare paulista", "neves paulista", "nhandeara", "nipoa", "nova alexandria", "nova alianca", "nova campina", "nova canaa paulista", "nova castilho", "nova europa", "nova granada", "nova guataporanga", "nova independencia", "nova luzitania", "nova odessa", "nova veneza", "novais", "novo horizonte", "nuporanga", "oasis", "ocaucu", "oleo", "olimpia", "onda verde", "oriente", "orindiuva", "orlandia", "oscar bressane", "osvaldo cruz", "ourinhos", "ouro verde", "ouroeste", "pacaembu", "palestina", "palmares paulista", "palmeira d'oeste", "palmital", "panorama", "paraguacu paulista", "paraibuna", "paraiso", "paranapanema", "paranapua", "parapua", "pardinho", "pariquera-acu", "parisi", "parnaso", "paruru", "patrocinio paulista", "pauliceia", "paulinia", "paulistania", "paulo de faria", "paulopolis", "pederneiras", "pedra bela", "pedranopolis", "pedregulho", "pedreira", "pedrinhas paulista", "pedro de toledo", "penapolis", "pereira barreto", "pereiras", "peruibe", "piacatu", "piedade", "pilar do sul", "pindamonhangaba", "pindorama", "pinhalzinho", "piquerobi", "piquete", "piracaia", "piracicaba", "piraju", "pirajui", "pirangi", "pirapozinho", "pirassununga", "piratininga", "pitangueiras", "planalto", "planalto", "platina", "poloni", "pompeia", "pongai", "pontal", "pontalinda", "pontes gestal", "populina", "porangaba", "porto feliz", "porto ferreira", "potim", "potirendaba", "pracinha", "pradopolis", "pratania", "presidente alves", "presidente bernardes", "presidente epitacio", "presidente prudente", "presidente venceslau", "promissao", "quadra", "quata", "queiroz", "queluz", "quintana", "rafard", "rancharia", "rechan", "redencao da serra", "regente feijo", "reginopolis", "registro", "restinga", "ribeira", "ribeirao bonito", "ribeirao branco", "ribeirao corrente", "ribeirao do sul", "ribeirao dos indios", "ribeirao grande", "ribeirao preto", "rifaina", "rincao", "rinopolis", "rio claro", "rio das pedras", "riolandia", "riversul", "roseira", "rubiacea", "rubineia", "sabino", "sagres", "sales", "sales oliveira", "salmourao", "saltinho", "salto", "salto de pirapora", "salto grande", "santa adelia", "santa albertina", "santa barbara d oeste", "santa branca", "santa clara d'oeste", "santa cruz da conceicao", "santa cruz da eeranca", "santa cruz das palmeiras", "santa cruz do rio pardo", "santa ernestina", "santa fe do sul", "santa gertrudes", "santa lucia", "santa mercedes", "santa rita d'oeste", "santa rita do passa quatro", "santa rosa de viterbo", "santa salete", "santana da ponte pensa", "santo anastacio", "santo antonio da alegria", "santo antonio de posse", "santo antonio do aracangua", "santo antonio do jardim", "santo antonio do pinhal", "santo expedito", "santopolis do aguapei", "sao benedito das areias", "sao bento do sapucai", "sao carlos", "sao francisco", "sao francisco xavier", "sao joao da boa vista", "sao joao das duas pontes", "sao joao de iracema", "sao joao do pau d'alho", "sao joaquim da barra", "sao jose da bela vista", "sao jose do barreiro", "sao jose do rio pardo", "sao jose do rio preto", "sao jose dos campos", "sao lourenco do turvo", "sao luiz do paraitinga", "sao manuel", "sao miguel arcanjo", "sao pedro", "sao pedro do turvo", "sao roque", "sao sebastiao", "sao sebastiao da grama", "sao simao", "sarapui", "sarutaia", "sebastianopolis do sul", "serra azul", "serra negra", "serrana", "sertaozinho", "sete barras", "severinia", "silveiras", "simonsen", "socorro", "sorocaba", "sud mennucci", "sumare", "suzanapolis", "tabapua", "tabatinga", "taciba", "taguai", "taiacu", "taiuva", "tambau", "tanabi", "tapirai", "tapiratiba", "taquaral", "taquaral", "taquaritinga", "taquarituba", "taquarivai", "tarabai", "taruma", "tatui", "taubate", "tejupa", "terra nova d'oeste", "terra roxa", "tiete", "timburi", "torre de pedra", "trabiju", "tremembe", "tres fronteiras", "tuiuti", "tupa", "tupi paulista", "turiuba", "turmalina", "ubarana", "ubirajara", "uchoa", "uniao paulista", "universo", "urania", "uru", "urupes", "valentim gentil", "valinhos", "valparaiso", "vargem", "vargem grande do sul", "varpa", "varzea paulista", "venda branca", "vera cruz", "vinhedo", "viradouro", "vista alegre do alto", "vitoria brasil", "votorantim", "votuporanga", "zacarias"];
             return cidadesAtendidas.includes(cidadeDestino);
         }
+
         //cidades sc und 133
         function cidadesAtendidas3(cidadeDestino) {
             var cidadesAtendidas = ["aguas mornas", "angelina", "anitapolis", "antonio carlos", "rancho queimado", "santo amaro da imperatriz", "sao bonifacio", "sao pedro de alcantara", "apiuna", "ascurra", "benedito novo", "blumenau", "doutor pedrinho", "gaspar", "indaial", "luiz alves", "pomerode", "rio dos cedros", "rodeio", "timbo", "botuvera", "canelinha", "gaspar", "guabiruba", "itajai", "major gercino", "nova trento", "sao joao batista", "cacador", "calmon", "fraiburgo", "iomere", "lebon regis", "matos costa", "rio das antas", "videira", "abelardo luz", "arvoredo", "bom jesus", "caxambu do sul", "chapeco", "cordilheira alta", "coronel freitas", "coronel martins", "entre rios", "faxinal dos guedes", "galvao", "guatambu", "ipuacu", "jupia", "lajeado grande", "marema", "ouro verde", "ouro verde", "paial", "passos maia", "planalto alegre", "ponte serrada", "sao domingos", "vargeao", "xanxere", "xaxim", "ararangua", "balneario arroio do silva", "balneario gaivota", "balneario rincao", "cocal do sul", "criciuma", "ermo", "forquilhinha", "icara", "jacinto machado", "maracaja", "meleiro", "morro da fumaca", "morro grande", "nova veneza", "passo de torres", "praia grande", "santa rosa do sul", "sao joao do sul", "sideropolis", "sombrio", "timbe do sul", "treviso", "turvo", "urussanga", "corupa", "guaramirim", "jaragua do sul", "massaranduba", "schroeder", "agua doce", "alto bela vista", "arabuta", "arroio trinta", "campos novos", "capinzal", "catanduvas", "concordia", "erval velho", "herval d oeste", "ibiam", "ibicare", "ipira", "ipumirim", "irani", "ita", "jabora", "joacaba", "lacerdopolis", "lindoia do sul", "luzerna", "macieira", "monte carlo", "ouro", "peritiba", "pinheiro preto", "piratuba", "presidente castello branco", "salto veloso", "santa helena", "seara", "tangara", "treze tilias", "vargem", "vargem bonita", "xavantina", "zortea", "balneario camboriu", "balneario picarras", "barra velha", "camboriu", "ilhota", "itajai", "navegantes", "penha", "sao joao do itaperiu", "araquari", "balneario barra do sul", "itapocu", "joinville", "sao francisco do sul", "abdon batista", "alfredo wagner", "anita garibaldi", "bocaina do sul", "bom jardim da serra", "bom retiro", "brunopolis", "campo belo do sul", "capao alto", "celso ramos", "cerro negro", "correia pinto", "curitibanos", "frei rogerio", "lages", "otacilio costa", "painel", "palmeira", "ponte alta", "ponte alta do norte", "rio rufino", "santa cecilia", "sao cristovao do sul", "sao joaquim", "sao jose do cerrito", "timbo grande", "urubici", "urupema", "bela vista do toldo", "campo alegre", "canoinhas", "itaiopolis", "mafra", "major vieira", "monte castelo", "papanduva", "rio negrinho", "sao bento do sul", "tres barras", "aguas de chapeco", "aguas frias", "bom jesus do oeste", "caibi", "cunhatai", "formosa do sul", "irati", "jardinopolis", "modelo", "mondai", "nova erechim", "nova itaberaba", "palmitos", "pinhalzinho", "quilombo", "riqueza", "saltinho", "santiago do sul", "sao carlos", "saudades", "serra alta", "sul brasil", "uniao do oeste", "agrolandia", "agronomica", "atalanta", "aurora", "braco do trombudo", "chapadao do lageado", "dona emma", "ibirama", "imbuia", "ituporanga", "jose boiteux", "laurentino", "leoberto leal", "lontras", "mirim doce", "petrolandia", "pouso redondo", "presidente getulio", "presidente nereu", "rio do campo", "rio do oeste", "rio do sul", "salete", "santa terezinha", "taio", "trombudo central", "vidal ramos", "vitor meireles", "witmarsum", "anchieta", "bandeirante", "barra bonita", "belmonte", "cunha pora", "descanso", "flor do sertao", "guaraciaba", "guaruja do sul", "ipora do oeste", "iraceminha", "itapiranga", "maravilha", "paraiso", "princesa", "romelandia", "santa helena", "santa terezinha do progresso", "sao joao do oeste", "sao jose do cedro", "sao miguel da boa vista", "sao miguel do oeste",];
@@ -829,7 +829,11 @@
             var cidadesAtendidas = ["afonso arinos", "angra dos reis", "anta", "aperibe", "araruama", "areal", "armacao dos buzios", "arraial do cabo", "arrozal", "avelar", "barcelos", "barra alegre", "barra de sao joao", "barra do pirai", "barra mansa", "belford roxo", "bom jardim", "bom jesus do itabapoana", "cabo frio", "cachoeiras de macacu", "cambuci", "campos dos goytacazes", "cantagalo", "carapebus", "cardoso moreira", "carmo", "casimiro de abreu", "comendador levy gasparian", "conceicao de macabu", "conservatoria", "cordeiro", "corrego do ouro", "duas barras", "duque de caxias", "engenheiro paulo de frontin", "guapimirim", "iguaba grande", "itaborai", "itaguai", "itaipava", "italva", "itaocara", "itaperuna", "itatiaia", "japeri", "laje do muriae", "macae", "macuco", "mage", "mangaratiba", "marica", "mendes", "mesquita", "miguel pereira", "miracema", "morro do coco", "natividade", "nilopolis", "niteroi", "nova friburgo", "nova iguacu", "papucaia", "paracambi", "paraiba do sul", "parapeuna", "paraty", "paty do alferes", "petropolis", "piabeta", "pinheiral", "pirai", "porciuncula", "porto real", "pureza", "quatis", "queimados", "quissama", "raposo", "resende", "rio bonito", "rio claro", "rio das flores", "rio das ostras", "rio de janeiro", "santa maria madalena", "santo amaro de campos", "santo antonio de padua", "santo eduardo", "sao fidelis", "sao francisco de itabapoana", "sao goncalo", "sao joao da barra", "sao joao de meriti", "sao jose de uba", "sao jose do vale do rio preto", "sao pedro da aldeia", "sao sebastiao do alto", "sapucaia", "saquarema", "seropedica", "silva jardim", "sumidouro", "tangua", "teresopolis", "trajano de moraes", "travessao", "tres rios", "valenca", "varre-sai", "vassouras", "volta redonda"];
             return cidadesAtendidas.includes(cidadeDestino);
         }
-
+         //cidades região Jaú
+         function cidadesAtendidas10(cidadeDestino) {
+            var cidadesAtendidas = ["jau", "barra bonita","igaracu do tiete","mineiros do tiete","dois corregos","torrinha","brotas","itapui","bariri","boraceia","bocaina",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
         // tabela grande SP//
         function calcularFreteCidadesAtendidas1(pesoFrete,) {
             var frete = 0;
@@ -903,7 +907,7 @@
             var frete = 0;
 
             if (pesoFrete <= 5) {
-                frete = 28.39;
+                frete = 28.30;
             } else if (pesoFrete <= 15) {
                 frete = 30.57;
             } else if (pesoFrete <= 30) {
@@ -1425,6 +1429,75 @@
             var taxaSecCat = 19.35;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela região jau 
+        function calcularFreteCidadesAtendidas10(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 5) {
+                frete = 26.76;
+            } else if (pesoFrete <= 15) {
+                frete = 28.60;
+            } else if (pesoFrete <= 30) {
+                frete = 31.15;
+            } else if (pesoFrete <= 40) {
+                frete = 32.64;
+            } else if (pesoFrete <= 60) {
+                frete = 43.37;
+            } else if (pesoFrete <= 100) {
+                frete = 54.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 0.74;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 54.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 0;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss =Math.max(valor_nf * 0.001, 1.24);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = 1.28;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
             var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
             var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
