@@ -748,93 +748,24 @@
             }
 
             var frete = 0;
+            var cidadesAtendidas = 100; // Altere o número de cidades conforme necessário
 
-            if (cidadesAtendidas1(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas1(pesoFrete);
-            } else if (cidadesAtendidas2(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas2(pesoFrete);
-            } else if (cidadesAtendidas3(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas3(pesoFrete);
-            } else if (cidadesAtendidas4(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas4(pesoFrete);
-            } else if (cidadesAtendidas5(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas5(pesoFrete);
-            } else if (cidadesAtendidas6(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas6(pesoFrete);
-            } else if (cidadesAtendidas7(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas7(pesoFrete);
-            } else if (cidadesAtendidas8(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas8(pesoFrete);
-            } else if (cidadesAtendidas9(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas9(pesoFrete);
-            } else if (cidadesAtendidas10(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas10(pesoFrete);
-            } else if (cidadesAtendidas11(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas11(pesoFrete);
-            } else if (cidadesAtendidas12(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas12(pesoFrete);
-            } else if (cidadesAtendidas13(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas13(pesoFrete);
-            } else if (cidadesAtendidas14(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas14(pesoFrete);
-            } else if (cidadesAtendidas15(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas15(pesoFrete);
-            } else if (cidadesAtendidas16(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas16(pesoFrete);
-            } else if (cidadesAtendidas17(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas17(pesoFrete);
-            } else if (cidadesAtendidas18(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas18(pesoFrete);
-            } else if (cidadesAtendidas19(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas19(pesoFrete);
-            } else if (cidadesAtendidas20(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas20(pesoFrete);
-            } else if (cidadesAtendidas21(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas21(pesoFrete);
-            } else if (cidadesAtendidas22(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas22(pesoFrete);
-            } else if (cidadesAtendidas23(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas23(pesoFrete);
-            } else if (cidadesAtendidas24(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas24(pesoFrete);
-            } else if (cidadesAtendidas25(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas25(pesoFrete);
-            } else if (cidadesAtendidas26(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas26(pesoFrete);
-            } else if (cidadesAtendidas27(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas27(pesoFrete);
-            } else if (cidadesAtendidas28(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas28(pesoFrete);
-            } else if (cidadesAtendidas29(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas29(pesoFrete);
-            } else if (cidadesAtendidas30(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas30(pesoFrete);
-            } else if (cidadesAtendidas31(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas31(pesoFrete);
-            } else if (cidadesAtendidas32(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas32(pesoFrete);
-            } else if (cidadesAtendidas33(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas33(pesoFrete);
-            } else if (cidadesAtendidas34(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas34(pesoFrete);
-            } else if (cidadesAtendidas35(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas35(pesoFrete);
-            } else if (cidadesAtendidas36(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas36(pesoFrete);
-            } else if (cidadesAtendidas37(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas37(pesoFrete);
-            } else if (cidadesAtendidas38(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas38(pesoFrete);
-            } else if (cidadesAtendidas39(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas39(pesoFrete);
-            } else if (cidadesAtendidas40(cidadeDestino)) {
-                frete = calcularFreteCidadesAtendidas40(pesoFrete);
-            } else {
+            for (var i = 1; i <= cidadesAtendidas; i++) {
+                var funcaoCidade = window['cidadesAtendidas' + i];
+
+                if (funcaoCidade && funcaoCidade(cidadeDestino)) {
+                    frete = window['calcularFreteCidadesAtendidas' + i](pesoFrete);
+                    break;
+                }
+            }
+
+            if (frete === 0) {
                 frete = calcularFreteCidadeNaoAtendida();
             }
 
             exibirResultadosNaTela(frete);
         }
+
 
         function obterCidadeDestino() {
             var cidadeDestino = '';
@@ -863,7 +794,7 @@
 
         //cidades sc und 133
         function cidadesAtendidas3(cidadeDestino) {
-            var cidadesAtendidas = ["aguas mornas", "angelina", "anitapolis", "antonio carlos", "rancho queimado", "santo amaro da imperatriz", "sao bonifacio", "sao pedro de alcantara", "apiuna", "ascurra", "benedito novo", "blumenau", "doutor pedrinho", "gaspar", "indaial", "luiz alves", "pomerode", "rio dos cedros", "rodeio", "timbo", "botuvera", "canelinha", "gaspar", "guabiruba", "itajai", "major gercino", "nova trento", "sao joao batista", "cacador", "calmon", "fraiburgo", "iomere", "lebon regis", "matos costa", "rio das antas", "videira", "abelardo luz", "arvoredo", "bom jesus", "caxambu do sul", "chapeco", "cordilheira alta", "coronel freitas", "coronel martins", "entre rios", "faxinal dos guedes", "galvao", "guatambu", "ipuacu", "jupia", "lajeado grande", "marema", "ouro verde", "ouro verde", "paial", "passos maia", "planalto alegre", "ponte serrada", "sao domingos", "vargeao", "xanxere", "xaxim", "ararangua", "balneario arroio do silva", "balneario gaivota", "balneario rincao", "cocal do sul", "criciuma", "ermo", "forquilhinha", "icara", "jacinto machado", "maracaja", "meleiro", "morro da fumaca", "morro grande", "nova veneza", "passo de torres", "praia grande", "santa rosa do sul", "sao joao do sul", "sideropolis", "sombrio", "timbe do sul", "treviso", "turvo", "urussanga", "corupa", "guaramirim", "jaragua do sul", "massaranduba", "schroeder", "agua doce", "alto bela vista", "arabuta", "arroio trinta", "campos novos", "capinzal", "catanduvas", "concordia", "erval velho", "herval d oeste", "ibiam", "ibicare", "ipira", "ipumirim", "irani", "ita", "jabora", "joacaba", "lacerdopolis", "lindoia do sul", "luzerna", "macieira", "monte carlo", "ouro", "peritiba", "pinheiro preto", "piratuba", "presidente castello branco", "salto veloso", "santa helena", "seara", "tangara", "treze tilias", "vargem", "vargem bonita", "xavantina", "zortea", "balneario camboriu", "balneario picarras", "barra velha", "camboriu", "ilhota", "itajai", "navegantes", "penha", "sao joao do itaperiu", "araquari", "balneario barra do sul", "itapocu", "joinville", "sao francisco do sul", "abdon batista", "alfredo wagner", "anita garibaldi", "bocaina do sul", "bom jardim da serra", "bom retiro", "brunopolis", "campo belo do sul", "capao alto", "celso ramos", "cerro negro", "correia pinto", "curitibanos", "frei rogerio", "lages", "otacilio costa", "painel", "palmeira", "ponte alta", "ponte alta do norte", "rio rufino", "santa cecilia", "sao cristovao do sul", "sao joaquim", "sao jose do cerrito", "timbo grande", "urubici", "urupema", "bela vista do toldo", "campo alegre", "canoinhas", "itaiopolis", "mafra", "major vieira", "monte castelo", "papanduva", "rio negrinho", "sao bento do sul", "tres barras", "aguas de chapeco", "aguas frias", "bom jesus do oeste", "caibi", "cunhatai", "formosa do sul", "irati", "jardinopolis", "modelo", "mondai", "nova erechim", "nova itaberaba", "palmitos", "pinhalzinho", "quilombo", "riqueza", "saltinho", "santiago do sul", "sao carlos", "saudades", "serra alta", "sul brasil", "uniao do oeste", "agrolandia", "agronomica", "atalanta", "aurora", "braco do trombudo", "chapadao do lageado", "dona emma", "ibirama", "imbuia", "ituporanga", "jose boiteux", "laurentino", "leoberto leal", "lontras", "mirim doce", "petrolandia", "pouso redondo", "presidente getulio", "presidente nereu", "rio do campo", "rio do oeste", "rio do sul", "salete", "santa terezinha", "taio", "trombudo central", "vidal ramos", "vitor meireles", "witmarsum", "anchieta", "bandeirante", "barra bonita", "belmonte", "cunha pora", "descanso", "flor do sertao", "guaraciaba", "guaruja do sul", "ipora do oeste", "iraceminha", "itapiranga", "maravilha", "paraiso", "princesa", "romelandia", "santa helena", "santa terezinha do progresso", "sao joao do oeste", "sao jose do cedro", "sao miguel da boa vista", "sao miguel do oeste",];
+            var cidadesAtendidas = [];
             return cidadesAtendidas.includes(cidadeDestino);
         }
         //cidades sc capital
@@ -873,8 +804,7 @@
         }
         //cidades sc interior
         function cidadesAtendidas5(cidadeDestino) {
-            var cidadesAtendidas = ["abdon batista", "abelardo luz", "agrolandia", "agronomica", "agua doce", "aguas de chapeco", "aguas frias", "alfredo wagner", "alto bela vista", "anchieta", "anita garibaldi", "apiuna", "arabuta", "araquari", "ararangua", "armazem", "arroio trinta", "arvoredo", "ascurra", "atalanta", "aurora", "balneario arroio do silva", "balneario barra do sul", "balneario camboriu", "balneario gaivota", "balneario picarras", "balneario rincao", "bandeirante", "barra bonita", "barra velha", "bela vista do toldo", "belmonte", "benedito novo", "blumenau", "bocaina do sul", "bom jardim da serra", "bom jesus", "bom jesus do oeste", "bom retiro", "bombinhas", "botuvera", "braco do norte", "braco do trombudo", "brunopolis", "brusque", "cacador", "caibi", "calmon", "camboriu", "campo alegre", "campo belo do sul", "campo ere", "campos novos", "canelinha", "canoinhas", "capao alto", "capinzal", "capivari de baixo", "catanduvas", "caxambu do sul", "celso ramos", "cerro negro", "chapadao do lageado", "chapeco", "claraiba", "cocal do sul", "concordia", "cordilheira alta", "coronel freitas", "coronel martins", "correia pinto", "corupa", "criciuma", "cunha pora", "cunhatai", "curitibanos", "descanso", "dionisio cerqueira", "dona emma", "doutor pedrinho", "entre rios", "ermo", "erval velho", "faxinal dos guedes", "flor do sertao", "formosa do sul", "forquilhinha", "fraiburgo", "frei rogerio", "galvao", "garopaba", "gaspar", "governador celso ramos", "grao para", "gravatal", "guabiruba", "guaraciaba", "guaramirim", "guaruja do sul", "guatambu", "herval d oeste", "ibiam", "ibicare", "ibirama", "icara", "ilhota", "imarui", "imbituba", "imbuia", "indaial", "iomere", "ipira", "ipora do oeste", "ipuacu", "ipumirim", "iraceminha", "irani", "irati", "ita", "itaiopolis", "itajai", "itapema", "itapiranga", "itapocu", "ituporanga", "jabora", "jacinto machado", "jaguaruna", "jaragua do sul", "jardinopolis", "joacaba", "joinville", "jose boiteux", "jupia", "lacerdopolis", "lages", "laguna", "lajeado grande", "laurentino", "lauro muller", "lebon regis", "leoberto leal", "lindoia do sul", "lontras", "luiz alves", "luzerna", "macieira", "mafra", "major gercino", "major vieira", "maracaja", "maravilha", "marema", "massaranduba", "matos costa", "meleiro", "mirim doce", "modelo", "mondai", "monte carlo", "monte castelo", "morro da fumaca", "morro grande", "navegantes", "nova erechim", "nova itaberaba", "nova trento", "nova veneza", "orleans", "otacilio costa", "ouro", "ouro verde", "paial", "painel", "palma sola", "palmeira", "palmitos", "papanduva", "paraiso", "passo de torres", "passos maia", "paulo lopes", "pedras grandes", "penha", "peritiba", "pescaria brava", "petrolandia", "pinhalzinho", "pinheiro preto", "piratuba", "planalto alegre", "pomerode", "ponte alta", "ponte alta do norte", "ponte serrada", "porto belo", "pouso redondo", "praia grande", "presidente castello branco", "presidente getulio", "presidente nereu", "princesa", "quilombo", "rio das antas", "rio do campo", "rio do oeste", "rio do sul", "rio dos cedros", "rio fortuna", "rio negrinho", "rio rufino", "riqueza", "rodeio", "romelandia", "salete", "saltinho", "salto veloso", "sangao", "santa cecilia", "santa helena", "santa helena", "santa rosa de lima", "santa rosa do sul", "santa terezinha", "santa terezinha do progresso", "santiago do sul", "sao bento do sul", "sao carlos", "sao cristovao do sul", "sao domingos", "sao francisco do sul", "sao joao batista", "sao joao do itaperiu", "sao joao do oeste", "sao joao do sul", "sao joaquim", "sao jose do cedro", "sao jose do cerrito", "sao ludgero", "sao martinho", "sao miguel da boa vista", "sao miguel do oeste", "saudades", "schroeder", "seara", "serra alta", "sideropolis", "sombrio", "sul brasil", "taio", "tangara", "tigrinhos", "tijucas", "timbe do sul", "timbo", "timbo grande", "tres barras", "treviso", "treze de maio", "treze tilias", "trombudo central", "tubarao", "tunapolis", "turvo", "uniao do oeste", "urubici", "urupema", "urussanga", "vargeao", "vargem", "vargem bonita", "vidal ramos", "videira", "vitor meireles", "witmarsum", "xanxere", "xavantina", "xaxim", "zortea"
-            ];
+            var cidadesAtendidas = [];
             return cidadesAtendidas.includes(cidadeDestino);
         }
 
@@ -885,7 +815,7 @@
         }
         //cidades es
         function cidadesAtendidas7(cidadeDestino) {
-            var cidadesAtendidas = ["afonso claudio", "agua doce do norte", "aguia branca", "alegre", "alegre", "alfredo chav", "alto rio novo", "alto santa maria", "anchieta", "apiaca", "arace", "aracruz", "araguaia", "atilio vivacqua", "baixo guandu", "barra de sao francisco", "barra do riacho", "baunilha", "boaperanca", "bom jus do norte", "brejetuba", "cachoeiro de itapemirim", "camara", "cariacica", "castelo", "celina", "colatina", "conceicao da barra", "conceicao do castelo", "divino de sao lourenco", "domingos martins", "dona america", "dordo rio preto", "ecoporanga", "fundao", "governador lindenberg", "guacui", "guarapari", "ibatiba", "ibiracu", "ibitirama", "ibitirui", "iconha", "irupi", "itaguacu", "itaici", "itaipava", "itaoca", "itapemirim", "itaperuna", "itarana", "iuna", "jaguare", "jeronimo monteiro", "joao neiva", "laranja da terra", "linhar", "mantenopolis", "marataiz", "marechal floriano", "marilandia", "menino jus", "mimoso do sul", "montanha", "mucurici", "muniz freire", "muqui", "nova venecia", "pancas", "paraju", "pedro canario", "pinheiros", "piuma", "ponte de itabapoana", "ponto belo", "praia grande", "pridente kennedy", "regencia", "ribeirao do cristo", "rio bananal", "rio novo do sul", "sagrada familia", "santa leopoldina", "santa luzia do azul", "santa maria de jetiba", "santa tera", "sao domingos do norte", "sao gabriel da palha", "sao jose das torr", "sao jose do calcado", "sao mateus", "sao pedro", "sao roque do canaa", "serra", "sooretama", "timbui", "vargem alta", "venda nova do imigrante", "viana", "vieira machado", "vila pavao", "vila valerio", "vila velha", "vitoria"];
+            var cidadesAtendidas = [];
             return cidadesAtendidas.includes(cidadeDestino);
         }
         //cidades mg ate 400 km rte
@@ -895,7 +825,7 @@
         }
         //cidades sc capital
         function cidadesAtendidas9(cidadeDestino) {
-            var cidadesAtendidas = ["afonso arinos", "angra dos reis", "anta", "aperibe", "araruama", "areal", "armacao dos buzios", "arraial do cabo", "arrozal", "avelar", "barcelos", "barra alegre", "barra de sao joao", "barra do pirai", "barra mansa", "belford roxo", "bom jardim", "bom jesus do itabapoana", "cabo frio", "cachoeiras de macacu", "cambuci", "campos dos goytacazes", "cantagalo", "carapebus", "cardoso moreira", "carmo", "casimiro de abreu", "comendador levy gasparian", "conceicao de macabu", "conservatoria", "cordeiro", "corrego do ouro", "duas barras", "duque de caxias", "engenheiro paulo de frontin", "guapimirim", "iguaba grande", "itaborai", "itaguai", "itaipava", "italva", "itaocara", "itaperuna", "itatiaia", "japeri", "laje do muriae", "macae", "macuco", "mage", "mangaratiba", "marica", "mendes", "mesquita", "miguel pereira", "miracema", "morro do coco", "natividade", "nilopolis", "niteroi", "nova friburgo", "nova iguacu", "papucaia", "paracambi", "paraiba do sul", "parapeuna", "paraty", "paty do alferes", "petropolis", "piabeta", "pinheiral", "pirai", "porciuncula", "porto real", "pureza", "quatis", "queimados", "quissama", "raposo", "resende", "rio bonito", "rio claro", "rio das flores", "rio das ostras", "rio de janeiro", "santa maria madalena", "santo amaro de campos", "santo antonio de padua", "santo eduardo", "sao fidelis", "sao francisco de itabapoana", "sao goncalo", "sao joao da barra", "sao joao de meriti", "sao jose de uba", "sao jose do vale do rio preto", "sao pedro da aldeia", "sao sebastiao do alto", "sapucaia", "saquarema", "seropedica", "silva jardim", "sumidouro", "tangua", "teresopolis", "trajano de moraes", "travessao", "tres rios", "valenca", "varre-sai", "vassouras", "volta redonda"];
+            var cidadesAtendidas = ["nova iguacu", "mesquita", "belford roxo", "nilopolis", "sao joao de meriti", "queimados", "rio de janeiro", "sao goncalo", "rio de janeiro", "seropedica", "sao goncalo", "niteroi", "duque de caxias", "duque de caxias", "sao joao de meriti", "itaguai", "belford roxo", "nilopolis", "mesquita", "nova iguacu", "itaborai", "piabeta", "queimados", "marica", "mage", "guapimirim", "mangaratiba",];
             return cidadesAtendidas.includes(cidadeDestino);
         }
         //cidades região Jaú
@@ -1029,8 +959,161 @@
         }
 
 
+        //cidades go ate 600km
+        function cidadesAtendidas32(cidadeDestino) {
+            var cidadesAtendidas = ["brasilandia", "paranaiba", "aparecida do taboado", "inocencia", "cassilandia", "selviria", "itumbiara", "cachoeira dourada", "panama", "catalao", "buriti alegre", "ouvidor", "goiandira", "bom jesus", "goiatuba", "lagoa santa", "itaja", "morrinhos", "domiciano ribeiro", "ipameri", "ipameri",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
 
+        //cidades go ate 800km
+        function cidadesAtendidas33(cidadeDestino) {
+            var cidadesAtendidas = ["paraiso das aguas", "costa rica", "itaruma", "sao simao", "caldas novas", "cachoeira alta", "rio quente", "pontalina", "urutai", "marzagao", "cacu", "pires do rio", "paranaiguara", "corumbaiba", "itaguacu", "aparecida de goiania", "cristianopolis", "piracanjuba", "senador canedo", "goiania", "rio verde", "abadia de goias", "trindade", "goianira", "sao miguel do passa quatro", "santa cruz de goias", "inhumas", "bela vista de goias", "santo antonio da barra", "lagoa do bauzinho", "anapolis", "santa helena de goias", "montividiu", "jatai", "riverlandia", "goianapolis", "terezopolis de goias", "acreuna", "neropolis", "quirinopolis",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
 
+        //cidades go ate 1000km
+        function cidadesAtendidas34(cidadeDestino) {
+            var cidadesAtendidas = ["serranopolis", "cristalina", "mineiros", "portelandia", "valparaiso de goias", "novo gama", "cidade ocidental", "aguas lindas de goias", "planaltina", "luziania", "chapadao do ceu", "santa rita do araguaia", "perolandia", "formosa", "padre bernardo",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades go ate 800km tx 30.86
+        function cidadesAtendidas35(cidadeDestino) {
+            var cidadesAtendidas = ["hidrolandia", "anhanguera", "santo antonio de goias", "aragoiania", "caldazinha", "guapo", "bonfinopolis", "nova veneza", "brazabrantes", "caturai", "leopoldo de bulhoes", "santa barbara de goias", "campestre de goias", "posselandia", "ouro verde de goias", "damolandia", "cezarina", "itaucu", "professor jamil", "varjao", "aracu", "nazario", "campo limpo de goias", "petrolina de goias", "avelinopolis", "anicuns", "crominia", "silvania", "santa rosa de goias", "abadiania", "gameleira de goias", "taquaral de goias", "palmeiras de goias", "vianopolis", "sao francisco de goias", "mairipotaba", "turvania", "indiara", "itaberai", "itaguari", "choupana", "adelandia", "americano do brasil", "jesupolis", "jaragua", "corumba de goias", "firminopolis", "alexania", "jandaia", "edealina", "itaguaru",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades go ate 1000km tx 30.86
+        function cidadesAtendidas36(cidadeDestino) {
+            var cidadesAtendidas = ["edeia", "sao luis de montes belos", "pirenopolis", "palmelo", "calcilandia", "cocalzinho de goias", "palminopolis", "sanclerlandia", "uruita", "orizona", "heitorai", "goias", "aurilandia", "mossamedes", "sao joao da parauna", "buriti de goias", "aloandia", "parauna", "uruana", "rianapolis", "itapuranga", "corrego do ouro", "joviania", "cachoeira de goias", "carmo do rio verde", "moipora", "rialma", "ceres", "guaraita", "vicentinopolis", "santo antonio do descoberto", "diolandia", "agua fria de goias", "alto paraiso de goias", "goianesia", "porteirao", "ivolandia", "sao patricio", "vila propicio", "agua limpa", "santa isabel", "itapirapua", "novo brasil", "israelandia", "santa rita do novo destino", "nova gloria", "rubiataba", "turvelandia", "fazenda nova", "souzalandia", "faina", "ipiranga de goias", "jaupaci", "castelandia", "itapaci", "jussara", "ipora", "nova america", "sao luiz do norte", "pilar de goias", "barro alto", "amorinopolis", "maurilandia", "matrincha", "diorama", "hidrolina", "araguapaz", "santa fe de goias", "guarinos", "nova aurora", "montes claros de goias", "mimoso de goias", "campo alegre de goias", "morro agudo de goias", "arenopolis", "santa terezinha de goias", "inaciolandia", "palestina de goias", "pires belo", "tres ranchos", "cumari", "aparecida do rio doce", "mozarlandia", "niquelandia", "uruacu", "campos verdes", "davinopolis", "aruana", "gouvelandia", "crixas", "piranhas",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades go ate 1200km tx 30.86
+        function cidadesAtendidas37(cidadeDestino) {
+            var cidadesAtendidas = ["campinorte", "caiaponia", "cabeceiras", "uirapuru", "sao joao d'alianca", "britania", "alto horizonte", "bom jardim de goias", "mara rosa", "nova crixas", "aragarcas", "estrela do norte", "amaralina", "colinas do sul", "doverlandia", "santa tereza de goias", "mutunopolis", "baliza", "mundo novo", "formoso", "sao miguel do araguaia", "flores de goias", "porangatu", "trombas", "alvorada do norte", "apore", "campinacu", "buritinopolis", "bonopolis", "novo planalto", "montividiu do norte", "iaciara", "mambai", "cavalcante", "posse", "minacu",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades go ate 1400km
+        function cidadesAtendidas38(cidadeDestino) {
+            var cidadesAtendidas = ["damianopolis", "guarani de goias", "monte alegre de goias", "nova roma", "campos belos", "sao domingos", "sao gabriel de goias", "simolandia", "divinopolis de goias", "sitio d'abadia", "teresina de goias", "vila boa", "nova iguacu de goias",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 800km  tx 19.35
+        function cidadesAtendidas39(cidadeDestino) {
+            var cidadesAtendidas = ["anhandui", "campo grande", "douradina", "terenos", "jaraguari", "sidrolandia", "bandeirantes",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 1000km tx 19.35
+        function cidadesAtendidas40(cidadeDestino) {
+            var cidadesAtendidas = ["rochedo", "dois irmaos do buriti", "ribas do rio pardo", "corguinho", "nova alvorada do sul", "anastacio", "aquidauana", "camapua", "sao gabriel do oeste", "rio negro", "maracaju", "rio brilhante", "nioaque", "agua clara", "miranda", "rio verde de mato grosso", "panambi", "itapora", "dourados", "guia lopes da laguna", "jardim", "fatima do sul", "culturama", "vicentina", "nova america", "coxim", "bonito", "figueirao", "deodapolis", "jatei", "gloria de dourados", "bodoquena", "angelica", "caarapo",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 1200km tx 19.35
+        function cidadesAtendidas41(cidadeDestino) {
+            var cidadesAtendidas = ["laguna carapa", "antonio joao", "ivinhema", "nova andradina", "juti", "pedro gomes", "ponta pora", "amandina", "alcinopolis", "bela vista", "novo horizonte do sul", "sanga puita", "taquarussu", "bataguassu", "bataypora", "navirai", "amambai", "sonora", "anaurilandia", "aral moreira", "caracol", "coronel sapucaia", "itaquirai", "santa rita do pardo", "tacuru", "ladario", "albuquerque", "corumba", "eldorado", "porto murtinho", "mundo novo", "japora", "iguatemi", "paranhos", "sete quedas",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 1600km tx 19.35
+        function cidadesAtendidas42(cidadeDestino) {
+            var cidadesAtendidas = ["cuiaba", "nossa senhora da guia", "rondonopolis", "passagem da conceicao", "varzea grande", "santo antonio do leverger", "nossa senhora do livramento", "chapada dos guimaraes", "acorizal", "jangada", "rosario oeste", "pocone", "barao de melgaco", "nobres", "campo verde", "jaciara", "dom aquino", "sao pedro da cipa", "juscimeira", "barra do bugres", "santa elvira", "diamantino",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 1800km tx 19.35
+        function cidadesAtendidas43(cidadeDestino) {
+            var cidadesAtendidas = ["porto estrela", "alto paraguai", "denise", "nova brasilandia", "nova olimpia", "tres pontes", "caceres", "nortelandia", "arenapolis", "nova mutum", "primavera do leste", "pedra preta", "alto coite", "nova marilandia", "tangara da serra", "santo afonso", "sao jose do povo", "poxoreu", "curvelandia", "mirassol d'oeste", "sao jose do rio claro", "gloria d'oeste", "sao jose dos quatro marcos", "lambari d'oeste", "porto esperidiao", "santa rita do trivelato", "guiratinga", "lucas do rio verde", "araputanga", "rio branco", "paranatinga", "itiquira", "salto do ceu", "indiavai", "alto garcas", "nova maringa", "figueiropolis d'oeste",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 2000km tx 19.35
+        function cidadesAtendidas44(cidadeDestino) {
+            var cidadesAtendidas = ["tapurah", "tesouro", "reserva do cabacal", "santo antonio do leste", "sorriso", "jauru", "campo novo do parecis", "alto araguaia", "vale de sao domingos", "ipiranga do norte", "pontes e lacerda", "itanhanga", "araguainha", "general carneiro", "vera", "nova ubirata", "sapezal", "alto taquari", "novo sao joaquim", "sinop", "ponte branca", "ribeiraozinho", "santa carmem", "feliz natal", "barra do garcas", "vila bela da santissima trindade", "campos de julio", "pontal do araguaia", "conquista d'oeste", "nova lacerda", "campinapolis", "claudia", "itauba", "araguaiana", "torixoreu",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 2200km tx 19.35
+        function cidadesAtendidas45(cidadeDestino) {
+            var cidadesAtendidas = ["brasnorte", "porto dos gauchos", "nova santa helena", "nova xavantina", "canarana", "novo horizonte do norte", "gaucha do norte", "indianapolis", "colider", "comodoro", "juara", "terra nova do norte", "uniao do sul", "tabapora", "peixoto de azevedo", "planalto da serra", "agua boa", "agua boa", "nova guarita", "nova canaa do norte", "matupa", "marcelandia", "guaranta do norte", "nova nazare", "querencia", "juina", "ribeirao cascalheira", "novo mundo", "carlinda", "castanheira", "cocalinho",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 2400km tx 19.35
+        function cidadesAtendidas46(cidadeDestino) {
+            var cidadesAtendidas = ["alta floresta", "paranaita", "bom jesus do araguaia", "serra nova dourada", "juruena", "alto boa vista", "novo santo antonio", "cotriguacu", "nova monte verde", "sao jose do xingu", "apiacas", "porto alegre do norte", "canabrava do norte",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades mt e ms ate 2600km tx 19.35
+        function cidadesAtendidas47(cidadeDestino) {
+            var cidadesAtendidas = ["sao felix do araguaia", "nova bandeirantes", "confresa", "luciara", "colniza", "rondolandia", "santa cruz do xingu", "vila rica", "santa terezinha",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades es ate 1000km  tx 19.35
+        function cidadesAtendidas48(cidadeDestino) {
+            var cidadesAtendidas = ["bom jesus do norte", "apiaca", "sao jose do calcado",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades es ate 1200km tx 19.35
+        function cidadesAtendidas49(cidadeDestino) {
+            var cidadesAtendidas = ["cachoeiro de itapemirim", "itaoca", "atilio vivacqua", "rio novo do sul", "vargem alta", "camara", "muqui", "castelo", "sao jose das torres", "presidente kennedy", "iconha", "jeronimo monteiro", "marataizes", "itapemirim", "piuma", "itaipava", "mimoso do sul", "alegre", "alegre", "celina", "vieira machado", "anchieta", "conceicao do castelo", "dona america", "muniz freire", "ponte de itabapoana", "sao pedro", "venda nova do imigrante", "guacui", "menino jesus", "itaici", "viana", "itarana", "divino de sao lourenco", "ibitirama", "vila velha", "brejetuba",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades es ate 1400km tx 19.35
+        function cidadesAtendidas50(cidadeDestino) {
+            var cidadesAtendidas = ["colatina", "dores do rio preto", "iuna", "serra", "ibatiba", "serra", "boapaba", "vitoria", "cariacica", "baunilha", "povoacao", "marilandia", "guarapari", "irupi", "arace", "domingos martins", "paraju", "santa leopoldina", "ibitirui", "ribeirao do cristo", "sagrada familia", "sao domingos do norte", "alfredo chaves", "alto santa maria", "araguaia", "santa teresa", "linhares", "santa maria de jetiba", "sao gabriel da palha", "aracruz", "itarana", "sooretama", "ibiracu", "itaguacu", "sao roque do canaa", "joao neiva", "fundao", "praia grande", "timbui", "laranja da terra", "pontal do ipiranga", "timbui", "nova venecia", "praia grande", "afonso claudio", "jaguare", "regencia", "sao mateus", "rio bananal", "marechal floriano", "baixo guandu", "pancas", "governador lindenberg",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades es ate 1600km tx 19.35
+        function cidadesAtendidas51(cidadeDestino) {
+            var cidadesAtendidas = ["aguia branca", "vila valerio", "alto rio novo", "conceicao da barra", "mantenopolis", "barra de sao francisco", "pedro canario", "itaperuna", "boa esperanca", "vila pavao", "agua doce do norte", "santa luzia do azul", "pinheiros", "ecoporanga", "montanha", "mucurici", "ponto belo",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades rj ate 800km  tx 19.35
+        function cidadesAtendidas52(cidadeDestino) {
+            var cidadesAtendidas = ["pinheiral", "resende", "engenheiro passos", "fumaca", "visconde de maua", "rio claro", "arrozal", "quatis", "itatiaia", "penedo", "pirai", "barra do pirai", "lidice", "ipiabas", "conservatoria", "vassouras", "mendes", "parapeuna", "valenca", "engenheiro paulo de frontin", "paracambi", "japeri", "angra dos reis", "rio das flores", "miguel pereira", "paty do alferes", "avelar", "petropolis", "tres rios", "paraty", "comendador levy gasparian", "paraiba do sul", "werneck", "inconfidencia", "afonso arinos", "sapucaia", "areal",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades rj ate 1000km tx 19.35
+        function cidadesAtendidas53(cidadeDestino) {
+            var cidadesAtendidas = ["sao jose do vale do rio preto", "nova friburgo", "sao pedro da aldeia", "iguaba grande", "cabo frio", "barra alegre", "monnerat", "arraial do cabo", "araruama", "papucaia", "armacao dos buzios", "rio das ostras", "carmo", "macae", "silva jardim", "sao sebastiao do alto", "saquarema", "rio bonito", "santa maria madalena", "teresopolis", "casimiro de abreu", "itaperuna", "cachoeiras de macacu", "piao", "corrego do ouro", "tangua", "glicerio", "retiro do muriae", "frade", "boa ventura", "comendador venancio", "natividade", "laje do muriae", "sao jose de uba", "bom jesus do itabapoana", "ourania", "raposo", "porciuncula", "calheiros", "italva", "sana", "bom jesus do querendo", "varre-sai", "rosal", "carabucu", "cardoso moreira", "campos dos goytacazes", "bom jardim", "santa maria", "santa clara", "barcelos", "sao joaquim", "travessao", "ibitioca", "tocos", "sumidouro", "duas barras", "cordeiro", "pipeiras", "mussurepe",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades rj ate 1200km tx 19.35
+        function cidadesAtendidas54(cidadeDestino) {
+            var cidadesAtendidas = ["santo amaro de campos", "sao joao da barra", "morangaba", "macuco", "vila nova de campos", "morro do coco", "sao francisco de itabapoana", "sao fidelis", "serrinha", "quissama", "cantagalo", "pureza", "santo eduardo", "cambuci", "barra de sao joao", "carapebus", "trajano de moraes", "conceicao de macabu", "itaocara", "aperibe", "santo antonio de padua", "miracema",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades sc ate 800km  tx 19.35
+        function cidadesAtendidas55(cidadeDestino) {
+            var cidadesAtendidas = ["itaiopolis", "garuva", "rio negrinho", "porto uniao", "papanduva", "sao bento do sul", "tres barras", "canoinhas", "monte castelo", "campo alegre", "major vieira", "itapoa", "irineopolis", "bela vista do toldo", "joinville", "araquari", "guaramirim", "jaragua do sul", "itapocu", "schroeder", "sao francisco do sul", "corupa", "massaranduba", "balneario barra do sul", "cacador", "blumenau", "itajai", "rio das antas", "indaial", "gaspar", "timbo", "calmon", "balneario camboriu", "ilhota", "pomerode", "camboriu", "navegantes", "lebon regis", "videira", "brusque", "herval d oeste", "penha", "matos costa", "iomere", "ascurra", "rio dos cedros", "guabiruba", "luzerna", "benedito novo", "fraiburgo", "sao bernardino", "rodeio", "tijucas",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades sc ate 1000km tx 19.35
+        function cidadesAtendidas56(cidadeDestino) {
+            var cidadesAtendidas = ["balneario picarras", "sao lourenco do oeste", "lacerdopolis", "joacaba", "apiuna", "erval velho", "ibicare", "botuvera", "barra velha", "santa helena", "novo horizonte", "ouro", "porto belo", "nova trento", "sao joao batista", "agua doce", "capinzal", "sao joao do itaperiu", "itapema", "treze tilias", "doutor pedrinho", "gaspar", "catanduvas", "tangara", "canelinha", "bombinhas", "itajai", "jabora", "pinheiro preto", "salto veloso", "zortea", "luiz alves", "vargem bonita", "ibiam", "campo ere", "campos novos", "lages", "campo ere", "governador celso ramos", "major gercino", "presidente castello branco", "rio do sul", "arroio trinta", "macieira", "peritiba", "piratuba", "alto bela vista", "ipira", "agronomica", "aurora", "palma sola", "concordia", "laurentino", "lontras", "trombudo central", "irani", "lindoia do sul", "correia pinto", "arabuta", "capao alto", "painel", "ipumirim", "rio do oeste", "ituporanga", "presidente nereu", "santo amaro da imperatriz", "vargem", "pouso redondo", "sao pedro de alcantara", "ponte alta", "agrolandia", "palmeira", "dionisio cerqueira", "sao jose do cerrito", "ibirama", "aguas mornas", "chapeco", "monte carlo", "bocaina do sul", "antonio carlos", "seara", "atalanta", "petrolandia", "otacilio costa", "ita", "jose boiteux", "xavantina", "braco do trombudo", "presidente getulio", "imbuia", "mirim doce", "urupema", "cordilheira alta", "campo belo do sul", "chapadao do lageado", "taio", "vidal ramos", "arvoredo", "coronel freitas", "paial", "sao cristovao do sul", "rancho queimado", "guatambu", "dona emma", "leoberto leal", "salete", "planalto alegre", "xaxim", "sao bonifacio", "sao joaquim", "angelina", "witmarsum", "cerro negro", "ponte alta do norte", "rio rufino", "curitibanos", "caxambu do sul", "xanxere", "pinhalzinho", "vitor meireles", "bom retiro", "anitapolis", "nova erechim", "saudades", "faxinal dos guedes", "santa cecilia", "modelo", "rio do campo", "bom jesus", "abdon batista", "aguas frias", "brunopolis", "lajeado grande", "frei rogerio", "urubici", "serra alta", "anita garibaldi", "cunhatai", "nova itaberaba", "sul brasil", "bom jardim da serra", "sao miguel do oeste", "ouro verde", "ouro verde", "bom jesus do oeste", "alfredo wagner", "vargeao", "ipuacu", "uniao do oeste", "sao carlos", "aguas de chapeco", "bandeirante", "descanso", "guaraciaba", "ponte serrada", "sao domingos", "jardinopolis", "saltinho", "tubarao", "abelardo luz", "passos maia", "barra bonita", "belmonte", "marema", "quilombo", "paraiso", "celso ramos", "irati", "capivari de baixo", "flor do sertao", "gravatal", "santa helena", "sao jose do cedro", "ipora do oeste", "jaguaruna", "entre rios", "galvao", "caibi", "coronel martins", "iraceminha", "tunapolis", "treze de maio", "formosa do sul", "armazem", "pedras grandes", "pescaria brava", "sangao", "palmitos", "riqueza", "santiago do sul", "guaruja do sul", "princesa", "anchieta", "romelandia", "santa terezinha", "maravilha",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
+
+        //cidades sc ate 1200km tx 19.35
+        function cidadesAtendidas57(cidadeDestino) {
+            var cidadesAtendidas = ["laguna", "jupia", "mondai", "sao joao do oeste", "sao miguel da boa vista", "braco do norte", "sao ludgero", "cunha pora", "timbo grande", "tigrinhos", "sao martinho", "grao para", "itapiranga", "imbituba", "orleans", "rio fortuna", "santa terezinha do progresso", "criciuma", "lauro muller", "icara", "santa rosa de lima", "garopaba", "cocal do sul", "sideropolis", "forquilhinha", "nova veneza", "imarui", "urussanga", "paulo lopes", "maracaja", "morro da fumaca", "treviso", "balneario rincao", "ararangua", "meleiro", "balneario arroio do silva", "morro grande", "turvo", "ermo", "sombrio", "balneario gaivota", "jacinto machado", "santa rosa do sul", "timbe do sul", "sao joao do sul", "passo de torres", "praia grande",];
+            return cidadesAtendidas.includes(cidadeDestino);
+        }
 
 
 
@@ -1171,73 +1254,14 @@
             return frete;
         }
 
-        //tabela sc 133 //
-        function calcularFreteCidadesAtendidas3(pesoFrete) {
-            var frete = 0;
+        
 
-            if (pesoFrete <= 10) {
-                frete = 74.98;
-            } else if (pesoFrete <= 20) {
-                frete = 93.93;
-            } else if (pesoFrete <= 40) {
-                frete = 110.48;
-            } else if (pesoFrete <= 60) {
-                frete = 147.82;
-            } else if (pesoFrete <= 100) {
-                frete = 192.69;
-            } else {
-                var numFrações = Math.ceil(pesoFrete / 100);
-                var taxaPorFração = 0.00;
-                var taxaTotal = numFrações * taxaPorFração;
-
-                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
-
-                var pesoExcedente = pesoFrete - 100;
-                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
-
-                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
-
-                var taxaPedagioBase = 0;
-                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
-
-                console.log("Valor da taxa de pedágio: " + taxaPedagio);
-
-                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
-            }
-
-            var taxaPedagio = 6.00;
-            frete += taxaPedagio;
-            console.log("Pedagio Fixo:" + taxaPedagio);
-
-            var taxaGriss = 1.5;
-            frete += taxaGriss;
-            console.log("Valor da taxa griss: " + taxaGriss);
-
-            var taxaFreteValor = 5.18;
-            frete += taxaFreteValor;
-            console.log("Valor da taxa freteValor: " + taxaFreteValor);
-
-            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
-            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
-            frete += taxaFrete;
-            console.log("Valor da taxa de frete: " + taxaFrete);
-
-
-            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
-            console.log("Valor da taxa de imposto: " + taxaImposto);
-
-            console.log("Valor do frete sem imposto: " + frete);
-
-            frete += taxaImposto;
-
-            console.log("Valor do frete com todas as taxas: " + frete);
-
-            return frete;
-        }
-
-        //tabela sc capital//
+        //tabela sc capital taxa 18.79//
 
         function calcularFreteCidadesAtendidas4(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
             var frete = 0;
 
             if (pesoFrete <= 10) {
@@ -1274,11 +1298,11 @@
             frete += taxaPedagio;
             console.log("Pedagio Fixo:" + taxaPedagio);
 
-            var taxaGriss = 1.5;
+            var taxaGriss = Math.max(valor_nf * 0.001);
             frete += taxaGriss;
             console.log("Valor da taxa griss: " + taxaGriss);
 
-            var taxaFreteValor = 5.18;
+            var taxaFreteValor = valor_nf * 0.00345;
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
@@ -1305,70 +1329,7 @@
             return frete;
         }
 
-        //tabela SC interior//
-
-        function calcularFreteCidadesAtendidas5(pesoFrete) {
-            var frete = 0;
-
-            if (pesoFrete <= 10) {
-                frete = 65.83;
-            } else if (pesoFrete <= 20) {
-                frete = 80.77;
-            } else if (pesoFrete <= 40) {
-                frete = 98.41;
-            } else if (pesoFrete <= 60) {
-                frete = 130.79;
-            } else if (pesoFrete <= 100) {
-                frete = 171.82;
-            } else {
-                var numFrações = Math.ceil(pesoFrete / 100);
-                var taxaPorFração = 0.00;
-                var taxaTotal = numFrações * taxaPorFração;
-
-                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
-
-                var pesoExcedente = pesoFrete - 100;
-                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
-
-                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
-
-                var taxaPedagioBase = 0;
-                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
-
-                console.log("Valor da taxa de pedágio: " + taxaPedagio);
-
-                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
-            }
-
-            var taxaPedagio = 6.00;
-            frete += taxaPedagio;
-            console.log("Pedagio Fixo:" + taxaPedagio);
-
-            var taxaGriss = 1.5;
-            frete += taxaGriss;
-            console.log("Valor da taxa griss: " + taxaGriss);
-
-            var taxaFreteValor = 5.18;
-            frete += taxaFreteValor;
-            console.log("Valor da taxa freteValor: " + taxaFreteValor);
-
-            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
-            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
-            frete += taxaFrete;
-            console.log("Valor da taxa de frete: " + taxaFrete);
-
-
-            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
-            console.log("Valor da taxa de imposto: " + taxaImposto);
-
-            console.log("Valor do frete sem imposto: " + frete);
-
-            frete += taxaImposto;
-
-            console.log("Valor do frete com todas as taxas: " + frete);
-
-            return frete;
-        }
+        
 
         //tabela pr
 
@@ -1435,77 +1396,6 @@
             return frete;
         }
 
-        //tabela es
-
-        function calcularFreteCidadesAtendidas7(pesoFrete) {
-            var frete = 0;
-
-            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
-
-
-            if (pesoFrete <= 10) {
-                frete = 93.93;
-            } else if (pesoFrete <= 20) {
-                frete = 105.58;
-            } else if (pesoFrete <= 40) {
-                frete = 124.37;
-            } else if (pesoFrete <= 60) {
-                frete = 166.19;
-            } else if (pesoFrete <= 100) {
-                frete = 212.62;
-            } else {
-                var numFrações = Math.ceil(pesoFrete / 100);
-                var taxaPorFração = 0.00;
-                var taxaTotal = numFrações * taxaPorFração;
-
-                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
-
-                var pesoExcedente = pesoFrete - 100;
-                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.334;
-
-                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
-
-                var taxaPedagioBase = 0;
-                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
-
-                console.log("Valor da taxa de pedágio: " + taxaPedagio);
-
-                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
-            }
-
-            var taxaPedagio = 6.00;
-            frete += taxaPedagio;
-            console.log("Pedagio Fixo:" + taxaPedagio);
-
-            var taxaFreteValor = valor_nf * 0.00345;
-            frete += taxaFreteValor;
-            console.log("Valor da taxa freteValor: " + taxaFreteValor);
-
-            var taxaGriss = Math.max(valor_nf * 0.001, 1.24);
-            frete += taxaGriss;
-            console.log("Valor da taxa griss: " + taxaGriss);
-
-            var taxaSecCat = 19.35;
-            frete += taxaSecCat;
-            console.log("Valor da taxa secCat: " + taxaSecCat);
-
-            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
-            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
-            frete += taxaFrete;
-            console.log("Valor da taxa de frete: " + taxaFrete);
-
-
-            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
-            console.log("Valor da taxa de imposto: " + taxaImposto);
-
-            console.log("Valor do frete sem imposto: " + frete);
-
-            frete += taxaImposto;
-
-            console.log("Valor do frete com todas as taxas: " + frete);
-
-            return frete;
-        }
 
         //tabela mg ate 400km 
 
@@ -1579,7 +1469,7 @@
             return frete;
         }
 
-        //tabela rj
+        //tabela rj ate 800 km tx 19.35 taxa emergencial 17.69
 
         function calcularFreteCidadesAtendidas9(pesoFrete) {
             var frete = 0;
@@ -1632,6 +1522,10 @@
             var taxaSecCat = 19.35;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxaemergencial = 17.69
+            frete += taxaemergencial;
+            console.log("Valor da taxa emergência: " + taxaemergencial);
 
             var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
             var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
@@ -3256,6 +3150,1967 @@
 
             return frete;
         }
+
+        //tabela go ate 600 km 
+        function calcularFreteCidadesAtendidas32(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 53.92;
+            } else if (pesoFrete <= 20) {
+                frete = 69.20;
+            } else if (pesoFrete <= 40) {
+                frete = 84.63;
+            } else if (pesoFrete <= 60) {
+                frete = 113.44;
+            } else if (pesoFrete <= 100) {
+                frete = 149.25;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.646;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 149.25 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela go ate 800 km 
+        function calcularFreteCidadesAtendidas33(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela go ate 1000 km 
+        function calcularFreteCidadesAtendidas34(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela go ate 800 km tx 30.86
+        function calcularFreteCidadesAtendidas35(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 30.86;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela go ate 1000 km tx 30.86
+        function calcularFreteCidadesAtendidas36(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 30.86;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela go ate 1200 km 
+        function calcularFreteCidadesAtendidas37(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.334;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 30.86;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela go ate 1400 km 
+        function calcularFreteCidadesAtendidas38(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 105.58;
+            } else if (pesoFrete <= 20) {
+                frete = 118.49;
+            } else if (pesoFrete <= 40) {
+                frete = 139.29;
+            } else if (pesoFrete <= 60) {
+                frete = 186.19;
+            } else if (pesoFrete <= 100) {
+                frete = 238.85;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.623;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 238.85 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 30.86;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 800km  tx 19.35
+        function calcularFreteCidadesAtendidas39(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.887;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 1000km  tx 19.35
+        function calcularFreteCidadesAtendidas40(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela mt e ms ate 1200km  tx 19.35
+        function calcularFreteCidadesAtendidas41(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.334;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 30.86;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela mt e ms ate 1600km  tx 19.35
+        function calcularFreteCidadesAtendidas42(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 114.91;
+            } else if (pesoFrete <= 20) {
+                frete = 128.93;
+            } else if (pesoFrete <= 40) {
+                frete = 151.59;
+            } else if (pesoFrete <= 60) {
+                frete = 202.61;
+            } else if (pesoFrete <= 100) {
+                frete = 259.89;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.864;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 259.89 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 1800km  tx 19.35
+        function calcularFreteCidadesAtendidas43(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 117.12;
+            } else if (pesoFrete <= 20) {
+                frete = 130.19;
+            } else if (pesoFrete <= 40) {
+                frete = 153.75;
+            } else if (pesoFrete <= 60) {
+                frete = 204.39;
+            } else if (pesoFrete <= 100) {
+                frete = 262.53;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.883;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 262.53 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 2000km  tx 19.35
+        function calcularFreteCidadesAtendidas44(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 129.16;
+            } else if (pesoFrete <= 20) {
+                frete = 142.94;
+            } else if (pesoFrete <= 40) {
+                frete = 168.89;
+            } else if (pesoFrete <= 60) {
+                frete = 225.43;
+            } else if (pesoFrete <= 100) {
+                frete = 287.77;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 3.153;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 287.77 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 2200km  tx 19.35
+        function calcularFreteCidadesAtendidas45(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 141.18;
+            } else if (pesoFrete <= 20) {
+                frete = 155.60;
+            } else if (pesoFrete <= 40) {
+                frete = 183.22;
+            } else if (pesoFrete <= 60) {
+                frete = 243.85;
+            } else if (pesoFrete <= 100) {
+                frete = 311.07;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 3.41;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 311.07 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 2400km  tx 19.35
+        function calcularFreteCidadesAtendidas46(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 153.33;
+            } else if (pesoFrete <= 20) {
+                frete = 169.20;
+            } else if (pesoFrete <= 40) {
+                frete = 199.44;
+            } else if (pesoFrete <= 60) {
+                frete = 265.63;
+            } else if (pesoFrete <= 100) {
+                frete = 338.91;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 3.722;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 338.91 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela mt e ms ate 2600km  tx 19.35
+        function calcularFreteCidadesAtendidas47(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 163.77;
+            } else if (pesoFrete <= 20) {
+                frete = 169.93;
+            } else if (pesoFrete <= 40) {
+                frete = 209.59;
+            } else if (pesoFrete <= 60) {
+                frete = 270.79;
+            } else if (pesoFrete <= 100) {
+                frete = 367.03;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 4.03;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 367.03 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 8.29;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela es ate 1000km  tx 19.35
+        function calcularFreteCidadesAtendidas48(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela es ate 1200km  tx 19.35
+        function calcularFreteCidadesAtendidas49(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.33;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela es ate 1400km  tx 19.35
+        function calcularFreteCidadesAtendidas50(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 105.58;
+            } else if (pesoFrete <= 20) {
+                frete = 118.49;
+            } else if (pesoFrete <= 40) {
+                frete = 139.29;
+            } else if (pesoFrete <= 60) {
+                frete = 186.19;
+            } else if (pesoFrete <= 100) {
+                frete = 238.85;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.62;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 238.85 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+        //tabela es ate 1600km  tx 19.35
+        function calcularFreteCidadesAtendidas51(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 114.91;
+            } else if (pesoFrete <= 20) {
+                frete = 128.93;
+            } else if (pesoFrete <= 40) {
+                frete = 151.59;
+            } else if (pesoFrete <= 60) {
+                frete = 202.61;
+            } else if (pesoFrete <= 100) {
+                frete = 259.89;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.864;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 259.89 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0093 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela rj ate 800km  tx 19.35
+        function calcularFreteCidadesAtendidas52(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.89;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela rj ate 1000km  tx 19.35
+        function calcularFreteCidadesAtendidas53(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela rj ate 1200km  tx 19.35
+        function calcularFreteCidadesAtendidas54(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.33;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 19.35;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela sc ate 800km  
+        function calcularFreteCidadesAtendidas55(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 65.83;
+            } else if (pesoFrete <= 20) {
+                frete = 80.77;
+            } else if (pesoFrete <= 40) {
+                frete = 98.41;
+            } else if (pesoFrete <= 60) {
+                frete = 130.79;
+            } else if (pesoFrete <= 100) {
+                frete = 171.82;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 1.89;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 171.82 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela sc ate 1000km  
+        function calcularFreteCidadesAtendidas56(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 74.98;
+            } else if (pesoFrete <= 20) {
+                frete = 93.93;
+            } else if (pesoFrete <= 40) {
+                frete = 110.48;
+            } else if (pesoFrete <= 60) {
+                frete = 147.82;
+            } else if (pesoFrete <= 100) {
+                frete = 192.69;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.109;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 192.69 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+        //tabela sc ate 1200km 
+        function calcularFreteCidadesAtendidas57(pesoFrete) {
+
+            var valor_nf = parseFloat($('#valor_nf').val().replace(',', '.')) || 0;
+
+            var frete = 0;
+
+            if (pesoFrete <= 10) {
+                frete = 93.93;
+            } else if (pesoFrete <= 20) {
+                frete = 105.58;
+            } else if (pesoFrete <= 40) {
+                frete = 124.37;
+            } else if (pesoFrete <= 60) {
+                frete = 166.19;
+            } else if (pesoFrete <= 100) {
+                frete = 212.62;
+            } else {
+                var numFrações = Math.ceil(pesoFrete / 100);
+                var taxaPorFração = 0.00;
+                var taxaTotal = numFrações * taxaPorFração;
+
+                console.log("Valor da taxa com fração de 100kg: " + taxaTotal);
+
+                var pesoExcedente = pesoFrete - 100;
+                var taxaExcessoPeso = Math.max(0, pesoExcedente) * 2.33;
+
+                console.log("Valor da taxa de excesso de peso: " + taxaExcessoPeso);
+
+                var taxaPedagioBase = 0;
+                var taxaPedagio = numFrações > 0 ? (numFrações - 1) * 6.00 + taxaPedagioBase : taxaPedagioBase;
+
+                console.log("Valor da taxa de pedágio: " + taxaPedagio);
+
+                frete = 212.62 + taxaTotal + taxaExcessoPeso + taxaPedagio;
+            }
+
+            var taxaPedagio = 6.00;
+            frete += taxaPedagio;
+            console.log("Pedagio Fixo:" + taxaPedagio);
+
+            var taxaGriss = Math.max(valor_nf * 0.001);
+            frete += taxaGriss;
+            console.log("Valor da taxa griss: " + taxaGriss);
+
+            var taxaFreteValor = valor_nf * 0.00345;
+            frete += taxaFreteValor;
+            console.log("Valor da taxa freteValor: " + taxaFreteValor);
+
+            var taxaSecCat = 0;
+            frete += taxaSecCat;
+            console.log("Valor da taxa secCat: " + taxaSecCat);
+
+            var taxatas = 0;
+            frete += taxatas;
+            console.log("Valor da taxa tas: " + taxatas);
+
+            var cnpjDestinatario = $('#cpf_cnpj_destino').val().replace(/[^\d]+/g, '');
+            var taxaFrete = taxasDeFrete[cnpjDestinatario] || 0;
+            frete += taxaFrete;
+            console.log("Valor da taxa de frete: " + taxaFrete);
+
+
+            var taxaImposto = frete / 0.0088 / 100 - frete - taxaFrete;
+            console.log("Valor da taxa de imposto: " + taxaImposto);
+
+            console.log("Valor do frete sem imposto: " + frete);
+
+            frete += taxaImposto;
+
+            console.log("Valor do frete com todas as taxas: " + frete);
+
+            return frete;
+        }
+
+
+
+
 
 
 
