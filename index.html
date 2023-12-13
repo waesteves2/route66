@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
-
+    <link rel="shortcut icon"
+    href="https://media.glassdoor.com/sql/2482830/rodonaves-transportes-e-encomendas-rte-squarelogo-1551764906097.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Simulador de Frete Route</title>
 
@@ -733,7 +735,7 @@
 
 
             if (prazoEntrega.hasOwnProperty(cidadeDestino)) {
-                return prazoEntrega[cidadeDestino];
+                return prazoEntrega[cidadeDestino] + 2;// serve para mudar o prazo para quantos dias aquizer 
             } else {
                 return "Prazo não especificado";
             }
@@ -7438,7 +7440,7 @@
 
             $('#frete').text(frete.toFixed(2));
 
-            document.getElementById("prazo-entrega-modal").textContent = calcularPrazoEntrega(obterCidadeDestino()) + (calcularPrazoEntrega(obterCidadeDestino()) === 1 ? " dia útil" : " dias úteis");
+            document.getElementById("prazo-entrega-modal").textContent = calcularPrazoEntrega(obterCidadeDestino()) + (calcularPrazoEntrega(obterCidadeDestino())=== 1 ? " dia útil" : " dias úteis");
 
             salvarSimulacaoNoLocalStorage();
 
