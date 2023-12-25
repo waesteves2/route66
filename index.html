@@ -654,56 +654,75 @@
     <script>
 
 
-        function exportarParaXLSX() {
-            var simulacoes = JSON.parse(localStorage.getItem('simulacoes')) || [];
+function exportarParaXLSX() {
+    var simulacoes = JSON.parse(localStorage.getItem('simulacoes')) || [];
 
-            if (simulacoes.length === 0) {
-                alert('Não há dados para exportar.');
-                return;
-            }
+    if (simulacoes.length === 0) {
+        alert('Não há dados para exportar.');
+        return;
+    }
 
-            var dadosExportacao = simulacoes.map(function (simulacao) {
-                return {
-                    Data: simulacao.data,
-                    Remetente: simulacao.remetente,
-                    Destinatario: simulacao.destinatario,
-                    LocalEntrega: simulacao.localEntrega,
-                    Volume: simulacao.volume,
-                    ValorNF: simulacao.valornf,
-                    PesoReal: simulacao.pesoReal,
-                    PesoCubico: simulacao.pesoCubico,
-                    Frete: simulacao.frete,
-                };
-            });
+    var dadosExportacao = simulacoes.map(function (simulacao) {
+        return {
+            Data: simulacao.data,
+            Remetente: simulacao.remetente,
+            Destinatario: simulacao.destinatario,
+            LocalEntrega: simulacao.localEntrega,
+            Volume: simulacao.volume,
+            ValorNF: simulacao.valornf,
+            PesoReal: simulacao.pesoReal,
+            PesoCubico: simulacao.pesoCubico,
+            Frete: simulacao.frete,
+        };
+    });
 
-            var folhaDeDados = XLSX.utils.json_to_sheet(dadosExportacao);
-            var livro = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(livro, folhaDeDados, 'Cotacoes');
+    var folhaDeDados = XLSX.utils.json_to_sheet(dadosExportacao);
+    var livro = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(livro, folhaDeDados, 'Cotacoes');
 
-            XLSX.writeFile(livro, 'cotacoes.xlsx');
-        }
+    XLSX.writeFile(livro, 'cotacoes.xlsx');
+}
 
+function imprimirInformacoes() {
+    var janelaDeImpressao = window.open('', '', 'width=600,height=600');
 
-        function imprimirInformacoes() {
-            var janelaDeImpressao = window.open('', '', 'width=600,height=600');
+    var conteudoParaImprimir = `
+        <h2>Cotação de Frete</h2>
+        <p>Peso Real (Kg): <span>${document.getElementById("peso_real").textContent}</span></p>
+        <p>Peso Cúbico (Kg): <span>${document.getElementById("peso_cubico").textContent}</span></p>
+        <p>Frete: R$ <span>${document.getElementById("frete").textContent}</span></p>
+        <p>Prazo de Entrega: <span>${document.getElementById("prazo-entrega-modal").textContent}</span></p>
+    `;
 
-            var conteudoParaImprimir = `
+    janelaDeImpressao.document.open();
+    janelaDeImpressao.document.write(conteudoParaImprimir);
+    janelaDeImpressao.document.close();
 
-                <h2>Cotação de Frete</h2>
-                <p>Peso Real (Kg): <span>${document.getElementById("peso_real").textContent}</span></p>
-                <p>Peso Cúbico (Kg): <span>${document.getElementById("peso_cubico").textContent}</span></p>
-                <p>Frete: R$ <span>${document.getElementById("frete").textContent}</span></p>
-                <p>Prazo de Entrega: <span>${document.getElementById("prazo-entrega-modal").textContent}</span></p>
-            `;
+    janelaDeImpressao.print();
 
-            janelaDeImpressao.document.open();
-            janelaDeImpressao.document.write(conteudoParaImprimir);
-            janelaDeImpressao.document.close();
+    janelaDeImpressao.close();
+}
 
-            janelaDeImpressao.print();
+// Agende o download para ocorrer às 16:30
+var horaAgendada = 16;
+var minutosAgendados = 30;
 
-            janelaDeImpressao.close();
-        }
+var agora = new Date();
+var dataAgendada = new Date(
+    agora.getFullYear(),
+    agora.getMonth(),
+    agora.getDate(),
+    horaAgendada,
+    minutosAgendados,
+    0
+);
+
+var tempoRestante = dataAgendada - agora;
+
+setTimeout(function () {
+    exportarParaXLSX();
+}, tempoRestante);
+
     </script>
 
     <script>
