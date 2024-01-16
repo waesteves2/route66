@@ -417,8 +417,8 @@
 
         #nome {
             position: absolute;
+            left: 13%;
             top: -2%;
-            left: 16%;
             font-size: 1.9vw;
             /* Usando vw para ajustar o tamanho da fonte responsivamente */
             text-align: center;
@@ -433,7 +433,7 @@
 <body>
     <div id="container">
 
-        <h2 id="nome">Válido apenas para Distribuidora Route 66 Jaú </h2>
+        <h2 id="nome">Válido apenas para Distribuidora Route 66 Jaú - CNPJ: 01.455.957/0001-95</h2>
 
 
         <div class="info-column2">
@@ -585,8 +585,6 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
         
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
           apiKey: "AIzaSyA0VsgKSssVMuFmvVd0ICVX8B0OEg5Vda8",
           authDomain: "cotacao304-5dd34.firebaseapp.com",
@@ -598,30 +596,23 @@
           measurementId: "G-FL67EWSWQP"
         };
         
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         
-        // Retrieve the data from localStorage
         const cotacaoDataFromLocalStorage = JSON.parse(localStorage.getItem('cotacao'));
         if (cotacaoDataFromLocalStorage) {
-          // Reference to the 'historico' node in the database
           const historicoRef = ref(getDatabase(app), 'historico');
         
-          // Add the data from localStorage to the 'historico' node
           push(historicoRef, cotacaoDataFromLocalStorage)
             .then(() => {
               console.log('Cotação adicionada com sucesso ao histórico.');
         
-              // Retrieve the updated data from the 'historico' node using once
               return get(historicoRef);
             })
             .then((snapshot) => {
-              // Clear the existing content in the <ul>
               const historicoContent = document.getElementById('historicoContent');
               historicoContent.innerHTML = '';
         
-              // Loop through the snapshot to update the <ul> with the new data
               snapshot.forEach((childSnapshot) => {
                 const cotacaoData = childSnapshot.val();
                 const listItem = document.createElement('li');
@@ -644,8 +635,6 @@
     <script>
         function checkEnter(event, nextElementId) {
             if (event.key === 'Enter') {
-                // Aqui você pode fazer algo quando a tecla Enter é pressionada,
-                // como focar no próximo elemento
                 document.getElementById(nextElementId).focus();
             }
         }
@@ -861,7 +850,7 @@ setTimeout(function () {
 
 
             if (prazoEntrega.hasOwnProperty(cidadeDestino)) {
-                return prazoEntrega[cidadeDestino] + 2;// serve para mudar o prazo para quantos dias aquizer 
+                return prazoEntrega[cidadeDestino] + 0;// serve para mudar o prazo para quantos dias aquizer 
             } else {
                 return "Prazo não especificado";
             }
@@ -1935,7 +1924,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2077,7 +2066,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2219,7 +2208,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2361,7 +2350,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2503,7 +2492,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2576,7 +2565,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2648,7 +2637,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2723,7 +2712,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2799,7 +2788,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2875,7 +2864,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -2950,7 +2939,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -3325,7 +3314,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -3696,7 +3685,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -3772,7 +3761,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -3847,7 +3836,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -3923,7 +3912,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -4149,7 +4138,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -5882,7 +5871,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -5957,7 +5946,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6032,7 +6021,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.60;
+            var taxaSecCat = 33.60;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6409,7 +6398,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6487,7 +6476,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6562,7 +6551,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6637,7 +6626,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.86;
+            var taxaSecCat = 33.86;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
@@ -6712,7 +6701,7 @@ setTimeout(function () {
             frete += taxaFreteValor;
             console.log("Valor da taxa freteValor: " + taxaFreteValor);
 
-            var taxaSecCat = 30.60;
+            var taxaSecCat = 33.60;
             frete += taxaSecCat;
             console.log("Valor da taxa secCat: " + taxaSecCat);
 
